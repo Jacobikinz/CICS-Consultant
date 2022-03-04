@@ -13,5 +13,5 @@ Hannah Wu - hawuter <br>
 
 ## Important Components
 &nbsp;&nbsp;&nbsp;&nbsp; **CICS Track Catalog** View descriptions of different areas in CS, along with suggested electives and careers.
-&nbsp;&nbsp;&nbsp;&nbsp; **Interest Profiler** Take an assessment on what you're interested in studying and your future goals, then view your unique profile on what kind of CS student you are! Your profile includes match percentages with different fields in CS, and an overall 'type' diagnostic.
+&nbsp;&nbsp;&nbsp;&nbsp; **Interest Profiler** Take an assessment on what you're interested in studying and your future goals, then view your unique profile on what kind of CS student you are! Your profile includes match percentages with different fields in CS, and an overall 'type' diagnostic. This will be based on [research](https://www.ijitee.org/wp-content/uploads/papers/v8i12/J97550881019.pdf) on how personality relates to success in CS.
 &nbsp;&nbsp;&nbsp;&nbsp; **Schedule Advisor** After either completing an Interest Profile or selecting a pre-defined track from the Track Catalog, the user enters how many graduation requirements they still need to fulfill and how many semesters they have left to generate a list of recommended courses to take.
