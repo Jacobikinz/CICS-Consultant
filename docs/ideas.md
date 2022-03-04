@@ -1,4 +1,4 @@
-# Group 17: Nic Asnes Fan Club presents *eAdvisor*
+# Group 17: Nic Asnes Fan Club presents *CICS Consultant*
 
 ## Team Overview
 Thomas Callaghan - twcallaghan
