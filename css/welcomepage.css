@@ -1,0 +1,12 @@
+.dropdowns {
+    display: flex;
+}
+
+.math-dd-course-container {
+    /* float: left; */
+    padding-left: 20px;
+}
+
+.science-dd-course-container {
+    padding-left: 40px;
+}

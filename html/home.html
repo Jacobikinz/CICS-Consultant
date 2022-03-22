@@ -5,9 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="..\css\welcomepage.css" />
+    <script type="module" href="..\js\welcomepage.js" defer></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+    <!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/> -->
+    
     <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
+
     <title>CICS Consultant</title>
   </head>
   <body>
@@ -24,60 +38,151 @@
 
 
     <div class="container">
-      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-          <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-          <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
-              <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" width="60" height="60"></img>
-              <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
-          </a>
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom samesizeheader">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" width="60" height="60"></img>
+            <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
+        </a>
 
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Tracks Overview</a></li>
             <li><a href="how-it-works.html" class="nav-link px-2 link-dark">How It Works</a></li>
             <li><a href="faq.html" class="nav-link px-2 link-dark">FAQs</a></li>
             <li><a href="about.html" class="nav-link px-2 link-dark">About</a></li>
             <li><a href="the-team.html" class="nav-link px-2 link-dark">The Team</a></li>
-          </ul>
+        </ul>
 
-          <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
-          </div>
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-outline-primary me-2">Login</button>
+          <button type="button" class="btn btn-primary">Sign-up</button>
+        </div>
       </header>
 
-      <h1>Welcome to home</h1>
+      <h1>Select Everything You've Taken</h1>
 
-      <!-- Include Twitter Bootstrap and jQuery: -->
-      <link rel="stylesheet" href="..\css\bootstrap-3.3.2.min.css" type="text/css"/>
-      <script type="text/javascript" src="..\js\jquery-2.1.3.min.js"></script>
-      <script type="text/javascript" src="..\js\bootstrap-3.3.2.min.js"></script>
-      
-      <!-- Include the plugin's CSS and JS: -->
-      <script type="text/javascript" src="..\js\bootstrap-multiselect.js"></script>
-      <link rel="stylesheet" href="..\css\bootstrap-multiselect.css" type="text/css"/>
+      <br>
 
-      <!-- <script type="text/javascript">
-        $('#example-multiple-optgroups-classes').multiselect();
-      </script> -->
+      <div id="dropdown-container" class="dropdowns">
+        <div class="cs-dd-courses-container" style="width: 200px;">
+          <h6>Computer Science Courses</h6> 
+          <select multiple="multiple" id="CS-courses-dd" size="10" style="width: 200px;">
+            <!-- <optgroup label="Computer Science Courses"> -->
+              <option value = "CS_121">CS 121</option>
+              <option value = "CS_186">CS 186</option>
+              <option value = "CS_187">CS 187</option>
+              <option value = "CS_220">CS 220</option>
+              <option value = "CS_230">CS 230</option>
+              <option value = "CS_240">CS 240</option>
+              <option value = "CS_250">CS 250</option>
+              <option value = "CS_383">CS 383</option>
+              <option value = "CS_320">CS 320</option>
+              <option value = "CS_326">CS 326</option>
+            <!-- </optgroup> -->
+          </select>
+        </div>
 
-      <select id="example-multiple-optgroups">
-          <optgroup label="Group 1">
-              <option value="1-1">Option 1.1</option>
-              <option value="1-2" selected="selected">Option 1.2</option>
-              <option value="1-3" selected="selected">Option 1.3</option>
-          </optgroup>
-          <optgroup label="Group 2">
-              <option value="2-1">Option 2.1</option>
-              <option value="2-2">Option 2.2</option>
-              <option value="2-3">Option 2.3</option>
-          </optgroup>
+        <div class="math-dd-course-container" style="width: 200px;">
+          <h6> Math Courses </h6>
+          <select multiple="multiple" id="math-courses-dd" size="10" style="width: 200px;">
+            <option value="Math_131">Math 131</option>
+            <option value="Math_132">Math 131</option>
+          </select>
+        </div>
+
+        <div class="science-dd-course-container" style="width: 200px;">
+          <h6> Science Courses </h6>
+          <select multiple="multiple" id="science-courses-dd" size="10" style="width: 200px;">
+            <option value="Physics_151">Physics 151</option>
+            <option value="Physics_152">Physics 152</option>
+            <option value="Chem_111">Chem 111</option>
+            <option value="Bio_111">Bio 111</option>
+          </select>
+        </div>
+      </div>
+
+      <br>
+
+      <h1> Based on what you said above, you still need to fill these prereqs: ... Lorem ipsum dolor sit amet consectetur, adipisicing elit. </h1>
+
+      <br>
+
+      <h1> Out of the CS classes you chose, which ones have you enjoyed the most? </h1>
+      <select multiple="multiple" id="CS-courses-dd" size="10" style="width: 200px;">
+        <!-- <optgroup label="Computer Science Courses"> -->
+          <option value = "CS_121">CS 121</option>
+          <option value = "CS_186">CS 186</option>
+          <option value = "CS_250">CS 250</option>
+          <option value = "CS_383">CS 383</option>
+          <option value = "CS_320">CS 320</option>
+          <option value = "CS_326">CS 326</option>
+        <!-- </optgroup> -->
       </select>
-      
-      <script type="text/javascript">
-        $('#example-multiple-optgroups').multiselect();
-      </script>
 
+      <br>
+      <br>
+
+      <h1> We think the ___ path would be best for you! </h1>
+
+
+      <!-- <div class="bs-multiselect">
+        <select id = "mltislct" multiple = "multiple">
+          <optgroup label="Computer Science Courses">
+            <option value = "CS_121">CS 121</option>
+            <option value = "CS_186">CS 186</option>
+            <option value = "CS_187">CS 187</option>
+            <option value = "CS_250">CS 250</option>
+          </optgroup>
+          <optgroup label="Programming Languages You're Proficient In">
+            <option value = "HTML"> HTML</option>
+            <option value = "CSS"> CSS</option>
+            <option value = "Bootstrap"> Bootstrap</option>
+            <option value = "Angular"> Angular </option>
+            <option value = "JavaScript"> JavaScript </option>
+            <option value = "jquery"> jquery </option>
+            <option value = "HTML"> HTML</option>
+            <option value = "CSS"> CSS</option>
+            <option value = "Bootstrap"> Bootstrap</option>
+            <option value = "Angular"> Angular </option>
+            <option value = "JavaScript"> JavaScript </option>
+            <option value = "jquery"> jquery </option><option value = "HTML"> HTML</option>
+            <option value = "CSS"> CSS</option>
+            <option value = "Bootstrap"> Bootstrap</option>
+            <option value = "Angular"> Angular </option>
+            <option value = "JavaScript"> JavaScript </option>
+            <option value = "jquery"> jquery </option><option value = "HTML"> HTML</option>
+            <option value = "CSS"> CSS</option>
+            <option value = "Bootstrap"> Bootstrap</option>
+            <option value = "Angular"> Angular </option>
+            <option value = "JavaScript"> JavaScript </option>
+            <option value = "jquery"> jquery </option><option value = "HTML"> HTML</option>
+            <option value = "CSS"> CSS</option>
+            <option value = "Bootstrap"> Bootstrap</option>
+            <option value = "Angular"> Angular </option>
+            <option value = "JavaScript"> JavaScript </option>
+            <option value = "jquery"> jquery </option>
+          </optgroup>
+        </select>
+     </div>
+     </div>
+     <script>
+      $(document).ready(function() {
+      $('#mltislct').multiselect({
+      buttonClass:'btn btn-warning',
+      buttonWidth:'260px',
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      includeSelectAllOption: false,
+      filterPlaceholder:'Search Here..'
+      });
+      $('#mltislct').on('change', function (e, clickedIndex, newValue, oldValue) {
+      let selected = $(e.currentTarget).val();
+      console.log(selected);
+      });
+      });
+    </script> -->
+    
     </div>
   </body>
 </html>
