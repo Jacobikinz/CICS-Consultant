@@ -1,5 +1,7 @@
 let x = document.getElementById('CS-courses-dd');
 
+console.log(x);
+
 x.addEventListener("change", function(e) {
     let selectedvals = [];
     for (let i = 0; i < x.length; i++) {
