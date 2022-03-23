@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <link rel="stylesheet" href="..\css\register.css" />
+        <script type="module" src="..\js\loginandregister.js" defer></script>
+        
+        <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
+
+        <title>CICS Consultant</title>
+        
+    </head>
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom samesizeheader">
+                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" width="60" height="60"></img>
+                    <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
+                </a>
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Tracks Overview</a></li>
+                    <li><a href="faq.html" class="nav-link px-2 link-dark">FAQs</a></li>
+                    <li><a href="about.html" class="nav-link px-2 link-dark">About</a></li>
+                </ul>
+
+                <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2" id="signinbutton">Login</button>
+                    <button type="button" class="btn btn-primary" id="registerbutton">Sign-up</button>
+                </div>
+            </header>
+
+        <div id="main-container" class="justify-content-center align-items-center d-flex">
+            <div class="row justify-content-center align-items-center mw-100 bg-light w-25 border border-primary rounded-lg rounded">
+                <form class="form-horizontal">
+                <fieldset>
+                
+                <!-- Form Name -->
+                <legend>Register for CICS Consultant!</legend>
+                
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-9 control-label" for="fname">First Name</label>  
+                    <div class="col-md-9">
+                        <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-md" required=""> 
+                    </div>
+                </div>
+                
+                <!-- Text input-->
+                <div class="form-group">
+                <label class="col-md-9 control-label" for="lname">Last Name</label>  
+                <div class="col-md-9">
+                <input id="lname" name="lname" type="text" placeholder="Doe" class="form-control input-md" required="">
+                    
+                </div>
+                </div>
+                
+                <!-- Text input-->
+                <div class="form-group">
+                <label class="col-md-12 control-label" for="email">Email</label>  
+                <div class="col-md-12">
+                <input id="email" name="email" type="text" placeholder="johndoe@example.com" class="form-control input-md" required="">
+                    
+                </div>
+                </div>
+                
+                <!-- Password input-->
+                <div class="form-group">
+                <label class="col-md-12 control-label" for="password">Password</label>
+                <div class="col-md-12">
+                    <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+                    
+                </div>
+                </div>
+                
+                <!-- Button (Double) -->
+                <div class="form-group">
+                <label class="col-md-11 control-label" for="save"></label>
+                <div class="col-md-11 d-flex justify-content-between">
+                    <button id="save" name="save" class="btn btn-success">Register</button>
+
+                    <button id="clear" name="clear" class="btn btn-danger">Reset</button>
+                </div>
+                </div>
+                
+                </fieldset>
+                </form>
+            </div>
+        </div>
+        
+</html>
