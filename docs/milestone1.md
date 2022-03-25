@@ -62,7 +62,7 @@ The about page will contain basic information about the website's purpose, funct
   - Created website header
   - Fleshed out homepage, made dropdowns
   - Added working FAQ accordion
-  - Added login/signup buttons, cleaned up login/signup code
+  - Added login/signup buttons, and login/signup code
 - Hannah Wu:
   - Moved wireframes to /docs
   - Added data interactions to md doc
