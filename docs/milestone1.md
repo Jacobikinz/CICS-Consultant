@@ -13,7 +13,7 @@ Wireframe |Screenshot
 :--------:|:--------:
 ![](wireframes/home.png?raw=true)|![](screenshots/home.png?raw=true)
 
-The home page contains the quiz and track reccommendations. This includes dropdowns for the user to select the classes they have taken and a dropdown to select their favorites out of the classes they have taken. It also has an HTML element at the bottom to give reccommendations based on their answers. A user may choose to save their progress, in which case the data will be saved as an object in the database.
+The home page contains the quiz and track recommendations. This includes dropdowns for the user to select the classes they have taken and a dropdown to select their favorites out of the classes they have taken. It also has an HTML element at the bottom to give reccommendations based on their answers. A user may choose to save their progress, in which case the data will be saved as an object in the database.
 
 A stretch goal is to add a scheduler. After either completing an Interest Profile quiz or selecting a pre-defined track from the Track Catalog, the user enters what graduation requirements they have taken from a checklist to generate a list of recommended courses to take. This could be at the bottom of the home page or on its own page.
 
