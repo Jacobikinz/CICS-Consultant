@@ -2,8 +2,11 @@
     display: flex;
 }
 
+.dropdown {
+    width: 200px;
+}
+
 .math-dd-course-container {
-    /* float: left; */
     padding-left: 20px;
 }
 
