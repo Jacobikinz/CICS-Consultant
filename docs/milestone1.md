@@ -43,7 +43,7 @@ Wireframe |Screenshot
 :--------:|:--------:
 ![](wireframes/faq.png?raw=true)|![](screenshots/faq.png?raw=true)
 
-The FAQ page has an accordion body whose titles are questions about the web application's functions. The questions' answers are avalible by expanding that section of the accordion.
+The FAQ page has an accordion body whose titles are questions about the web application's functions. The questions' answers are available by expanding that section of the accordion.
 
 
 ## About
