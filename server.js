@@ -41,6 +41,23 @@ function userExists(email) {
   }
 }
 
+function checkPass(email, pass) {
+  let index = 0;
+  let returnIndex = null;
+  users.forEach((user) => {
+    if (user['email'] === email && user['password'] === pass) {
+      returnIndex = index;
+    } 
+    index += 1;
+  });
+
+  if (returnIndex !== null) {
+    return returnIndex;
+  } else {
+    return -1;
+  }
+}
+
 // async function createCounter(response, name) {
 //   if (name === undefined) {
 //     // 400 - Bad Request
@@ -139,17 +156,27 @@ app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
 app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 
 app.post('/signupUser', async (request, response) => {
-    await reload(userFile);
-    const options = request.body;
-    console.log(options);
-    console.log(userExists(options['email']));
-    if (userExists(options['email']) !== -1) {
-        response.status(400).json({error: `An account already exists with the email: '${options.email}'. Please try logging in! Thanks! :) `})
-    } else {
-        users.push(options);
-        response.status(200).json('Thanks for signing up');
-        saveUsers();
-    }
+  await reload(userFile);
+  const options = request.body;
+  if (userExists(options['email']) !== -1 ) {
+      response.status(400).json({error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) `})
+  } else {
+      users.push(options);
+      response.status(200).json('Thanks for signing up');
+      saveUsers();
+  }
+});
+
+app.get('/loginUser', async (request, response) => {
+  await reload(userFile);
+  const options = request.headers;
+  if (userExists(options['email']) !== -1 && checkPass(options['email'], options['password']) !== -1) {
+    response.status(200).json('Logging in...');
+  } else if (userExists(options['email']) === -1) {
+    response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
+  } else if (userExists(options['password']) === -1) {
+    response.status(400).json('Incorrect password.');
+  }
 });
 
 app.get('*', async (request, response) => {

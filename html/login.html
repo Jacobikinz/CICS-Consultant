@@ -9,6 +9,7 @@
     <!-- Local stylesheets -->
     <link rel="stylesheet" href="..\css\login.css" />
     <script type="module" src="..\js\loginandregister.js" defer></script>
+    <script type="module" src="..\js\login.js" defer></script>
 
     <!-- Page Icon and Title -->
     <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
@@ -75,8 +76,9 @@
                     <div class="form-group">
                         <label class="col-md-11 control-label" for="save"></label>
                         <div class="col-md-11 d-flex justify-content-center">
-                            <button id="save" name="save" class="btn btn-success">Login</button>
+                            <input type="button" id="loginbutton" name="save" class="btn btn-success" value="Login"></input>
                         </div>
+                        <h5 id="loginstatus"></h5>
                     </div>
                     <br>
 
