@@ -5,7 +5,7 @@ class Quiz {
     constructor(email) {
         this.email = email;
         // Questions in the quiz
-        // answers have categories; add up # of each category to calculate quiz result
+        // Answers can have categories; add up # of each category to calculate quiz result
         //TODO create all questions
         this.questions = [{
                 id: 0,
@@ -52,17 +52,15 @@ class Quiz {
         let categories = {};
         if (this.isComplete()) {
             this.questions.selected.forEach(answer => {
-                if (answer.category) {
-                    if (categories[answer.category]) {
+                if (answer.hasOwnProperty('category')) {
+                    if (categories.hasOwnProperty(answer.category)) {
                         categories[answer.category]++;
                     } else {
                         categories[answer.category] = 1;
                     }
-                } else {
-                    return undefined;
                 }
             });
-            return Object.keys(catergories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
+            return Object.keys(categories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
         }
         return undefined;
     }
