@@ -1,6 +1,4 @@
 const signinbutton = document.getElementById('signinbutton');
-console.log(signinbutton);
-
 signinbutton.addEventListener("click", function (e) {
     document.location.href = 'login.html';
 });

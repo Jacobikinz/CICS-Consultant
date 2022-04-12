@@ -1,32 +1,45 @@
-import express from 'express';
+import express, { response } from 'express';
 import logger from 'morgan';
 import { readFile, writeFile } from 'fs/promises';
 
-let counters = {};
+let users = [];
 
 const userFile = 'userfile.json';
 
-// async function reload(filename) {
-//   try {
-//     const data = await readFile(filename, { encoding: 'utf8' });
-//     counters = JSON.parse(data);
-//   } catch (err) {
-//     counters = {};
-//   }
-// }
+async function reload(filename) {
+  try {
+    const data = await readFile(filename, { encoding: 'utf8' });
+    users = JSON.parse(data);
+  } catch (err) {
+    users = [];
+  }
+}
 
-// async function saveCounters() {
-//   try {
-//     const data = JSON.stringify(counters);
-//     await writeFile(JSONfile, data, { encoding: 'utf8' });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
+async function saveUsers() {
+  try {
+    const data = JSON.stringify(users);
+    await writeFile(userFile, data, { encoding: 'utf8' });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-// function counterExists(name) {
-//   return name in counters;
-// }
+function userExists(email) {
+  let index = 0;
+  let returnindex = null;
+  users.forEach((user) => {
+    if (user['email'] === email) {
+        returnindex = index;
+    } 
+    index += 1;
+  });
+
+  if (returnindex !== null) {
+    return returnindex;
+  } else {
+    return -1;
+  }
+}
 
 // async function createCounter(response, name) {
 //   if (name === undefined) {
@@ -122,8 +135,22 @@ app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 app.get("/faq", (req, res) => res.redirect("/html/faq.html"));
 app.get("/about", (req, res) => res.redirect("/html/about.html"));
 app.get("/login", (req, res) => res.redirect("/html/signin.html"));
+app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
 app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 
+app.post('/signupUser', async (request, response) => {
+    await reload(userFile);
+    const options = request.body;
+    console.log(options);
+    console.log(userExists(options['email']));
+    if (userExists(options['email']) !== -1) {
+        response.status(400).json({error: `An account already exists with the email: '${options.email}'. Please try logging in! Thanks! :) `})
+    } else {
+        users.push(options);
+        response.status(200).json('Thanks for signing up');
+        saveUsers();
+    }
+});
 
 app.get('*', async (request, response) => {
   response.status(404).send(`Not found: ${request.path}`);
