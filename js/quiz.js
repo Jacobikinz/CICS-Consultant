@@ -2,7 +2,7 @@
 //To retrieve from database: create new Quiz() and use setter with JSON from database
 
 class Quiz {
-    constructor(name) {
+    constructor(email) {
         this.email = email;
         // Questions in the quiz
         //answers have categories; add up # of each category to calculate quiz result
@@ -30,7 +30,7 @@ class Quiz {
 
     isComplete() {
         //find number of incomplete questions, return true if there are 0
-        return questions.filter(question => question.selected ? false : true).length < 1;
+        return this.questions.filter(question => question.selected ? false : true).length < 1;
     }
 
     get json() {
@@ -43,6 +43,26 @@ class Quiz {
     set answers(json) {
         this.email = json.email;
         this.questions = json.questions;
+    }
+
+    //get result if all questions are answered and valid; else undefined
+    get result() {
+        let categories = {};
+        if (this.isComplete()) {
+            this.questions.selected.forEach(answer => {
+                if (answer.category) {
+                    if (categories[answer.category]) {
+                        categories[answer.category]++;
+                    } else {
+                        categories[answer.category] = 1;
+                    }
+                } else {
+                    return undefined;
+                }
+            });
+            return Object.keys(catergories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
+        }
+        return undefined;
     }
 
 }
