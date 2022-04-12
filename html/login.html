@@ -7,7 +7,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Local stylesheets -->
-    <link rel="stylesheet" href="..\css\register.css" />
+    <link rel="stylesheet" href="..\css\login.css" />
     <script type="module" src="..\js\loginandregister.js" defer></script>
 
     <!-- Page Icon and Title -->
@@ -36,6 +36,10 @@
 </header>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
     <div id="main-container" class="justify-content-center align-items-center d-flex">
         <div
             class="row justify-content-center align-items-center mw-100 bg-light w-25 border border-primary rounded-lg rounded">
@@ -44,27 +48,8 @@
 
                     <!-- Form Name -->
                     <br>
-                    <legend id="register-legend"><strong>Sign-up for CICS Consultant!</strong></legend>
-                    <br><br>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="fname">First Name</label>
-                        <div class="col-md-6">
-                            <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-md"
-                                required="">
-                        </div>
-                    </div>
+                    <legend><strong>Login to CICS Consultant</strong></legend>
                     <br>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="lname">Last Name</label>
-                        <div class="col-md-6">
-                            <input id="lname" name="lname" type="text" placeholder="Doe" class="form-control input-md"
-                                required="">
-
-                        </div>
-                    </div>
                     <br>
                     <!-- Text input-->
                     <div class="form-group">
@@ -89,10 +74,8 @@
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <label class="col-md-11 control-label" for="save"></label>
-                        <div class="col-md-11 d-flex justify-content-between">
-                            <button id="save" name="save" class="btn btn-success">Sign-up</button>
-
-                            <button id="clear" name="clear" class="btn btn-danger">Reset</button>
+                        <div class="col-md-11 d-flex justify-content-center">
+                            <button id="save" name="save" class="btn btn-success">Login</button>
                         </div>
                     </div>
                     <br>
