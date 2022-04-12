@@ -5,7 +5,8 @@ class Quiz {
     constructor(email) {
         this.email = email;
         // Questions in the quiz
-        //answers have categories; add up # of each category to calculate quiz result
+        // answers have categories; add up # of each category to calculate quiz result
+        //TODO create all questions
         this.questions = [{
                 id: 0,
                 q: "What computer science courses have you taken?",
@@ -40,6 +41,7 @@ class Quiz {
         };
     }
 
+    //Save answers: use setter with the new JSON
     set answers(json) {
         this.email = json.email;
         this.questions = json.questions;
