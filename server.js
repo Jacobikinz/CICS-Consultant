@@ -1,8 +1,18 @@
 import express, { response } from 'express';
 import logger from 'morgan';
 import { readFile, writeFile } from 'fs/promises';
+import * as path from 'path';
+
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+
+// 👇️ "/home/john/Desktop/javascript"
+const __dirname = path.dirname(__filename);
+console.log('directory-name 👉️', __dirname);
 
 let users = [];
+let loggedIn = false;
 
 const userFile = 'userfile.json';
 
@@ -139,50 +149,67 @@ app.use(express.urlencoded({ extended: false }));
 //   dumpCounters(response);
 // });
 
-// Serves all the html, js, and css 
-app.use('/html', express.static('html'));
+// Serves all the html, js, and css
+// app.use('/html', express.static('html'));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
+
+app.get("/html/home.html", (req, res) => {
+  console.log('in the home thing');
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/home_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/home.html");
+  }
+});
 
 // Redirect you to home.html when you type /home
 app.get("/home", (req, res) => res.redirect("/html/home.html"));
 app.get("/", (req, res) => res.redirect("/html/home.html"));
 
-// Redirect to tracks, FAQ, About, etc.
-app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
-app.get("/faq", (req, res) => res.redirect("/html/faq.html"));
-app.get("/about", (req, res) => res.redirect("/html/about.html"));
-app.get("/login", (req, res) => res.redirect("/html/signin.html"));
-app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
-app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
+// // Redirect to tracks, FAQ, About, etc.
+// app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
+// app.get("/faq", (req, res) => res.redirect("/html/faq.html"));
+// app.get("/about", (req, res) => res.redirect("/html/about.html"));
+// app.get("/login", (req, res) => res.redirect("/html/signin.html"));
+// app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
+// app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 
-app.post('/signupUser', async(request, response) => {
-    await reload(userFile);
-    const options = request.body;
-    if (userExists(options['email']) !== -1) {
-        response.status(400).json({ error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) ` })
-    } else {
-        users.push(options);
-        response.status(200).json('Thanks for signing up');
-        saveUsers();
-    }
+app.post('/signupUser', async (request, response) => {
+  await reload(userFile);
+  const options = request.body;
+  if (userExists(options['email']) !== -1 ) {
+      response.status(400).json({error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) `})
+  } else {
+      users.push(options);
+      response.status(200).json('Thanks for signing up');
+      saveUsers();
+      loggedIn = true;
+  }
 });
 
-app.get('/loginUser', async(request, response) => {
-    await reload(userFile);
-    const options = request.headers;
-    if (userExists(options['email']) !== -1 && checkPass(options['email'], options['password']) !== -1) {
-        response.status(200).json('Logging in...');
-    } else if (userExists(options['email']) === -1) {
-        response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
-    } else if (userExists(options['password']) === -1) {
-        response.status(400).json('Incorrect password.');
-    }
+app.get('/loginUser', async (request, response) => {
+  await reload(userFile);
+  const options = request.headers;
+  if (userExists(options['email']) !== -1 && checkPass(options['email'], options['password']) !== -1) {
+    response.status(200).json('Logging in...');
+    loggedIn = true;
+  } else if (userExists(options['email']) === -1) {
+    response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
+  } else if (userExists(options['password']) === -1) {
+    response.status(400).json('Incorrect password.');
+  }
 });
 
-app.get('*', async(request, response) => {
-    response.status(404).send(`Not found: ${request.path}`);
+app.get('*', function(req, res) {
+  console.log(req.path.substring(1));
+  res.sendFile(__dirname + req.path);
 });
+
+// app.get('*', async (request, response) => {
+//   console.log(loggedIn);
+//   response.status(404).send(`Not found: ${request.path}`);
+// });
 
 
 app.listen(port, () => {
