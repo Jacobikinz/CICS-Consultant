@@ -24,3 +24,34 @@ This will also cause the user to go to the home page and the headers will change
 <p>There is no body because GET requests cannot contain a body. </p>
 <p> This will respond with either a <code>status 400</code> if there is no account with that email, or if the password is incorrect for the account with that email.
   If the email and password are valid and match, the server will respond with a <code>status 200</code> and the user will be redirected to the home page.</p>
+
+
+<h4>Update:</h4>
+<h5>User Updating Their Information (email)</h5>
+<p>Users can update the email associated with their account by clicking on the "Profile" button and then the "Update your information" button. This allows the user to 
+  enter in a new email for their account and then by clicking the "Confirm new info" button, their email will be updated via a PUT request sent to the server.</p>
+<code>PUT /newInfo</code> <br>
+<code>headers: {'Content-Type': 'application/json'} </code> <br>
+<code>body: JSON.stringify({ oldemail: userEmailCookie, newemail: newemail }) </code> <br>
+<br>
+<p> This will respond with a <code>status 500</code> along with the error if there was a server error while trying to update the email, or a <code>status 200</code>
+  if the email was successfully updated.</p>
+  
+<h5> User Signing Out</h5>
+<p> Users can sign-out of their account at any time by clicking the "Sign Out" button in the top right corner. </p>
+<code>PUT /signoutUser</code> <br>
+<p>This contains no headers or body because it is just trying to signal to the server that the user wants to signout</p>
+<p>The server always returns with a <code>status 200</code> for this API request because all it is doing is setting the <code>loggedIn</code> variable in the server code to false</p>
+
+
+<h4>Delete:</h4>
+<p>Users can delete their profile by clicking on the "Profile" button and then the red "Delete Your Profile" button. This will delete the user from the database (local storage).</p>
+<code>DELETE /deleteUser</code> <br>
+<code>headers: {'Content-Type': 'application/json'} </code> <br>
+<code>body: JSON.stringify({ email: userEmailCookie })</code> <p> userEmailCookie is the current user's email that is being stored inside of the website's cookies </p><br>
+<p>This will respond with a <code>status 500</code> along with the error if there was a server error while trying to delete the user, or a <code>status 200</code> if the user was successfully deleted.</p>
+
+<h2>Part 2: Front-end Implementation Screenshots</h2>
+<h3>Users / Authentication API:</h3>
+<h4>Create <code>POST /signupUser</code>
+  
