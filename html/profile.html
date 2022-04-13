@@ -6,9 +6,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="..\css\welcomepage.css" />
-  <script type="module" src="..\js\welcomepage.js"></script>
+  <link rel="stylesheet" href="..\css\profile.css" />
+  <script type="module" src="..\js\profile.js"></script>
   <script type="module" src="..\js\profileHeader.js"></script>
+
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -50,7 +51,30 @@
       </div>
     </header>
 
-    <h1>Welcome to your profile</h1>
+    <div id="accountinfo">
+      <div id="profiletitle">
+        <h1>Welcome to your profile!</h1>
+      </div>
+
+      <br>
+
+      <div id="inner-account-info" class="rounded border border-secondary bg-light">
+        <br>
+        <h2 id="fnameinfo">&nbsp;&nbsp;First name: Will</h2>
+        <h2 id="lnameinfo">&nbsp;&nbsp;Last name: Smith</h2>
+        <h2 id="emailinfo">&nbsp;&nbsp;Email:</h2>
+        <br>
+        <div class="col-md-11 d-flex justify-content-between">
+            <input type="button" id="updatebutton" name="save" class="btn btn-primary" value="Update Your Information"></input>
+        </div>
+
+        <label id="newemaillabel" for="newemail" class="invisible">Enter your new email:</label>
+        <input id="newemail" type="text" class="invisible"></input>
+        <input id="confirm-new-email" type="button" class="invisible" value="Confirm new info"></input>
+
+        <h5 id="newinforesponse"></h5>
+      </div>
+    </div>
 
   </div>
 </body>
