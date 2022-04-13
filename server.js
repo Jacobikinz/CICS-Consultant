@@ -7,55 +7,55 @@ let users = [];
 const userFile = 'userfile.json';
 
 async function reload(filename) {
-  try {
-    const data = await readFile(filename, { encoding: 'utf8' });
-    users = JSON.parse(data);
-  } catch (err) {
-    users = [];
-  }
+    try {
+        const data = await readFile(filename, { encoding: 'utf8' });
+        users = JSON.parse(data);
+    } catch (err) {
+        users = [];
+    }
 }
 
 async function saveUsers() {
-  try {
-    const data = JSON.stringify(users);
-    await writeFile(userFile, data, { encoding: 'utf8' });
-  } catch (err) {
-    console.log(err);
-  }
+    try {
+        const data = JSON.stringify(users);
+        await writeFile(userFile, data, { encoding: 'utf8' });
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 function userExists(email) {
-  let index = 0;
-  let returnindex = null;
-  users.forEach((user) => {
-    if (user['email'] === email) {
-        returnindex = index;
-    } 
-    index += 1;
-  });
+    let index = 0;
+    let returnindex = null;
+    users.forEach((user) => {
+        if (user['email'] === email) {
+            returnindex = index;
+        }
+        index += 1;
+    });
 
-  if (returnindex !== null) {
-    return returnindex;
-  } else {
-    return -1;
-  }
+    if (returnindex !== null) {
+        return returnindex;
+    } else {
+        return -1;
+    }
 }
 
 function checkPass(email, pass) {
-  let index = 0;
-  let returnIndex = null;
-  users.forEach((user) => {
-    if (user['email'] === email && user['password'] === pass) {
-      returnIndex = index;
-    } 
-    index += 1;
-  });
+    let index = 0;
+    let returnIndex = null;
+    users.forEach((user) => {
+        if (user['email'] === email && user['password'] === pass) {
+            returnIndex = index;
+        }
+        index += 1;
+    });
 
-  if (returnIndex !== null) {
-    return returnIndex;
-  } else {
-    return -1;
-  }
+    if (returnIndex !== null) {
+        return returnIndex;
+    } else {
+        return -1;
+    }
 }
 
 // async function createCounter(response, name) {
@@ -145,7 +145,8 @@ app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 
 // Redirect you to home.html when you type /home
-app.get("/home", (req,res) => res.redirect("/html/home.html"));
+app.get("/home", (req, res) => res.redirect("/html/home.html"));
+app.get("/", (req, res) => res.redirect("/html/home.html"));
 
 // Redirect to tracks, FAQ, About, etc.
 app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
@@ -155,35 +156,35 @@ app.get("/login", (req, res) => res.redirect("/html/signin.html"));
 app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
 app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 
-app.post('/signupUser', async (request, response) => {
-  await reload(userFile);
-  const options = request.body;
-  if (userExists(options['email']) !== -1 ) {
-      response.status(400).json({error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) `})
-  } else {
-      users.push(options);
-      response.status(200).json('Thanks for signing up');
-      saveUsers();
-  }
+app.post('/signupUser', async(request, response) => {
+    await reload(userFile);
+    const options = request.body;
+    if (userExists(options['email']) !== -1) {
+        response.status(400).json({ error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) ` })
+    } else {
+        users.push(options);
+        response.status(200).json('Thanks for signing up');
+        saveUsers();
+    }
 });
 
-app.get('/loginUser', async (request, response) => {
-  await reload(userFile);
-  const options = request.headers;
-  if (userExists(options['email']) !== -1 && checkPass(options['email'], options['password']) !== -1) {
-    response.status(200).json('Logging in...');
-  } else if (userExists(options['email']) === -1) {
-    response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
-  } else if (userExists(options['password']) === -1) {
-    response.status(400).json('Incorrect password.');
-  }
+app.get('/loginUser', async(request, response) => {
+    await reload(userFile);
+    const options = request.headers;
+    if (userExists(options['email']) !== -1 && checkPass(options['email'], options['password']) !== -1) {
+        response.status(200).json('Logging in...');
+    } else if (userExists(options['email']) === -1) {
+        response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
+    } else if (userExists(options['password']) === -1) {
+        response.status(400).json('Incorrect password.');
+    }
 });
 
-app.get('*', async (request, response) => {
-  response.status(404).send(`Not found: ${request.path}`);
+app.get('*', async(request, response) => {
+    response.status(404).send(`Not found: ${request.path}`);
 });
 
 
 app.listen(port, () => {
-  console.log(`Server started on poart ${port}`);
+    console.log(`Server started on poart ${port}`);
 });

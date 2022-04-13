@@ -1,7 +1,7 @@
 //To save to database: use getter to get a JSON version of the class
 //To retrieve from database: create new Quiz() and use setter with JSON from database
 
-class Quiz {
+export class Quiz {
     constructor(email) {
         this.email = email;
         // Questions in the quiz
@@ -9,7 +9,6 @@ class Quiz {
         // Selected must be an array
         //TODO create all questions
         this.questions = [{
-                id: 0,
                 q: "What computer science courses have you taken?",
                 a: [{ id: 0, text: "CS 121" },
                     { id: 1, text: "CS 186" },
@@ -17,7 +16,6 @@ class Quiz {
                 ],
                 selected: undefined
             }, {
-                id: 1,
                 q: "What math courses have you taken?",
                 a: [{ id: 0, text: "Math 131" },
                     { id: 1, text: "Math 132" },
@@ -25,17 +23,15 @@ class Quiz {
                 ],
                 selected: undefined
             }, {
-                id: 2,
                 q: "What lab science courses have you taken?",
                 a: [{ id: 0, text: "Physics 151" },
                     { id: 1, text: "Physics 152" },
                     { id: 2, text: "Chem 111" },
-                    { id: 2, text: "Bio 111" },
+                    { id: 3, text: "Bio 111" },
                 ],
                 selected: undefined
             },
             {
-                id: 3,
                 q: "Out of the CS classes you chose, which ones have you enjoyed the most?",
                 //TODO add logic to only use the selected classes from question 0
                 a: [{ id: 0, text: "CS_121", category: "category" },
@@ -53,10 +49,12 @@ class Quiz {
     }
 
     get json() {
-        return {
-            email: this.email,
-            questions: this.questions
-        };
+        // console.log("here");
+        // return {
+        //     email: this.email,
+        //     questions: this.questions
+        // };
+        return JSON.parse(JSON.stringify(this));
     }
 
     //Save answers: use setter with the new JSON
@@ -65,17 +63,20 @@ class Quiz {
         this.questions = json.questions;
     }
 
-    //get result if all questions are answered and valid; else undefined
+    //get result if all questions are answered; else undefined
     get result() {
         let categories = {};
         if (this.isComplete()) {
             this.questions.forEach(answer => {
                 answer.selected.forEach(selection => {
-                    if (answer.selected.hasOwnProperty('category')) {
-                        if (categories.hasOwnProperty(answer.category)) {
-                            categories[answer.category]++;
+                    let a = answer.filter(obj => {
+                        return obj.text === selection
+                    });
+                    if (a.length > 0 && a[0].text === selection) {
+                        if (categories.hasOwnProperty(selection.category)) {
+                            categories[selection.category]++;
                         } else {
-                            categories[answer.category] = 1;
+                            categories[selection.category] = 1;
                         }
                     }
                 });
