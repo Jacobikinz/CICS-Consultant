@@ -51,8 +51,8 @@
       </div>
     </header>
 
-    <div id="accountinfo">
-      <div id="profiletitle">
+    <div id="accountinfo" class="container">
+      <div id="profiletitle" class="text-center">
         <h1>Welcome to your profile!</h1>
       </div>
 
@@ -64,13 +64,16 @@
         <h2 id="lnameinfo">&nbsp;&nbsp;Last name: Smith</h2>
         <h2 id="emailinfo">&nbsp;&nbsp;Email:</h2>
         <br>
-        <div class="col-md-11 d-flex justify-content-between">
-            <input type="button" id="updatebutton" name="save" class="btn btn-primary" value="Update Your Information"></input>
+        <div class="col-md-11 d-flex justify-content-around">
+          <input type="button" id="updatebutton" name="save" class="btn btn-primary" value="Update Your Information"></input>
+          <input type="button" id="deletebutton" class="btn btn-danger" value="Delete Your Profile"></input>
         </div>
 
-        <label id="newemaillabel" for="newemail" class="invisible">Enter your new email:</label>
-        <input id="newemail" type="text" class="invisible"></input>
-        <input id="confirm-new-email" type="button" class="invisible" value="Confirm new info"></input>
+        <div id="newemailcontainer" class="invisible">
+          <label id="newemaillabel" for="newemail">Enter your new email:</label>
+          <input id="newemail" type="text"></input>
+          <input id="confirm-new-email" type="button" class="btn btn-warning" value="Confirm new info"></input>
+        </div>
 
         <h5 id="newinforesponse"></h5>
       </div>

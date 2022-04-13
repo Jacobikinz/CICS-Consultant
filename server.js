@@ -134,16 +134,28 @@ app.put('/newInfo', async (request, response) => {
     await reload(userFile);
     try {
         const options = request.body;
-        console.log(options);
         const currUserIndex = userExists(options.oldemail);
-        console.log(currUserIndex);
         users[currUserIndex]['email'] = options.newemail;
         saveUsers();
         response.status(200).json('Successfully updated information.');
     } catch (err) {
         response.status(500).json({"error": err});
     }
-  });
+});
+
+app.delete('/deleteUser', async (request, response) => {
+  await reload(userFile);
+  try {
+    const options = request.body;
+    const currUserIndex = userExists(options.email);
+    users.splice(currUserIndex, 1);
+    saveUsers();
+    loggedIn = false;
+    response.status(200).json('Deleted user with email: ' + options.email);
+  } catch (err) {
+    response.status(500).json({"error": err});
+  }
+});
 
 app.get('*', function(req, res) {
   console.log(req.path.substring(1));
