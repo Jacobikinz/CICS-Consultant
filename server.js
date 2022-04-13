@@ -79,12 +79,36 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 
+// Need to load different HTML headers depending on if the user is logged in or not
 app.get("/html/home.html", (req, res) => {
-  console.log('in the home thing');
   if (loggedIn) {
     res.sendFile(__dirname + "/html/home_loggedin.html");
   } else {
     res.sendFile(__dirname + "/html/home.html");
+  }
+});
+
+app.get("/html/about.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/about_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/about.html");
+  }
+});
+
+app.get("/html/faq.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/faq_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/faq.html");
+  }
+});
+
+app.get("/html/tracks-overview.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/tracks-overview_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/tracks-overview.html");
   }
 });
 
