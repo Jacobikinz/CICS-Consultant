@@ -6,18 +6,36 @@ class Quiz {
         this.email = email;
         // Questions in the quiz
         // Answers can have categories; add up # of each category to calculate quiz result
+        // Selected must be an array
         //TODO create all questions
         this.questions = [{
                 id: 0,
                 q: "What computer science courses have you taken?",
-                a: [{ id: 0, text: "CS_121" },
-                    { id: 1, text: "CS_186" },
-                    { id: 2, text: "CS_250" },
+                a: [{ id: 0, text: "CS 121" },
+                    { id: 1, text: "CS 186" },
+                    { id: 2, text: "CS 250" },
+                ],
+                selected: undefined
+            }, {
+                id: 1,
+                q: "What math courses have you taken?",
+                a: [{ id: 0, text: "Math 131" },
+                    { id: 1, text: "Math 132" },
+                    { id: 2, text: "Math 233" },
+                ],
+                selected: undefined
+            }, {
+                id: 2,
+                q: "What lab science courses have you taken?",
+                a: [{ id: 0, text: "Physics 151" },
+                    { id: 1, text: "Physics 152" },
+                    { id: 2, text: "Chem 111" },
+                    { id: 2, text: "Bio 111" },
                 ],
                 selected: undefined
             },
             {
-                id: 1,
+                id: 3,
                 q: "Out of the CS classes you chose, which ones have you enjoyed the most?",
                 //TODO add logic to only use the selected classes from question 0
                 a: [{ id: 0, text: "CS_121", category: "category" },
@@ -51,14 +69,16 @@ class Quiz {
     get result() {
         let categories = {};
         if (this.isComplete()) {
-            this.questions.selected.forEach(answer => {
-                if (answer.hasOwnProperty('category')) {
-                    if (categories.hasOwnProperty(answer.category)) {
-                        categories[answer.category]++;
-                    } else {
-                        categories[answer.category] = 1;
+            this.questions.forEach(answer => {
+                answer.selected.forEach(selection => {
+                    if (answer.selected.hasOwnProperty('category')) {
+                        if (categories.hasOwnProperty(answer.category)) {
+                            categories[answer.category]++;
+                        } else {
+                            categories[answer.category] = 1;
+                        }
                     }
-                }
+                });
             });
             return Object.keys(categories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
         }
