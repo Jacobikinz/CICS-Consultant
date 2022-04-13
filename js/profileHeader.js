@@ -10,9 +10,6 @@ signoutButton.addEventListener('click', async (e) => {
     document.cookie = "{}";
     const response = await fetch(`/signoutUser`, {
     method: 'PUT',
-    headers: {
-        'Content-Type': 'application/json',
-    },
     });
     const data = await response.json();
     console.log(data);
