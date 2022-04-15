@@ -193,5 +193,5 @@ app.get('*', function(req, res) {
 
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`Server started on poart ${port}`);
+  console.log(`Server started on port ${port}`);
 });
