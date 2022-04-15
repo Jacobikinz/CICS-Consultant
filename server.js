@@ -40,7 +40,7 @@ function userExists(email) {
   users.forEach((user) => {
     if (user['email'] === email) {
         returnindex = index;
-    } 
+    }
     index += 1;
   });
 
@@ -57,7 +57,7 @@ function checkPass(email, pass) {
   users.forEach((user) => {
     if (user['email'] === email && user['password'] === pass) {
       returnIndex = index;
-    } 
+    }
     index += 1;
   });
 
@@ -74,7 +74,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Serves all the html, js, and css 
+// Serves all the html, js, and css
 // app.use('/html', express.static('html'));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
@@ -192,6 +192,6 @@ app.get('*', function(req, res) {
 // });
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Server started on poart ${port}`);
 });
