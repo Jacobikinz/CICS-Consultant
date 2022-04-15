@@ -181,6 +181,8 @@ app.delete('/deleteUser', async (request, response) => {
   }
 });
 
+app.get("/", (req, res) => res.redirect("/html/home.html"));
+
 app.get('*', function(req, res) {
   console.log(req.path.substring(1));
   res.sendFile(__dirname + req.path);
@@ -190,7 +192,6 @@ app.get('*', function(req, res) {
 //   console.log(loggedIn);
 //   response.status(404).send(`Not found: ${request.path}`);
 // });
-
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server started on port ${port}`);
