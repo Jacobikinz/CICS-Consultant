@@ -1,0 +1,28 @@
+{
+  "name": "cics-consultant",
+  "version": "1.0.0",
+  "description": "CS 326 semester long project",
+  "type": "module",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jacobikinz/CICS-Consultant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jacobikinz/CICS-Consultant/issues"
+  },
+  "homepage": "https://github.com/Jacobikinz/CICS-Consultant#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "morgan": "^1.10.0"
+  }
+}
