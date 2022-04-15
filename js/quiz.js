@@ -34,9 +34,9 @@ export class Quiz {
             {
                 q: "Out of the CS classes you chose, which ones have you enjoyed the most?",
                 //TODO add logic to only use the selected classes from question 0
-                a: [{ id: 0, text: "CS_121", category: "category" },
-                    { id: 1, text: "CS_186", category: "category" },
-                    { id: 2, text: "CS_250", category: "category" },
+                a: [{ id: 0, text: "CS 121", category: "category" },
+                    { id: 1, text: "CS 186", category: "category" },
+                    { id: 2, text: "CS 250", category: "category" },
                 ],
                 selected: undefined
             },
