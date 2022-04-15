@@ -22,5 +22,9 @@ signupButton.addEventListener('click', async (e) => {
     body: JSON.stringify({ fname: fname.value, lname: lname.value, email: email.value, password: password.value }),
     });
     const data = await response.json();
-    validateSignup.innerHTML = JSON.stringify('<br>' + data).replaceAll('"', '');
+    validateSignup.innerHTML = '<br>' + JSON.stringify(data).replaceAll('"', '');
+    if (response.status === 200) {
+        document.cookie = '{ "useremail": "' + email.value + '" }';
+        document.location.href = 'profile.html';
+    }
 });

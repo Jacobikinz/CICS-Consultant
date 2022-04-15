@@ -15,6 +15,8 @@ loginButton.addEventListener('click', async (e) => {
     });
     const data = await response.json();
     validateLogin.innerHTML = JSON.stringify('<br>' + data).replaceAll('"', '');
-    document.cookie = "{ useremail: " + email.value + " }";
-    document.location.href = 'profile.html';
+    if (response.status === 200) {
+        document.cookie = '{ "useremail": "' + email.value + '" }';
+        document.location.href = 'profile.html';
+    }
 });

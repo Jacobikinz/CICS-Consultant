@@ -68,98 +68,47 @@ function checkPass(email, pass) {
     }
 }
 
-// async function createCounter(response, name) {
-//   if (name === undefined) {
-//     // 400 - Bad Request
-//     response.status(400).json({ error: 'Counter name is required' });
-//   } else {
-//     await reload(JSONfile);
-//     counters[name] = 0;
-//     await saveCounters();
-//     response.json({ name: name, value: 0 });
-//   }
-// }
-
-// async function readCounter(response, name) {
-//   await reload(JSONfile);
-//   if (counterExists(name)) {
-//     response.json({ name: name, value: counters[name] });
-//   } else {
-//     // 404 - Not Found
-//     response.json({ error: `Counter '${name}' Not Found` });
-//   }
-// }
-
-// async function updateCounter(response, name) {
-//   await reload(JSONfile);
-//   if (counterExists(name)) {
-//     counters[name] += 1;
-//     await saveCounters();
-//     response.status(200).json({ name: name, value: counters[name] });
-//   } else {
-//     response.status(404).json({error: `No counter found with name: '${name}' `})
-//   }
-// }
-
-// async function deleteCounter(response, name) {
-//   await reload(JSONfile);
-//   if (counterExists(name)) {
-//     delete counters[name];
-//     await saveCounters();
-//     response.status(200).json({ name: name });
-//   } else {
-//     response.status(404).json({ error: `No counter found with name: '${name}' `})
-//   }
-// }
-
-// async function dumpCounters(response) {
-//   await reload(JSONfile);
-//   response.json(counters);
-// }
-
 const app = express();
 const port = 3000;
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use('/client', express.static('client'));
-
-// app.post('/create', async (request, response) => {
-//   const options = request.body;
-//   createCounter(response, options.name);
-// });
-
-// app.get('/read', async (request, response) => {
-//   const options = request.query;
-//   readCounter(response, options.name);
-// });
-
-// app.put('/update', async (req, res) => {
-//   const options = req.body;
-//   updateCounter(res, options.name);
-// });
-
-// app.delete('/delete', async (req, res) => {
-//   const options = req.body;
-//   deleteCounter(res, options.name);
-// });
-
-// app.get('/dump', async (request, response) => {
-//   const options = request.body;
-//   dumpCounters(response);
-// });
 
 // Serves all the html, js, and css
 // app.use('/html', express.static('html'));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 
+// Need to load different HTML headers depending on if the user is logged in or not
 app.get("/html/home.html", (req, res) => {
-  console.log('in the home thing');
   if (loggedIn) {
     res.sendFile(__dirname + "/html/home_loggedin.html");
   } else {
     res.sendFile(__dirname + "/html/home.html");
+  }
+});
+
+app.get("/html/about.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/about_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/about.html");
+  }
+});
+
+app.get("/html/faq.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/faq_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/faq.html");
+  }
+});
+
+app.get("/html/tracks-overview.html", (req, res) => {
+  if (loggedIn) {
+    res.sendFile(__dirname + "/html/tracks-overview_loggedin.html");
+  } else {
+    res.sendFile(__dirname + "/html/tracks-overview.html");
   }
 });
 
@@ -179,7 +128,7 @@ app.post('/signupUser', async (request, response) => {
   await reload(userFile);
   const options = request.body;
   if (userExists(options['email']) !== -1 ) {
-      response.status(400).json({error: `An account already exists with the email: '${options['email']}'. Please try logging in! Thanks! :) `})
+      response.status(400).json({error: ' An account already exists with the email: ' + options['email'] + '. Please try logging in! Thanks! :) '})
   } else {
       users.push(options);
       response.status(200).json('Thanks for signing up');
@@ -198,6 +147,38 @@ app.get('/loginUser', async (request, response) => {
     response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
   } else if (userExists(options['password']) === -1) {
     response.status(400).json('Incorrect password.');
+  }
+});
+
+app.put('/signoutUser', async (request, response) => {
+  loggedIn = false;
+  response.status(200).json('Successfully signed out.');
+});
+
+app.put('/newInfo', async (request, response) => {
+    await reload(userFile);
+    try {
+        const options = request.body;
+        const currUserIndex = userExists(options.oldemail);
+        users[currUserIndex]['email'] = options.newemail;
+        saveUsers();
+        response.status(200).json('Successfully updated information.');
+    } catch (err) {
+        response.status(500).json({"error": err});
+    }
+});
+
+app.delete('/deleteUser', async (request, response) => {
+  await reload(userFile);
+  try {
+    const options = request.body;
+    const currUserIndex = userExists(options.email);
+    users.splice(currUserIndex, 1);
+    saveUsers();
+    loggedIn = false;
+    response.status(200).json('Deleted user with email: ' + options.email);
+  } catch (err) {
+    response.status(500).json({"error": err});
   }
 });
 
