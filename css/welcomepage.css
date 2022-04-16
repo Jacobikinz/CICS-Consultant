@@ -13,3 +13,16 @@
 .science-dd-course-container {
     padding-left: 40px;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td 
+{
+  table-layout:fixed;
+  width:20px;
+  overflow:hidden;
+  word-wrap:break-word;
+}   

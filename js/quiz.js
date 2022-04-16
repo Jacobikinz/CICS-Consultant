@@ -14,14 +14,14 @@ export class Quiz {
                     { id: 1, text: "CS 186" },
                     { id: 2, text: "CS 250" },
                 ],
-                selected: undefined
+                selected: []
             }, {
                 q: "What math courses have you taken?",
                 a: [{ id: 0, text: "Math 131" },
                     { id: 1, text: "Math 132" },
                     { id: 2, text: "Math 233" },
                 ],
-                selected: undefined
+                selected: []
             }, {
                 q: "What lab science courses have you taken?",
                 a: [{ id: 0, text: "Physics 151" },
@@ -29,7 +29,7 @@ export class Quiz {
                     { id: 2, text: "Chem 111" },
                     { id: 3, text: "Bio 111" },
                 ],
-                selected: undefined
+                selected: []
             },
             {
                 q: "Out of the CS classes you chose, which ones have you enjoyed the most?",
@@ -38,7 +38,7 @@ export class Quiz {
                     { id: 1, text: "CS 186", category: "category" },
                     { id: 2, text: "CS 250", category: "category" },
                 ],
-                selected: undefined
+                selected: []
             },
         ];
     }
