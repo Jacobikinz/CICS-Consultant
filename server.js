@@ -4,6 +4,8 @@ import { readFile, writeFile } from 'fs/promises';
 import * as path from 'path';
 import { Quiz } from './js/quiz.js';
 import { fileURLToPath } from 'url';
+import pg from 'pg';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(
     import.meta.url);
@@ -11,6 +13,8 @@ const __filename = fileURLToPath(
 // 👇️ "/home/john/Desktop/javascript"
 const __dirname = path.dirname(__filename);
 console.log('directory-name 👉️', __dirname);
+
+dotenv.config();
 
 let users = [];
 let loggedIn = false;
@@ -127,19 +131,45 @@ app.get("/", (req, res) => res.redirect("/html/home.html"));
 // app.get("/signup", (req, res) => res.redirect("/html/signup.html"));
 // app.get("/tracks", (req, res) => res.redirect("/html/tracks-overview.html"));
 
+
+const client = new pg.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    },
+
+});
+
 app.post('/signupUser', async(request, response) => {
-    await reload(userFile);
     const options = request.body;
+
+    client.connect();
+
+    const text = 'INSERT INTO users(fname, lname, email, password) VALUES($1, $2, $3, $4) RETURNING *';
+    const values = [options['fname'], options['lname'], options['email'], options['password']];
+    
+    // async/await
+    try {
+        const res = await client.query(text, values)
+        console.log(res.rows[0])
+        // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+    } catch (err) {
+        console.log(err.stack)
+    }
+
+    await client.end();
+
+    await reload(userFile);
     if (userExists(options['email']) !== -1) {
         response.status(400).json({ error: ' An account already exists with the email: ' + options['email'] + '. Please try logging in! Thanks! :) ' })
     } else {
-        options['quiz'] = new Quiz(options.email);
+        // options['quiz'] = new Quiz(options.email);
         users.push(options);
         response.status(200).json('Thanks for signing up');
         saveUsers();
         loggedIn = true;
         currUser = options['email'];
-        sessionStorage.setItem('status', 'loggedIn');
+        // sessionStorage.setItem('status', 'loggedIn');
     }
 });
 
@@ -150,7 +180,7 @@ app.get('/loginUser', async(request, response) => {
         response.status(200).json('Logging in...');
         loggedIn = true;
         currUser = options['email'];
-        sessionStorage.setItem('status', 'loggedIn');
+        // sessionStorage.setItem('status', 'loggedIn');
     } else if (userExists(options['email']) === -1) {
         response.status(400).json('No account with the email: ' + options['email'] + ' exists. Please register! ');
     } else if (userExists(options['password']) === -1) {
@@ -171,7 +201,7 @@ app.get('/getUser', async(request, response) => {
 app.put('/signoutUser', async(request, response) => {
     loggedIn = false;
     currUser = null;
-    sessionStorage.clear();
+    // sessionStorage.clear();
     response.status(200).json('Successfully signed out.');
 });
 
