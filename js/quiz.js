@@ -2,7 +2,7 @@
 //To retrieve from database: create new Quiz() and use setter with JSON from database
 
 export class Quiz {
-    constructor(email) {
+    constructor(email, cs_selected, math_selected, science_selected, favorites_selected) {
         this.email = email;
         // Questions in the quiz
         // Answers can have categories; add up # of each category to calculate quiz result
@@ -41,6 +41,48 @@ export class Quiz {
                 selected: []
             },
         ];
+        this.cs_selected = cs_selected;
+        this.math_selected = math_selected;
+        this.science_selected = science_selected;
+        this.favorites_selected = favorites_selected;
+    }
+
+    pullFromDB() {
+        const cs_questions = this.questions[0];
+        this.cs_selected.forEach((val) => {
+            for (let i = 0; i < cs_questions['a'].length; i++) {
+                if (cs_questions['a'][i]['text'] === val) {
+                    cs_questions['selected'].push(cs_questions['a'][i]);
+                }
+            }
+        });
+
+        const math_questions = this.questions[1];
+        this.math_selected.forEach((val) => {
+            for (let i = 0; i < math_questions['a'].length; i++) {
+                if (math_questions['a'][i]['text'] === val) {
+                    math_questions['selected'].push(math_questions['a'][i]);
+                }
+            }
+        });
+
+        const science_questions = this.questions[2];
+        this.science_selected.forEach((val) => {
+            for (let i = 0; i < science_questions['a'].length; i++) {
+                if (science_questions['a'][i]['text'] === val) {
+                    science_questions['selected'].push(science_questions['a'][i]);
+                }
+            }
+        });
+
+        const fav_questions = this.questions[3];
+        this.favorites_selected.forEach((val) => {
+            for (let i = 0; i < fav_questions['a'].length; i++) {
+                if (fav_questions['a'][i]['text'] === val) {
+                    fav_questions['selected'].push(fav_questions['a'][i]);
+                }
+            }
+        });
     }
 
     isComplete() {

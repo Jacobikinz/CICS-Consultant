@@ -1,27 +1,32 @@
 import { Quiz } from './quiz.js';
-let quiz = new Quiz("guest");
-let user = undefined;
+
+
+let quiz = null;
+if (isLoggedIn()) {
+    const response = await fetch('/loadQuiz', {
+        method: 'PUT',
+        body: JSON.stringify({
+            email: JSON.parse(document.cookie)['useremail'],
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+    quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['math_chosen'], data['science_chosen'], data['favorites_chosen']);
+    quiz.pullFromDB();
+} else {
+    quiz = new Quiz("guest", [], [], [], []);
+}
 
 // async function isLoggedIn() {
 //     return (sessionStorage.getItem('status') != null);
 // }
 
-// if (isLoggedIn()) {
-//     const response = await fetch('/getUser', {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
-//     if (response.status === 200) {
-//         user = await response.json();
-//         console.log(user);
-//         console.log(user.email + " retrieved");
-//     }
-//     if (user) {
-//         quiz.answers = user.quiz;
-//     }
-// }
+function isLoggedIn() {
+    return (document.cookie !== '{}');
+}
 
 // dynamically create DOM elements
 const quiz_container = document.getElementById('quiz-container');
@@ -86,7 +91,8 @@ async function renderQuiz() {
         quiz_container.appendChild(question_div);
     }
     
-    if (user) {
+    console.log(isLoggedIn());
+    if (isLoggedIn()) {
         await saveUpdate();
     }
 }
@@ -94,17 +100,18 @@ async function renderQuiz() {
 renderQuiz();
 
 async function saveUpdate() {
-    const response = await fetch('/newInfo', {
+    // console.log(quiz);
+    const response = await fetch('/updateQuiz', {
         method: 'PUT',
         body: JSON.stringify({
-            oldemail: user.email,
-            newemail: user.email,
+            email: JSON.parse(document.cookie)['useremail'],
             quiz: quiz.json
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
+    const data = await response.json();
 }
 
 /*

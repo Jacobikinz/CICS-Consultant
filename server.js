@@ -244,6 +244,72 @@ app.get('/loginUser', async(request, response) => {
 //     }
 // });
 
+app.put('/loadQuiz', async(request, response) => {
+    const options = request.body;
+
+    const client = new pg.Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false
+        },
+    
+    });
+
+    client.connect();
+
+    const text = 'select cs_chosen, math_chosen, science_chosen, favorites_chosen from users where email = \'' + options['email'] + '\'';
+    console.log(text);
+    // async/await
+    try {
+        const res = await client.query(text);
+        await client.end();
+        response.status(200).json(res.rows[0]);
+    } catch (err) {
+        console.log(err.stack);
+        await client.end();
+        response.status(400).json('Incorrect login information.');
+    }
+});
+
+app.put('/updateQuiz', async(request, response) => {
+    const options = request.body;
+
+    const client = new pg.Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false
+        },
+    
+    });
+
+    client.connect();
+    console.log(options);
+    const colNames = ['cs_chosen', 'math_chosen', 'science_chosen', 'favorites_chosen']
+    for (let i = 0; i < 4; i++) {
+        const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== "undefined");
+        let insertList = '';
+        for (let j = 0; j < currSelected.length; j++) {
+            insertList += '\"' + currSelected[j]['text'] + "\""
+            if (j !== currSelected.length - 1) {
+                insertList += ", "
+            }
+        }
+        const text = 'UPDATE users SET ' + colNames[i] + ' = \'{' + insertList + '}\' WHERE email = \'' + options['email'] + '\'';
+        console.log(text);
+        // async/await
+        try {
+            const res = await client.query(text);
+        } catch (err) {
+            console.log(err.stack);
+            await client.end();
+            response.status(500).json('Server error');
+            break;
+        }
+    }
+    await client.end();
+    response.status(200).json("Successfully updated information.");
+});
+
 app.put('/signoutUser', async(request, response) => {
     loggedIn = false;
     // currUser = null;
