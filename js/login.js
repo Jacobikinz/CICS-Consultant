@@ -14,9 +14,9 @@ loginButton.addEventListener('click', async (e) => {
     },
     });
     const data = await response.json();
-    validateLogin.innerHTML = JSON.stringify('<br>' + data).replaceAll('"', '');
+    validateLogin.innerHTML = JSON.stringify('<br>' + data['message']).replaceAll('"', '');
     if (response.status === 200) {
-        document.cookie = '{ "useremail": "' + email.value + '" }';
+        document.cookie = '{ "useremail": "' + email.value + '", "userfname": "' + data['fname'] + '", "userlname": "' + data['lname'] + '"  }';
         document.location.href = 'profile.html';
     }
 });

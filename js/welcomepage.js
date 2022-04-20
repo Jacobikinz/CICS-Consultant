@@ -2,26 +2,26 @@ import { Quiz } from './quiz.js';
 let quiz = new Quiz("guest");
 let user = undefined;
 
-async function isLoggedIn() {
-    return (sessionStorage.getItem('status') != null);
-}
+// async function isLoggedIn() {
+//     return (sessionStorage.getItem('status') != null);
+// }
 
-if (isLoggedIn()) {
-    const response = await fetch('/getUser', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    if (response.status === 200) {
-        user = await response.json();
-        console.log(user);
-        console.log(user.email + " retrieved");
-    }
-    if (user) {
-        quiz.answers = user.quiz;
-    }
-}
+// if (isLoggedIn()) {
+//     const response = await fetch('/getUser', {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     });
+//     if (response.status === 200) {
+//         user = await response.json();
+//         console.log(user);
+//         console.log(user.email + " retrieved");
+//     }
+//     if (user) {
+//         quiz.answers = user.quiz;
+//     }
+// }
 
 const questions = [];
 questions.push(document.getElementById('CS-courses-dd'));
