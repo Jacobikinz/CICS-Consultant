@@ -118,3 +118,5 @@ The website displays a response as "Your profile has been deleted."
 Just to prove that it is actually deleting the row in the database, here is a query that I ran directly after clicking the delete button.
 <img src="https://user-images.githubusercontent.com/23635947/164309444-33102326-e406-4525-a5e9-0382e803a617.png"/>
 An empty result as it should be.
+
+<h2>Heroku Application (https://cics-consultant.herokuapp.com)</h2>
