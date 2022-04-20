@@ -71,4 +71,5 @@ This will also cause the user to go to the profile page and the headers will cha
 <h2>Part 2: Front-end Implementation Screenshots</h2>
 <h3>Users / Authentication API:</h3>
 <h4>Create <code>POST /signupUser</code>
+![image](https://user-images.githubusercontent.com/23635947/164306239-0a6e6331-8d64-4de0-a1f4-7cc3d66f908a.png)
 
