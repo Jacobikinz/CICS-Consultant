@@ -91,7 +91,7 @@ async function renderQuiz() {
         quiz_container.appendChild(question_div);
     }
     
-    console.log(isLoggedIn());
+    // console.log(isLoggedIn());
     if (isLoggedIn()) {
         await saveUpdate();
     }
