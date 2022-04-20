@@ -46,10 +46,19 @@ This will also cause the user to go to the profile page and the headers will cha
 <code>PUT /updateQuiz</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
 <code>body: JSON.stringify({email: JSON.parse(document.cookie)['useremail'], quiz: quiz.json}), </code> <br>
-Here, quiz.json is an class that we are using in the backend to render the homepage with buttons that form a "quiz" that the user can take. This will eventually be used to determine which path a user should most likely take in their career both academically and profesionally. The cookie is taking the email of the currently logged in user from the document's cookie to pass it along to the server.
+<p> Here, quiz.json is an class that we are using in the backend to render the homepage with buttons that form a "quiz" that the user can take. This will eventually be used to determine which path a user should most likely take in their career both academically and profesionally. The cookie is taking the email of the currently logged in user from the document's cookie to pass it along to the server. </p>
 <br>
-<p> This will respond with a <code>status 500</code> along with the error if there was a server error while trying to update the email, or a <code>status 200</code>
-  if the email was successfully updated. The user's responses are updated in the database in realtime when they are selecting things in the "quiz".</p>
+<p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
+  if it was successful. The user's responses are updated in the database in realtime when they are selecting things in the "quiz".</p>
+  
+<h5>Loading a User's Quiz Answers On Page Load </h5>
+<p>When a user loads the home page then their quiz answers need to be loaded in from the database. </p>
+<code>PUT /loadQuiz</code> <br>
+<code>headers: {'Content-Type': 'application/json'} </code> <br>
+<code>body: JSON.stringify({email: JSON.parse(document.cookie)['useremail']}), </code> <br>
+<br>
+<p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
+  if the data was successfully loaded from the DB. The response will also include the appropriate data from the DB.</p>
 
 
 <h4>Delete:</h4>
@@ -62,4 +71,4 @@ Here, quiz.json is an class that we are using in the backend to render the homep
 <h2>Part 2: Front-end Implementation Screenshots</h2>
 <h3>Users / Authentication API:</h3>
 <h4>Create <code>POST /signupUser</code>
-  
+
