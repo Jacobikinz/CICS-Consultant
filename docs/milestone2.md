@@ -120,3 +120,9 @@ Just to prove that it is actually deleting the row in the database, here is a qu
 An empty result as it should be.
 
 <h2>Heroku Application (https://cics-consultant.herokuapp.com)</h2>
+
+<h2>Breakdown of Labor</h2>
+Thomas Callaghan: Wrote almost all of the above documentation, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone.
+Jacob Urisman: Helped with planning of the milestone and was generally the point person for Heroku along with starting to help plan for milestone 3's more ML/AI related activities. Also helped test code, review PR's, and give feedback.
+Hannah Wu: Helped review PR's, and the main activity was laying the foundation for the homepage "quiz" class. Created a good amount of the quiz class, and demonstrated how it could be used with some Express APIs.
+Pablo Castilla: Helped give feedback throughout the milestone, and is a big person in planning for the more ML/AI related activities as mentioned with Jacob. Did the work to turn Hannah's home page/quiz code into a much more functional interface with buttons. Made a lot of code around the "quiz" class that enabled it to be utilized with the Express API endpoints.
