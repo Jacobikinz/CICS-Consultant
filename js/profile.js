@@ -1,11 +1,12 @@
-// Will implement the functionality to look people up with email once hooked up to DB
-// const fnameinfo = document.getElementById('fnameinfo');
-// const lnameinfo = document.getElementById('lnameinfo');
+const fnameinfo = document.getElementById('fnameinfo');
+const lnameinfo = document.getElementById('lnameinfo');
 const emailinfo = document.getElementById('emailinfo');
 const userEmailCookie = JSON.parse(document.cookie)['useremail'];
+const userFnameCookie = JSON.parse(document.cookie)['userfname'];
+const userLnameCookie = JSON.parse(document.cookie)['userlname'];
 
-// fnameinfo.innerText = "First name: " + curruser['fname'];
-// lnameinfo.innerText = "Last name: " + curruser['lname'];
+fnameinfo.innerHTML = "&nbsp;&nbsp;First name: " + userFnameCookie;
+lnameinfo.innerHTML = "&nbsp;&nbsp;Last name: " + userLnameCookie;
 emailinfo.innerHTML = "&nbsp;&nbsp;Email: " + userEmailCookie;
 
 // Update information button can change email locally
@@ -23,7 +24,8 @@ updateInfoButton.addEventListener('click', (e) => {
 
 const newinfores = document.getElementById('newinforesponse');
 newEmailButton.addEventListener('click', async (e) => {
-    document.cookie = '{ "useremail": "' + newemail.value + '" }';
+    const oldcookie = document.cookie;
+    document.cookie = '{ "useremail": "' + newemail.value + '", "userfname": "' + JSON.parse(oldcookie)['userfname'] + '", "userlname": "' + JSON.parse(oldcookie)['userlname'] + '" }';
     const response = await fetch(`/newInfo`, {
     method: 'PUT',
     headers: {
