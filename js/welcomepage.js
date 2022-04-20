@@ -25,7 +25,7 @@ if (isLoggedIn()) {
 // }
 
 function isLoggedIn() {
-    return (document.cookie !== '{}');
+    return (document.cookie !== '{}' && document.cookie !== '');
 }
 
 // dynamically create DOM elements
