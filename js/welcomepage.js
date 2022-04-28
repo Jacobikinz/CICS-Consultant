@@ -28,8 +28,10 @@ function isLoggedIn() {
     return (document.cookie !== '{}' && document.cookie !== '');
 }
 
-// dynamically create DOM elements
+// dynamically create quiz frontend
 const quiz_container = document.getElementById('quiz-container');
+
+// TODO
 
 async function renderQuiz() {
     // delete body
