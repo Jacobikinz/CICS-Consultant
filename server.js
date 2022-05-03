@@ -16,64 +16,7 @@ console.log('directory-name 👉️', __dirname);
 
 dotenv.config();
 
-// let users = [];
 let loggedIn = false;
-// let currUser = undefined;
-
-// const userFile = 'userfile.json';
-
-// async function reload(filename) {
-//     try {
-//         const data = await readFile(filename, { encoding: 'utf8' });
-//         users = JSON.parse(data);
-//     } catch (err) {
-//         users = [];
-//     }
-// }
-
-// async function saveUsers() {
-//     try {
-//         const data = JSON.stringify(users);
-//         await writeFile(userFile, data, { encoding: 'utf8' });
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-
-// function userExists(email) {
-//     let index = 0;
-//     let returnindex = null;
-//     users.forEach((user) => {
-//         if (user['email'] === email) {
-//             returnindex = index;
-//         }
-//         index += 1;
-//     });
-
-//     if (returnindex !== null) {
-//         return returnindex;
-//     } else {
-//         return -1;
-//     }
-// }
-
-
-// function checkPass(email, pass) {
-//     let index = 0;
-//     let returnIndex = null;
-//     users.forEach((user) => {
-//         if (user['email'] === email && user['password'] === pass) {
-//             returnIndex = index;
-//         }
-//         index += 1;
-//     });
-
-//     if (returnIndex !== null) {
-//         return returnIndex;
-//     } else {
-//         return -1;
-//     }
-// }
 
 const app = express();
 const port = 3000;
@@ -86,16 +29,47 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 
-// Need to load different HTML headers depending on if the user is logged in or not
-app.get("/html/home.html", (req, res) => {
-    // console.log(req.cookies);
-    // if (req.cookies !== undefined) {
-    if (loggedIn) {
-        res.sendFile(__dirname + "/html/home_loggedin.html");
-    } else {
-        res.sendFile(__dirname + "/html/home.html");
+app.put('/setLoggedIn', async(request, response) => {
+    const options = request.body;
+    try {
+        if (JSON.stringify(options['cookies']) === JSON.stringify({}) || options['cookies'] === '') {
+            response.status(200).json('false');
+        } else {
+            response.status(200).json('true');
+        }
+    } catch (err) {
+        response.status(400).json('setLoggedIn login error');
     }
 });
+
+// app.put('/setLoggedIn', async(request, response) => {
+//     console.log('aspoidhpoasdhpuioasdhijoulpashoduiashodpuiads');
+//     const options = request.body;
+//     console.log(options);
+//     try {
+//         if (options['cookies'] === '{}' || options['cookies'] === '') {
+//             // loggedIn = false;
+//             // response.sendFile(__dirname + "/html/home.html");
+//             response.status(200).json('false');
+//         } else {
+//             // loggedIn = true;
+//             // console.log('asdasd');
+//             // response.sendFile(__dirname + "/html/home_loggedin.html");
+//             response.status(200).json('true');
+//         }
+//         // response.redirect(request.get('referer'));
+//         // response.status(200).json("logged in set to " + String(loggedIn));
+//     } catch (err) {
+//         response.status(400).json('setLoggedIn login error');
+//     }
+// });
+
+// Need to load different HTML headers depending on if the user is logged in or not
+// app.get("/html/home.html", (req, res) => {
+//     if (loggedIn) {
+//     } else {
+//     }
+// });
 
 app.get("/html/about.html", (req, res) => {
     // if (req.cookies !== undefined) {
