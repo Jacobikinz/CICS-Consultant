@@ -18,6 +18,7 @@ if (isLoggedIn()) {
     console.log(data);
     quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['math_chosen'], data['science_chosen'], data['favorites_chosen']);
     quiz.pullFromDB();
+    await quiz.makeCSQuestions();
 } else {
     quiz = new Quiz("guest", [], [], [], []);
 }
@@ -197,6 +198,20 @@ function giveField() {
             });
         });
     });
-    console.log(scores);
     
+    let topScore = 0;
+    let topField = null;
+
+    let index = 0;
+    Object.values(scores).forEach((score) => {
+        if (score > topScore) {
+            topScore = score;
+            topField = Object.keys(scores)[index];
+        }
+        index += 1;
+    });
+
+    const recommendation = document.createElement('h1');
+    recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
+    rankClassesContainer.appendChild(recommendation);
 }
