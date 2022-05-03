@@ -1,3 +1,7 @@
+import { setServerLoggedIn } from './multiuser.js'
+
+setServerLoggedIn();
+
 const fnameinfo = document.getElementById('fnameinfo');
 const lnameinfo = document.getElementById('lnameinfo');
 const emailinfo = document.getElementById('emailinfo');

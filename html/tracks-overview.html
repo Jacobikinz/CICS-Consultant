@@ -12,6 +12,11 @@
 
   <script type="module" src="..\js\loginandregister.js" defer></script>
   <link rel="stylesheet" href="..\css\tracks-overview.css" />
+  <script type="module" src="..\js\fields.js"></script>
+
+  <script type="module" src="..\js\quiz.js"></script>
+  <script type="module" src="..\js\profileHeader.js"></script>
+  <script type="module" src="..\js\multiuser.js"></script>"
 
   <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
   <title>CICS Consultant</title>
@@ -41,9 +46,11 @@
         <li><a href="about.html" class="nav-link px-2 link-dark">About</a></li>
       </ul>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2" id="signinbutton">Login</button>
-        <button type="button" class="btn btn-primary" id="registerbutton">Sign-up</button>
+      <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
+        <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
+        <button type="button" class="btn btn-primary me-2 invisible" id="profilebutton">Profile</button>
+        <button type="button" class="btn btn-outline-primary invisible" id="signoutbutton">Sign Out</button>
       </div>
     </header>
     <h1> Tracks overview </h1>

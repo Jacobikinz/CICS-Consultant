@@ -1,3 +1,7 @@
+import { setServerLoggedIn } from './multiuser.js'
+
+setServerLoggedIn();
+
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginbutton');
