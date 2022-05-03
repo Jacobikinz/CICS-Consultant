@@ -124,7 +124,8 @@ const selectedButton = document.getElementById('finished-selecting-button');
 const rankClassesContainer = document.getElementById('rank-classes-container');
 selectedButton.addEventListener('click', async (e) => {
     const instructions = document.createElement('h2');
-    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)'
+    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)';
+    rankClassesContainer.innerHTML = null;
     rankClassesContainer.appendChild(instructions);
     quiz.questions[0]['selected'].forEach(element => {
         let className = document.createTextNode(element['text']);
@@ -149,7 +150,7 @@ selectedButton.addEventListener('click', async (e) => {
         </div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio5" value="${element['text']}-5">
-          <label class="form-check-label" for="inlineRadio3">5 (loved the course))</label>
+          <label class="form-check-label" for="inlineRadio3">5 (loved the course)</label>
         </div>
         <br> <br>`;
         console.log(`"${element['text']}-1"`)
@@ -206,7 +207,7 @@ function giveField() {
     Object.values(scores).forEach((score) => {
         if (score > topScore) {
             topScore = score;
-            topField = Object.keys(scores)[index];
+            topField = fieldsData[index]['fullname'];
         }
         index += 1;
     });
