@@ -29,8 +29,6 @@ function isLoggedIn() {
 // dynamically create quiz frontend
 const quiz_container = document.getElementById('quiz-container');
 
-// TODO
-
 async function renderQuiz() {
     // delete body
     while (quiz_container.firstChild) {
@@ -114,28 +112,91 @@ async function saveUpdate() {
     const data = await response.json();
 }
 
-/*
-async function ddUpdateQuiz(e, i) {
-    let selectedvals = [];
-    for (let i = 0; i < e.length; i++) {
-        let curroption = e.options[i];
-        if (curroption.selected === true) {
-            selectedvals.push(curroption.label);
+
+const fields = await fetch("..\\json\\fields.json");
+const fieldsData = await fields.json();
+console.log(fieldsData);
+
+let userRanked = [];
+
+const selectedButton = document.getElementById('finished-selecting-button');
+const rankClassesContainer = document.getElementById('rank-classes-container');
+selectedButton.addEventListener('click', async (e) => {
+    const instructions = document.createElement('h2');
+    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)'
+    rankClassesContainer.appendChild(instructions);
+    quiz.questions[0]['selected'].forEach(element => {
+        let className = document.createTextNode(element['text']);
+        rankClassesContainer.appendChild(className);
+        const radioDiv = document.createElement('div');
+        radioDiv.innerHTML =  `
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio1" value="${element['text']}-1">
+          <label class="form-check-label" for="inlineRadio1">1 (hated the course)</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio2" value="${element['text']}-2">
+          <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio3" value="${element['text']}-3">
+          <label class="form-check-label" for="inlineRadio3">3 (neutral)</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio4" value="${element['text']}-4">
+          <label class="form-check-label" for="inlineRadio3">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio5" value="${element['text']}-5">
+          <label class="form-check-label" for="inlineRadio3">5 (loved the course))</label>
+        </div>
+        <br> <br>`;
+        console.log(`"${element['text']}-1"`)
+        rankClassesContainer.appendChild(radioDiv);
+    });
+    const finishedRankingBttn = document.createElement('button');
+    finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
+    finishedRankingBttn.id = 'finished-ranking-button';
+    finishedRankingBttn.innerText = "Click When Finished Ranking Classes";
+    rankClassesContainer.appendChild(finishedRankingBttn);
+    finishedRankingBttn.addEventListener('click', async (e) => {
+        const ele = document.getElementsByTagName('input');
+            
+        for(let i = 0; i < ele.length; i++) {
+            if (ele[i].type="radio") {
+                if (ele[i].checked) {
+                    console.log(ele[i].value);
+                    // document.getElementById("result").innerHTML
+                    //         += ele[i].name + " Value: "
+                    //         + ele[i].value + "<br>";
+                    userRanked.push(ele[i].value);
+                }
+            }
         }
-    }
-    console.log(selectedvals);
-    const json = quiz.json;
-    json.questions[i].selected = selectedvals;
-    quiz.answers = json;
-    console.log(quiz.json);
-    if (user) {
-        await saveUpdate();
-    }
-}
+        console.log(userRanked);
 
-moveButton
+        giveField();
+    });
+});
 
-for (let i = 0; i < questions.length; i++) {
-    questions[i].addEventListener("change", e => ddUpdateQuiz(questions[i], i));
+function giveField() {
+    let scores = {};
+    fieldsData.forEach((elem) => {
+        scores[elem['field']] = 0;
+    });
+    console.log(scores);
+
+    userRanked.forEach((elem) => {
+        let className = elem.split("-")[0].substring(2).trim();
+        let ranking = parseInt(elem.split("-")[1]);
+        fieldsData.forEach((field) => {
+            field['classes'].forEach((fieldClass) => {
+                if (className.localeCompare(fieldClass) === 0) {
+                    scores[field['field']] += ranking;
+                }
+            });
+        });
+    });
+    console.log(scores);
+    
 }
-*/
