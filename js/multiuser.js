@@ -1,15 +1,17 @@
 export async function setServerLoggedIn() {
-    const response = await fetch('/setLoggedIn', {
-        method: 'PUT',
-        body: JSON.stringify({
-            cookies: JSON.parse(document.cookie),
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const data = await response.json();
-    console.log(data);
+    let data = null;
+    if (document.cookie !== '') {
+        const response = await fetch('/setLoggedIn', {
+            method: 'PUT',
+            body: JSON.stringify({
+                cookies: JSON.parse(document.cookie),
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        data = await response.json();
+    }
     const profileButton = document.getElementById('profilebutton');
     const signoutButton = document.getElementById('signoutbutton');
     const signinButton = document.getElementById('signinbutton');

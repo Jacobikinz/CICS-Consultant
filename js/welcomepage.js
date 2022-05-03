@@ -22,10 +22,6 @@ if (isLoggedIn()) {
     quiz = new Quiz("guest", [], [], [], []);
 }
 
-// async function isLoggedIn() {
-//     return (sessionStorage.getItem('status') != null);
-// }
-
 function isLoggedIn() {
     return (document.cookie !== '{}' && document.cookie !== '');
 }
