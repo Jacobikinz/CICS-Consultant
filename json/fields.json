@@ -1,7 +1,7 @@
 [
   {
-    field: "ai",
-    classes: [
+    "field": "ai",
+    "classes": [
       "240",
       "370",
       "383",
@@ -17,8 +17,8 @@
     ]
   },
   {
-    field: "data",
-    classes: [
+    "field": "data",
+    "classes": [
       "240",
       "248",
       "345",
@@ -34,8 +34,8 @@
     ]
   },
   {
-    field: "graphics",
-    classes: [
+    "field": "graphics",
+    "classes": [
       "235",
       "370",
       "373",
@@ -46,8 +46,8 @@
     ]
   },
   {
-    field: "hardware",
-    classes: [
+    "field": "hardware",
+    "classes": [
       "256",
       "328",
       "335",
@@ -57,8 +57,8 @@
     ]
   },
   {
-    field: "security",
-    classes: [
+    "field": "security",
+    "classes": [
       "230",
       "360",
       "365",
@@ -76,8 +76,8 @@
     ]
   },
   {
-    field: "software",
-    classes: [
+    "field": "software",
+    "classes": [
       "220",
       "320",
       "325",
@@ -90,8 +90,8 @@
     ]
   },
   {
-    field: "systems",
-    classes: [
+    "field": "systems",
+    "classes": [
       "203",
       "230",
       "333",
@@ -111,8 +111,8 @@
     ]
   },
   {
-    field: "theory",
-    classes: [
+    "field": "theory",
+    "classes": [
       "150",
       "250",
       "311",
