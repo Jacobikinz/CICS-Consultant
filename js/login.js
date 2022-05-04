@@ -8,7 +8,7 @@ const loginButton = document.getElementById('loginbutton');
 const validateLogin = document.getElementById('loginstatus');
 
 loginButton.addEventListener('click', async (e) => {
-    console.log('button clicked');
+    // console.log('button clicked');
     const response = await fetch(`/loginUser`, {
     method: 'GET',
     headers: {

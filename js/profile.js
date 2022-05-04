@@ -52,6 +52,6 @@ deleteButton.addEventListener('click', async (e) => {
     body: JSON.stringify({ email: userEmailCookie }),
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     newinfores.innerHTML = "<br> " + JSON.stringify(data);
 });

@@ -20,7 +20,7 @@ if (isLoggedIn()) {
     await quiz.makeCSQuestions();
     quiz.pullFromDB();
 
-    console.log(data['curr_recommendation']);
+    // console.log(data['curr_recommendation']);
 
     if (data['curr_recommendation'] !== null) {
         const recommendation_div = document.getElementById('recommendation-container');
@@ -129,7 +129,6 @@ async function saveUpdate() {
 
 const fields = await fetch("..\\json\\fields.json");
 const fieldsData = await fields.json();
-console.log(fieldsData);
 
 let userRanked = [];
 
@@ -193,7 +192,7 @@ async function giveField() {
     fieldsData.forEach((elem) => {
         scores[elem['field']] = 0;
     });
-    console.log(scores);
+    // console.log(scores);
 
     userRanked.forEach((elem) => {
         let className = elem.split("-")[0].substring(2).trim();
@@ -236,6 +235,7 @@ async function giveField() {
 
     // Setting recommendation on the page
     const recommendation = document.createElement('h1');
+    recommendation.innerHTML = '';
     recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
     rankClassesContainer.appendChild(recommendation);
 }

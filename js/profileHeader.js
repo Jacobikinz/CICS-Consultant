@@ -12,6 +12,6 @@ signoutButton.addEventListener('click', async (e) => {
     method: 'PUT',
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     document.location.href = 'home.html';
 });
