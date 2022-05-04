@@ -2,7 +2,7 @@
 //To retrieve from database: create new Quiz() and use setter with JSON from database
 
 export class Quiz {
-    constructor(email, cs_selected, math_selected, science_selected, favorites_selected) {
+    constructor(email, cs_selected, recommendation) {
         this.email = email;
         // Questions in the quiz
         // Answers can have categories; add up # of each category to calculate quiz result
@@ -15,9 +15,7 @@ export class Quiz {
             }
         ];
         this.cs_selected = cs_selected;
-        this.math_selected = math_selected;
-        this.science_selected = science_selected;
-        this.favorites_selected = favorites_selected;
+        this.recommendation = recommendation;
     }
 
     pullFromDB() {

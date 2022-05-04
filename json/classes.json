@@ -201,7 +201,6 @@
     },
     {
         "dept": "CS",
-        "dept": "COMPSCI",
         "id": "429",
         "name": "Software Engineering Project Management",
         "creds": 3,
