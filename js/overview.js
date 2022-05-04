@@ -1,6 +1,6 @@
-const fields = await fetch("..\json\fields.json");
+const fields = await fetch("..\\json\\fields.json");
 const fieldsData = await fields.json();
-const classes = await fetch("..\json\classes.json");
+const classes = await fetch("..\\json\\classes.json");
 const classesData = await classes.json();
 
 function fillClasses(str) {
@@ -11,6 +11,7 @@ function fillClasses(str) {
     const course = classesData.find(v => v.id === id);
     const item = document.createElement('div');
     item.classList.add('accordion-item');
+    item.classList.add('text-left');
     const header = document.createElement('h2');
     header.classList.add('accordion-header');
     header.id = `${str}${course.id}head`;

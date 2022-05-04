@@ -15,10 +15,10 @@ if (isLoggedIn()) {
         }
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['math_chosen'], data['science_chosen'], data['favorites_chosen']);
-    quiz.pullFromDB();
     await quiz.makeCSQuestions();
+    quiz.pullFromDB();
 } else {
     quiz = new Quiz("guest", [], [], [], []);
 }
@@ -79,6 +79,8 @@ async function renderQuiz() {
                 }
                 renderQuiz();
             });
+
+            button.classList.add("mb-1", "mt-1");
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -212,6 +214,9 @@ function giveField() {
         index += 1;
     });
 
+    
+
+    // Setting recommendation on the page
     const recommendation = document.createElement('h1');
     recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
     rankClassesContainer.appendChild(recommendation);

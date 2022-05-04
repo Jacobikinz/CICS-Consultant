@@ -118,7 +118,7 @@ app.put('/loadQuiz', async(request, response) => {
 
     client.connect();
 
-    const text = 'select cs_chosen, math_chosen, science_chosen, favorites_chosen from users where email = \'' + options['email'] + '\'';
+    const text = 'select cs_chosen from users where email = \'' + options['email'] + '\'';
     console.log(text);
     // async/await
     try {
@@ -145,8 +145,8 @@ app.put('/updateQuiz', async(request, response) => {
 
     client.connect();
     console.log(options);
-    const colNames = ['cs_chosen', 'math_chosen', 'science_chosen', 'favorites_chosen']
-    for (let i = 0; i < 4; i++) {
+    const colNames = ['cs_chosen']
+    for (let i = 0; i < 1; i++) {
         const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== "undefined");
         let insertList = '';
         for (let j = 0; j < currSelected.length; j++) {
