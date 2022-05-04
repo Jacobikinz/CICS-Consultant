@@ -9,7 +9,7 @@ export class Quiz {
         // Selected must be an array
         //TODO create all questions
         this.questions = [{
-                q: "What computer science courses have you taken?",
+                q: "What computer science and informatics courses have you taken?",
                 a: [{ id: 0, text: "CS 121" },
                     { id: 1, text: "CS 186" },
                     { id: 2, text: "CS 250" },
@@ -134,6 +134,17 @@ export class Quiz {
             return Object.keys(categories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
         }
         return undefined;
+    }
+
+    async makeCSQuestions() {
+        const classes = await fetch("..\\json\\classes.json");
+        const classesData = await classes.json();
+        this.questions[0]['a'] = [];
+        classesData.forEach((elem, index) => {
+            // { id: 0, text: "CS 121" }
+            this.questions[0]['a'].push({ id: index, text: elem['dept'] + " " + elem['id'] });
+        });
+        console.log(this.questions[0]['a']);
     }
 
 }

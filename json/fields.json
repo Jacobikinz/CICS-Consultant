@@ -14,7 +14,8 @@
       "589",
       "591NR",
       "596E"
-    ]
+    ],
+    "fullname": "Artificial Intelligence"
   },
   {
     "field": "data",
@@ -31,7 +32,8 @@
       "550",
       "571",
       "590W"
-    ]
+    ],
+    "fullname": "Data Science"
   },
   {
     "field": "graphics",
@@ -43,7 +45,8 @@
       "571",
       "574",
       "576"
-    ]
+    ],
+    "fullname": "Graphics, Vision, and Visualization"
   },
   {
     "field": "hardware",
@@ -54,7 +57,8 @@
       "403",
       "503",
       "528"
-    ]
+    ],
+    "fullname": "Hardware Integration"
   },
   {
     "field": "security",
@@ -72,7 +76,8 @@
       "563",
       "590J",
       "590K"
-    ]
+    ],
+    "fullname": "Security"
   },
   {
     "field": "software",
@@ -85,7 +90,8 @@
       "429",
       "520",
       "576"
-    ]
+    ],
+    "fullname": "Software Engineering"
   },
   {
     "field": "systems",
@@ -106,7 +112,8 @@
       "546",
       "560",
       "578"
-    ]
+    ],
+    "fullname": "Systems"
   },
   {
     "field": "theory",
@@ -120,6 +127,7 @@
       "514",
       "575",
       "590T"
-    ]
+    ],
+    "fullname": "Theory"
   }
 ]
