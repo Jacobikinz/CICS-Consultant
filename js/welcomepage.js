@@ -238,8 +238,10 @@ async function giveField(givenRec) {
     }
 
     // Setting recommendation on the page
-    const recommendation = document.createElement('h1');
-    recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
-    givenRec.innerHTML = null;
-    givenRec.appendChild(recommendation);
+    if (topField !== null) {
+        const recommendation = document.createElement('h1');
+        recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
+        givenRec.innerHTML = null;
+        givenRec.appendChild(recommendation);
+    }
 }
