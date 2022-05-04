@@ -40,6 +40,31 @@ app.put('/setLoggedIn', async(request, response) => {
     }
 });
 
+app.put('/updateRecommendation', async(request, response) => {
+    const options = request.body;
+
+    const client = new pg.Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false
+        },
+    
+    });
+
+    client.connect();
+    const colNames = ['cs_chosen'];
+    const text = 'UPDATE users SET curr_recommendation = \'' + options['recommendation'] + '\' WHERE email = \'' + options['email'] + '\'';
+    try {
+        const res = await client.query(text);
+        await client.end();
+        response.status(200).json("Successfully updated information.");
+    } catch (err) {
+        console.log(err.stack);
+        await client.end();
+        response.status(500).json('Server error');
+    }
+});
+
 // Redirect you to home.html when you type /home
 app.get("/home", (req, res) => res.redirect("/html/home.html"));
 app.get("/", (req, res) => res.redirect("/html/home.html"));
@@ -118,7 +143,7 @@ app.put('/loadQuiz', async(request, response) => {
 
     client.connect();
 
-    const text = 'select cs_chosen, math_chosen, science_chosen, favorites_chosen from users where email = \'' + options['email'] + '\'';
+    const text = 'select cs_chosen, curr_recommendation from users where email = \'' + options['email'] + '\'';
     console.log(text);
     // async/await
     try {
@@ -145,8 +170,8 @@ app.put('/updateQuiz', async(request, response) => {
 
     client.connect();
     console.log(options);
-    const colNames = ['cs_chosen', 'math_chosen', 'science_chosen', 'favorites_chosen']
-    for (let i = 0; i < 4; i++) {
+    const colNames = ['cs_chosen']
+    for (let i = 0; i < 1; i++) {
         const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== "undefined");
         let insertList = '';
         for (let j = 0; j < currSelected.length; j++) {
@@ -201,17 +226,6 @@ app.put('/newInfo', async(request, response) => {
         await client.end();
         response.status(500).json('Server error');
     }
-    // await reload(userFile);
-    // try {
-    //     const options = request.body;
-    //     const currUserIndex = userExists(options.oldemail);
-    //     users[currUserIndex]['email'] = options.newemail;
-    //     users[currUserIndex]['quiz'] = options.quiz;
-    //     saveUsers();
-    //     response.status(200).json('Successfully updated information.');
-    // } catch (err) {
-    //     response.status(500).json({ "error": err });
-    // }
 });
 
 app.delete('/deleteUser', async(request, response) => {

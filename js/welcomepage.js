@@ -15,12 +15,23 @@ if (isLoggedIn()) {
         }
     });
     const data = await response.json();
-    console.log(data);
-    quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['math_chosen'], data['science_chosen'], data['favorites_chosen']);
-    quiz.pullFromDB();
+    // console.log(data);
+    quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['curr_recommendation']);
     await quiz.makeCSQuestions();
+    quiz.pullFromDB();
+
+    console.log(data['curr_recommendation']);
+
+    if (data['curr_recommendation'] !== null) {
+        const recommendation_div = document.getElementById('recommendation-container');
+        const recommendationHeader = document.createElement('h1');
+        recommendationHeader.innerText = 'Your Previously Recommended Field is: ' + data['curr_recommendation'] + '\n Feel free to re-take the "quiz" as much as you would like.';
+        recommendation_div.appendChild(recommendationHeader);
+    }
 } else {
-    quiz = new Quiz("guest", [], [], [], []);
+    quiz = new Quiz("guest", [], null);
+    await quiz.makeCSQuestions();
+    quiz.pullFromDB();
 }
 
 function isLoggedIn() {
@@ -79,6 +90,8 @@ async function renderQuiz() {
                 }
                 renderQuiz();
             });
+
+            button.classList.add("mb-1", "mt-1");
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -153,7 +166,6 @@ selectedButton.addEventListener('click', async (e) => {
           <label class="form-check-label" for="inlineRadio3">5 (loved the course)</label>
         </div>
         <br> <br>`;
-        console.log(`"${element['text']}-1"`)
         rankClassesContainer.appendChild(radioDiv);
     });
     const finishedRankingBttn = document.createElement('button');
@@ -167,21 +179,16 @@ selectedButton.addEventListener('click', async (e) => {
         for(let i = 0; i < ele.length; i++) {
             if (ele[i].type="radio") {
                 if (ele[i].checked) {
-                    console.log(ele[i].value);
-                    // document.getElementById("result").innerHTML
-                    //         += ele[i].name + " Value: "
-                    //         + ele[i].value + "<br>";
                     userRanked.push(ele[i].value);
                 }
             }
         }
-        console.log(userRanked);
 
         giveField();
     });
 });
 
-function giveField() {
+async function giveField() {
     let scores = {};
     fieldsData.forEach((elem) => {
         scores[elem['field']] = 0;
@@ -212,6 +219,22 @@ function giveField() {
         index += 1;
     });
 
+    // Saving recommendation to DB
+    if (isLoggedIn()) {
+        const response = await fetch('/updateRecommendation', {
+            method: 'PUT',
+            body: JSON.stringify({
+                email: JSON.parse(document.cookie)['useremail'],
+                recommendation: topField
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        // const data = await response.json();
+    }
+
+    // Setting recommendation on the page
     const recommendation = document.createElement('h1');
     recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
     rankClassesContainer.appendChild(recommendation);

@@ -2,7 +2,7 @@
 //To retrieve from database: create new Quiz() and use setter with JSON from database
 
 export class Quiz {
-    constructor(email, cs_selected, math_selected, science_selected, favorites_selected) {
+    constructor(email, cs_selected, recommendation) {
         this.email = email;
         // Questions in the quiz
         // Answers can have categories; add up # of each category to calculate quiz result
@@ -10,41 +10,12 @@ export class Quiz {
         //TODO create all questions
         this.questions = [{
                 q: "What computer science and informatics courses have you taken?",
-                a: [{ id: 0, text: "CS 121" },
-                    { id: 1, text: "CS 186" },
-                    { id: 2, text: "CS 250" },
-                ],
+                a: [],
                 selected: []
-            }, {
-                q: "What math courses have you taken?",
-                a: [{ id: 0, text: "Math 131" },
-                    { id: 1, text: "Math 132" },
-                    { id: 2, text: "Math 233" },
-                ],
-                selected: []
-            }, {
-                q: "What lab science courses have you taken?",
-                a: [{ id: 0, text: "Physics 151" },
-                    { id: 1, text: "Physics 152" },
-                    { id: 2, text: "Chem 111" },
-                    { id: 3, text: "Bio 111" },
-                ],
-                selected: []
-            },
-            {
-                q: "Out of the CS classes you chose, which ones have you enjoyed the most?",
-                //TODO add logic to only use the selected classes from question 0
-                a: [{ id: 0, text: "CS 121", category: "category" },
-                    { id: 1, text: "CS 186", category: "category" },
-                    { id: 2, text: "CS 250", category: "category" },
-                ],
-                selected: []
-            },
+            }
         ];
         this.cs_selected = cs_selected;
-        this.math_selected = math_selected;
-        this.science_selected = science_selected;
-        this.favorites_selected = favorites_selected;
+        this.recommendation = recommendation;
     }
 
     pullFromDB() {
@@ -54,39 +25,6 @@ export class Quiz {
                 for (let i = 0; i < cs_questions['a'].length; i++) {
                     if (cs_questions['a'][i]['text'] === val) {
                         cs_questions['selected'].push(cs_questions['a'][i]);
-                    }
-                }
-            });
-        }
-
-        const math_questions = this.questions[1];
-        if (this.math_selected !== null) {
-            this.math_selected.forEach((val) => {
-                for (let i = 0; i < math_questions['a'].length; i++) {
-                    if (math_questions['a'][i]['text'] === val) {
-                        math_questions['selected'].push(math_questions['a'][i]);
-                    }
-                }
-            });
-        }
-
-        const science_questions = this.questions[2];
-        if (this.science_selected !== null) {
-            this.science_selected.forEach((val) => {
-                for (let i = 0; i < science_questions['a'].length; i++) {
-                    if (science_questions['a'][i]['text'] === val) {
-                        science_questions['selected'].push(science_questions['a'][i]);
-                    }
-                }
-            });
-        }
-
-        const fav_questions = this.questions[3];
-        if (this.favorites_selected !== null) {
-            this.favorites_selected.forEach((val) => {
-                for (let i = 0; i < fav_questions['a'].length; i++) {
-                    if (fav_questions['a'][i]['text'] === val) {
-                        fav_questions['selected'].push(fav_questions['a'][i]);
                     }
                 }
             });
@@ -144,7 +82,6 @@ export class Quiz {
             // { id: 0, text: "CS 121" }
             this.questions[0]['a'].push({ id: index, text: elem['dept'] + " " + elem['id'] });
         });
-        console.log(this.questions[0]['a']);
     }
 
 }
