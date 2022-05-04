@@ -172,6 +172,10 @@ selectedButton.addEventListener('click', async (e) => {
     finishedRankingBttn.id = 'finished-ranking-button';
     finishedRankingBttn.innerText = "Click When Finished Ranking Classes";
     rankClassesContainer.appendChild(finishedRankingBttn);
+
+    const givenRec = document.createElement('div');
+    rankClassesContainer.appendChild(givenRec);
+
     finishedRankingBttn.addEventListener('click', async (e) => {
         const ele = document.getElementsByTagName('input');
             
@@ -183,11 +187,11 @@ selectedButton.addEventListener('click', async (e) => {
             }
         }
 
-        giveField();
+        giveField(givenRec);
     });
 });
 
-async function giveField() {
+async function giveField(givenRec) {
     let scores = {};
     fieldsData.forEach((elem) => {
         scores[elem['field']] = 0;
@@ -235,7 +239,7 @@ async function giveField() {
 
     // Setting recommendation on the page
     const recommendation = document.createElement('h1');
-    recommendation.innerHTML = '';
     recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
-    rankClassesContainer.appendChild(recommendation);
+    givenRec.innerHTML = null;
+    givenRec.appendChild(recommendation);
 }
