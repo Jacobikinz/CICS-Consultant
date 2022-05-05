@@ -91,7 +91,7 @@ async function renderQuiz() {
                 renderQuiz();
             });
 
-            button.classList.add("mb-1", "mt-1");
+            button.classList.add("mb-1", "mt-1", "button");
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -102,7 +102,7 @@ async function renderQuiz() {
 
         quiz_container.appendChild(question_div);
     }
-    
+
     // console.log(isLoggedIn());
     if (isLoggedIn()) {
         await saveUpdate();
@@ -134,7 +134,7 @@ let userRanked = [];
 
 const selectedButton = document.getElementById('finished-selecting-button');
 const rankClassesContainer = document.getElementById('rank-classes-container');
-selectedButton.addEventListener('click', async (e) => {
+selectedButton.addEventListener('click', async(e) => {
     const instructions = document.createElement('h2');
     instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)';
     rankClassesContainer.innerHTML = null;
@@ -143,7 +143,7 @@ selectedButton.addEventListener('click', async (e) => {
         let className = document.createTextNode(element['text']);
         rankClassesContainer.appendChild(className);
         const radioDiv = document.createElement('div');
-        radioDiv.innerHTML =  `
+        radioDiv.innerHTML = `
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio1" value="${element['text']}-1">
           <label class="form-check-label" for="inlineRadio1">1 (hated the course)</label>
@@ -176,11 +176,11 @@ selectedButton.addEventListener('click', async (e) => {
     const givenRec = document.createElement('div');
     rankClassesContainer.appendChild(givenRec);
 
-    finishedRankingBttn.addEventListener('click', async (e) => {
+    finishedRankingBttn.addEventListener('click', async(e) => {
         const ele = document.getElementsByTagName('input');
-            
-        for(let i = 0; i < ele.length; i++) {
-            if (ele[i].type="radio") {
+
+        for (let i = 0; i < ele.length; i++) {
+            if (ele[i].type = "radio") {
                 if (ele[i].checked) {
                     userRanked.push(ele[i].value);
                 }
@@ -209,7 +209,7 @@ async function giveField(givenRec) {
             });
         });
     });
-    
+
     let topScore = 0;
     let topField = null;
 
