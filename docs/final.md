@@ -101,11 +101,20 @@ This will also cause the user to go to the profile page and the headers will cha
 <p>This will respond with a <code>status 500</code> along with the error if there was a server error while trying to delete the user, or a <code>status 200</code> if the user was successfully deleted.</p>
 
 <h2>Database: </h2>A final up-to-date representation of your database including a brief description of each of the entities in your data model and their relationships if any.
+There is only one table in our database and that is the users table that is storing the data about users once they have registered along with their activity when they are logged in.
+<img src="https://user-images.githubusercontent.com/23635947/167011915-d0f7e2ab-236e-4ea7-b636-b13164ccfd8d.png"/>
+
+<h1> TODO: ADD THE ENTITIES IN DATA MODEL AND THEIR RELATIONSHIPS </h1>
+
 
 <h2>URL Routes/Mappings: </h2>A final up-to-date table of all the URL routes that your application supports and a short description of what those routes are used for. You should also indicate any authentication and permissions on those routes.
 
 <h2>Authentication/Authorization: </h2>A final up-to-date description of how users are authenticated and any permissions for specific users (if any) that you used in your application. You should mention how they relate to which UI views are accessible.
 
 <h2>Division of Labor: </h2>A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
+Thomas Callaghan: 
+Jacob Urisman: 
+Pablo Castilla:
+Hannah Wu:
 
 <h2>Conclusion: </h2>A conclusion describing your team’s experience in working on this project. This should include what you learned through the design and implementation process, the difficulties you encountered, what your team would have liked to know before starting the project that would have helped you later, and any other technical hurdles that your team encountered.
