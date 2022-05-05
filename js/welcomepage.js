@@ -136,7 +136,7 @@ const selectedButton = document.getElementById('finished-selecting-button');
 const rankClassesContainer = document.getElementById('rank-classes-container');
 selectedButton.addEventListener('click', async(e) => {
     const instructions = document.createElement('h2');
-    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)';
+    instructions.innerText = 'Rank from 1 (hated it) to 5 (loved it)';
     rankClassesContainer.innerHTML = null;
     rankClassesContainer.appendChild(instructions);
     quiz.questions[0]['selected'].forEach(element => {
@@ -170,7 +170,7 @@ selectedButton.addEventListener('click', async(e) => {
     const finishedRankingBttn = document.createElement('button');
     finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
     finishedRankingBttn.id = 'finished-ranking-button';
-    finishedRankingBttn.innerText = "Click When Finished Ranking Classes";
+    finishedRankingBttn.innerText = "Done";
     rankClassesContainer.appendChild(finishedRankingBttn);
 
     const givenRec = document.createElement('div');
@@ -240,7 +240,7 @@ async function giveField(givenRec) {
     // Setting recommendation on the page
     if (topField !== null) {
         const recommendation = document.createElement('h1');
-        recommendation.innerHTML = "<br><p>Based on your rankings, you should pursue the " + topField + " field.</p><br>";
+        recommendation.innerHTML = "<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>";
         givenRec.innerHTML = null;
         givenRec.appendChild(recommendation);
     }
