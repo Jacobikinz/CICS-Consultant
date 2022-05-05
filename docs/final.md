@@ -14,8 +14,7 @@ Hannah Wu, Github:
 <h2>User Interface: </h2> A final up-to-date list/table describing your application’s user interface. This should include the name of the UI view and its purpose. You should include a screenshot of each of your UI views.
 
 <h2>APIs: </h2>A final up-to-date list/table describing your application’s API
-<h3>Users / Authentication API:</h3>
-<h4>Create:</h4>
+<h3>Create:</h3>
 <p>Users can be created by clicking on the blue "Sign-up" button in the top right of any page on the website. This brings them to the sign-up page which has the user enter 
 their first name, last name, email, and a password. They then click the green "Sign-up" button that is in the form they just filled out which causes the client to throw 
 out a create to the server via <code>/signupUser</code></p>
@@ -27,7 +26,7 @@ out a create to the server via <code>/signupUser</code></p>
 This will also cause the user to go to the profile page and the headers will change to <strong>allow access to the user's profile and a sign-out button.</strong></p>
 
   
-<h4>Read:</h4>
+<h3>Read:</h3>
 <p>Users can Login by clicking the "Login" button in the top right of any page on the website. This brings them to the login page which has the user enter their email and 
   password that is then checked against the database for authentication. If they are valid, the user will then be logged in, and be redirected to the profile page. 
   Also, the headers will change to <strong>allow access to the user's profile and a sign-out button.</strong></p>
@@ -38,8 +37,8 @@ This will also cause the user to go to the profile page and the headers will cha
   If the email and password are valid and match, the server will respond with a <code>status 200</code> and the user will be redirected to the profile page.</p>
 
 
-<h4>Update:</h4>
-<h5>User Updating Their Information (email)</h5>
+<h3>Update:</h3>
+<h4>User Updating Their Information (email)</h4>
 <p>Users can update the email associated with their account by clicking on the "Profile" button and then the "Update your information" button. This allows the user to 
   enter in a new email for their account and then by clicking the "Confirm new info" button, their email will be updated via a PUT request sent to the server.</p>
 <code>PUT /newInfo</code> <br>
@@ -49,13 +48,13 @@ This will also cause the user to go to the profile page and the headers will cha
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error while trying to update the email, or a <code>status 200</code>
   if the email was successfully updated.</p>
   
-<h5> User Signing Out</h5>
+<h4> User Signing Out</h4>
 <p> Users can sign-out of their account at any time by clicking the "Sign Out" button in the top right corner. </p>
 <code>PUT /signoutUser</code> <br>
 <p>This contains no headers or body because it is just trying to signal to the server that the user wants to signout</p>
 <p>The server always returns with a <code>status 200</code> for this API request because all it is doing is setting the <code>loggedIn</code> variable in the server code to false.</p>
 
-<h5>User Updating A User's Quiz Answers </h5>
+<h4>User Updating A User's Quiz Answers </h4>
 <p>When a user clicks any of the buttons (aka classes) on the home page (aka the quiz page) then their selected classes are saved to the database in the respective column. </p>
 <code>PUT /updateQuiz</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
@@ -65,7 +64,7 @@ This will also cause the user to go to the profile page and the headers will cha
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
   if it was successful. The user's responses are updated in the database in realtime when they are selecting things in the "quiz".</p>
   
-<h5>Loading a User's Quiz Answers On Page Load </h5>
+<h4>Loading a User's Quiz Answers On Page Load </h4>
 <p>When a user loads the home page then their quiz answers need to be loaded in from the database. </p>
 <code>PUT /loadQuiz</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
@@ -74,7 +73,7 @@ This will also cause the user to go to the profile page and the headers will cha
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
   if the data was successfully loaded from the DB. The response will also include the appropriate data from the DB.</p>
 
-<h5>User Updating A User's Recommended Field </h5>
+<h4>User Updating A User's Recommended Field </h4>
 <p>When a user clicks on the button after ranking all of the classes that they have taken, their recommended field is computed and if the user is logged in, this is inserted into their row in the database.</p>
 <code>PUT /updateRecommendation</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
@@ -84,7 +83,7 @@ This will also cause the user to go to the profile page and the headers will cha
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
   if it was successful. The user's recommendation is updated in the database after they click the button to get their reommended field.</p>
   
-<h5>Checking if there is a logged in user </h5>
+<h4>Checking if there is a logged in user </h4>
 <p>Whenever a page is loaded on the website, there needs to be a check to see if there is currently a user logged in in order to serve the correct HTML files with the correct headers.</p>
 <code>PUT /setLoggedIn</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
@@ -94,7 +93,7 @@ This will also cause the user to go to the profile page and the headers will cha
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
   if it was successful. The header is then successfully loaded with the correct bottons.</p>
 
-<h4>Delete:</h4>
+<h3>Delete:</h3>
 <p>Users can delete their profile by clicking on the "Profile" button and then the red "Delete Your Profile" button. This will delete the user from the database (local storage).</p>
 <code>DELETE /deleteUser</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
