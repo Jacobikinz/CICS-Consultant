@@ -35,16 +35,16 @@ table td {
 
 .button {
     background-color: #fbeee0;
-    border: 2px solid #422800;
+    border: 2px solid #63666a;
     border-radius: 30px;
-    box-shadow: #422800 4px 4px 0 0;
-    color: #422800;
+    box-shadow: #63666a 4px 4px 0 0;
+    color: #63666a;
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
     font-size: 14px;
     padding: 0 14px;
-    line-height: 50px;
+    line-height: 30px;
     text-align: center;
     text-decoration: none;
     user-select: none;
@@ -57,7 +57,7 @@ table td {
 }
 
 .button:active {
-    box-shadow: #422800 2px 2px 0 0;
+    box-shadow: #881c1c 2px 2px 0 0;
     transform: translate(2px, 2px);
 }
 
