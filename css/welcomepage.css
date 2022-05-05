@@ -67,13 +67,13 @@ table td {
 
 /* mouse over link */
 
-a:hover {
+.header.a:hover {
     color: maroon;
 }
 
 
 /* selected link */
 
-a:active {
+.header.a:active {
     color: blue;
 }
