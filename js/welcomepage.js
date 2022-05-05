@@ -91,7 +91,7 @@ async function renderQuiz() {
                 renderQuiz();
             });
 
-            button.classList.add("mb-1", "mt-1");
+            button.classList.add("mb-1", "mt-1", "button");
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -102,7 +102,7 @@ async function renderQuiz() {
 
         quiz_container.appendChild(question_div);
     }
-    
+
     // console.log(isLoggedIn());
     if (isLoggedIn()) {
         await saveUpdate();
@@ -134,16 +134,16 @@ let userRanked = [];
 
 const selectedButton = document.getElementById('finished-selecting-button');
 const rankClassesContainer = document.getElementById('rank-classes-container');
-selectedButton.addEventListener('click', async (e) => {
+selectedButton.addEventListener('click', async(e) => {
     const instructions = document.createElement('h2');
-    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)';
+    instructions.innerText = 'Rank from 1 (hated it) to 5 (loved it)';
     rankClassesContainer.innerHTML = null;
     rankClassesContainer.appendChild(instructions);
     quiz.questions[0]['selected'].forEach(element => {
         let className = document.createTextNode(element['text']);
         rankClassesContainer.appendChild(className);
         const radioDiv = document.createElement('div');
-        radioDiv.innerHTML =  `
+        radioDiv.innerHTML = `
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio1" value="${element['text']}-1">
           <label class="form-check-label" for="inlineRadio1">1 (hated the course)</label>
@@ -164,23 +164,24 @@ selectedButton.addEventListener('click', async (e) => {
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio5" value="${element['text']}-5">
           <label class="form-check-label" for="inlineRadio3">5 (loved the course)</label>
         </div>
-        <br> <br>`;
+        <br>`;
         rankClassesContainer.appendChild(radioDiv);
     });
+    rankClassesContainer.appendChild(document.createElement("br"));
     const finishedRankingBttn = document.createElement('button');
     finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
     finishedRankingBttn.id = 'finished-ranking-button';
-    finishedRankingBttn.innerText = "Click When Finished Ranking Classes";
+    finishedRankingBttn.innerText = "Done";
     rankClassesContainer.appendChild(finishedRankingBttn);
 
     const givenRec = document.createElement('div');
     rankClassesContainer.appendChild(givenRec);
 
-    finishedRankingBttn.addEventListener('click', async (e) => {
+    finishedRankingBttn.addEventListener('click', async(e) => {
         const ele = document.getElementsByTagName('input');
-            
-        for(let i = 0; i < ele.length; i++) {
-            if (ele[i].type="radio") {
+
+        for (let i = 0; i < ele.length; i++) {
+            if (ele[i].type = "radio") {
                 if (ele[i].checked) {
                     userRanked.push(ele[i].value);
                 }
@@ -209,7 +210,7 @@ async function giveField(givenRec) {
             });
         });
     });
-    
+
     let topScore = 0;
     let topField = null;
 
@@ -240,7 +241,7 @@ async function giveField(givenRec) {
     // Setting recommendation on the page
     if (topField !== null) {
         const recommendation = document.createElement('h1');
-        recommendation.innerHTML = "<br> Based on your rankings, you should pursue the " + topField + " field.";
+        recommendation.innerHTML = "<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>";
         givenRec.innerHTML = null;
         givenRec.appendChild(recommendation);
     }

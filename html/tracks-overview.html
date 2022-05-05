@@ -2,137 +2,132 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <script type="module" src="..\js\loginandregister.js" defer></script>
-  <script type="module" src="..\js\overview.js"></script>
-  <link rel="stylesheet" href="..\css\tracks-overview.css" />
-  <script type="module" src="..\js\fields.js"></script>
+    <script type="module" src="..\js\loginandregister.js" defer></script>
+    <script type="module" src="..\js\overview.js"></script>
+    <link rel="stylesheet" href="..\css\tracks-overview.css" />
+    <script type="module" src="..\js\fields.js"></script>
 
-  <script type="module" src="..\js\quiz.js"></script>
-  <script type="module" src="..\js\profileHeader.js"></script>
-  <script type="module" src="..\js\multiuser.js"></script>"
+    <script type="module" src="..\js\quiz.js"></script>
+    <script type="module" src="..\js\profileHeader.js"></script>
+    <script type="module" src="..\js\multiuser.js"></script>
 
-  <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
-  <title>CICS Consultant</title>
+    <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
+    <title>CICS Consultant</title>
 </head>
 
 <body>
-  <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Optional JavaScript; choose one of the two! -->
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-  <div class="container" id="container">
-    <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" alt="CICS logo"
-          width="60" height="60">
-        <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
-      </a>
+    <div class="container" id="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" alt="CICS logo" width="60" height="60">
+                <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
+            </a>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
-        <li><a href="about.html" class="nav-link px-2 link-dark">About Us</a></li>
-      </ul>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
+                <li><a href="about.html" class="nav-link px-2 link-dark">About Us</a></li>
+            </ul>
 
-      <div class="col-md-4 text-end">
-        <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
-        <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
-        <button type="button" class="btn btn-primary me-2 invisible" id="profilebutton">Profile</button>
-        <button type="button" class="btn btn-outline-primary invisible" id="signoutbutton">Sign Out</button>
-      </div>
-    </header>
+            <div class="col-md-4 text-end">
+                <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
+                <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
+                <button type="button" class="btn btn-primary me-2 invisible" id="profilebutton">Profile</button>
+                <button type="button" class="btn btn-outline-primary invisible" id="signoutbutton">Sign Out</button>
+            </div>
+        </header>
 
-    <div id="recommendation-container"></div>
+        <div id="recommendation-container"></div>
 
-    <h1> Fields overview </h1>
-    <br>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Artificial Intelligence</h5>
-            <div class="accordion" id="ai">
+        <h1> Fields overview </h1>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Artificial Intelligence</h5>
+                        <div class="accordion" id="ai">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Data Science</h5>
-            <div class="accordion" id="data">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Science</h5>
+                        <div class="accordion" id="data">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Graphics, Vision, and Visualization</h5>
-            <div class="accordion" id="graphics">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Graphics, Vision, and Visualization</h5>
+                        <div class="accordion" id="graphics">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Hardware Integration</h5>
-            <div class="accordion" id="hardware">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Hardware Integration</h5>
+                        <div class="accordion" id="hardware">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Security</h5>
-            <div class="accordion" id="security">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Security</h5>
+                        <div class="accordion" id="security">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Software Engineering</h5>
-            <div class="accordion" id="software">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Software Engineering</h5>
+                        <div class="accordion" id="software">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Systems</h5>
-            <div class="accordion" id="systems">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Systems</h5>
+                        <div class="accordion" id="systems">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Theory</h5>
-            <div class="accordion" id="theory">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Theory</h5>
+                        <div class="accordion" id="theory">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </body>
 
 </html>
