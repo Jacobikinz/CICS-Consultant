@@ -63,17 +63,3 @@ table td {
         padding: 0 20px;
     }
 }
-
-
-/* mouse over link */
-
-.header.a:hover {
-    color: maroon;
-}
-
-
-/* selected link */
-
-.header.a:active {
-    color: blue;
-}
