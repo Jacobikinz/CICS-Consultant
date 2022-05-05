@@ -164,7 +164,7 @@ selectedButton.addEventListener('click', async(e) => {
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio5" value="${element['text']}-5">
           <label class="form-check-label" for="inlineRadio3">5 (loved the course)</label>
         </div>
-        <br> <br>`;
+        <br>`;
         rankClassesContainer.appendChild(radioDiv);
     });
     const finishedRankingBttn = document.createElement('button');
