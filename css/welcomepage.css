@@ -27,18 +27,14 @@ table td {
 }
 
 
-/* <!-- HTML !-->
-<button class="button-74" role="button">Button 74</button> */
-
-
-/* CSS */
+/* button CSS credit: UIForms*/
 
 .button {
     background-color: #fbeee0;
-    border: 2px solid #63666a;
+    border: 2px solid #000;
     border-radius: 30px;
-    box-shadow: #63666a 4px 4px 0 0;
-    color: #63666a;
+    box-shadow: #000 4px 4px 0 0;
+    color: #000;
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
