@@ -1,7 +1,5 @@
 #container {
     text-align: left;
-    word-wrap: 'break-word';
-    white-space: 'normal';
 }
 
 #titleofpage {
@@ -16,4 +14,13 @@ h3 {
     margin-left: 0;
     margin-right: 0;
     font-weight: bold;
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
