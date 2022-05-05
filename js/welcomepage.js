@@ -167,6 +167,7 @@ selectedButton.addEventListener('click', async(e) => {
         <br>`;
         rankClassesContainer.appendChild(radioDiv);
     });
+    rankClassesContainer.appendChild(document.createElement("br"));
     const finishedRankingBttn = document.createElement('button');
     finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
     finishedRankingBttn.id = 'finished-ranking-button';
