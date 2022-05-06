@@ -8,8 +8,8 @@
 
     <!-- Local stylesheets -->
     <link rel="stylesheet" href="..\css\signup.css" />
-    <script type="module" src="..\js\loginandregister.js" defer></script>
-    <script type="module" src="..\js\signup.js" defer></script>
+    <script type="module" src="..\js\loginandregister.js"></script>
+    <script type="module" src="..\js\signup.js"></script>
 
     <script type="module" src="..\js\quiz.js"></script>
     <script type="module" src="..\js\profileHeader.js"></script>
@@ -19,29 +19,29 @@
     <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
     <title>CICS Consultant</title>
 </head>
-<header
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom samesizeheader">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" alt="CICS logo"
-            width="60" height="60">
-        <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
-    </a>
-
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
-        <li><a href="about.html" class="nav-link px-2 link-dark">About Us</a></li>
-    </ul>
-
-    <div class="col-md-4 text-end">
-        <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
-        <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
-        <button type="button" class="btn btn-primary me-2 invisible" id="profilebutton">Profile</button>
-        <button type="button" class="btn btn-outline-primary invisible" id="signoutbutton">Sign Out</button>
-    </div>
-</header>
 
 <body>
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom samesizeheader">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" alt="CICS logo"
+                width="60" height="60">
+            <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="home.html" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
+            <li><a href="about.html" class="nav-link px-2 link-dark">About Us</a></li>
+        </ul>
+
+        <div class="col-md-4 text-end">
+            <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
+            <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
+            <button type="button" class="btn btn-primary me-2 invisible" id="profilebutton">Profile</button>
+            <button type="button" class="btn btn-outline-primary invisible" id="signoutbutton">Sign Out</button>
+        </div>
+    </header>
     <div id="main-container" class="justify-content-center align-items-center d-flex">
         <div
             class="row justify-content-center align-items-center mw-100 bg-light w-25 border border-primary rounded-lg rounded">
@@ -49,7 +49,6 @@
                 <fieldset>
 
                     <!-- Form Name -->
-                    <br>
                     <legend id="register-legend"><strong>Sign-up for CICS Consultant!</strong></legend>
                     <br><br>
 
@@ -96,9 +95,9 @@
                     <div class="form-group">
                         <br>
                         <div class="col-md-11 d-flex justify-content-between">
-                            <input type="button" id="save" name="save" class="btn btn-success" value="Sign-up"></input>
+                            <input type="button" id="save" name="save" class="btn btn-success" value="Sign-up">
 
-                            <input type="button" id="clear" name="clear" class="btn btn-danger" value="Reset"></input>
+                            <input type="button" id="clear" name="clear" class="btn btn-danger" value="Reset">
                         </div>
 
                         <h5 id="signupstatus"></h5>
