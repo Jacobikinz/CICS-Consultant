@@ -7,11 +7,11 @@
 <h2>Overview: </h2>A brief overview of your application. This will be based on what you are submitting as your final web application artifact. You should also mention why your application is innovative.
 
 
-<h2>Team Members: </h2>A list of your team members, with names and GitHub aliases.
-Thomas Callaghan, Github: twcallaghan
-Jacob Urismam, Github:
-Pablo Castilla, Github: 
-Hannah Wu, Github: 
+<h2>Team Members: </h2>A list of your team members, with names and GitHub aliases. <br>
+Thomas Callaghan, Github: twcallaghan <br>
+Jacob Urismam, Github: <br>
+Pablo Castilla, Github: <br>
+Hannah Wu, Github: <br>
 
 <h2>User Interface: </h2> A final up-to-date list/table describing your application's user interface. This should include the name of the UI view and its purpose. You should include a screenshot of each of your UI views.
 
@@ -113,10 +113,10 @@ There is only one table in our database and that is the users table that is stor
 
 <h2>Authentication/Authorization: </h2>A final up-to-date description of how users are authenticated and any permissions for specific users (if any) that you used in your application. You should mention how they relate to which UI views are accessible.
 
-<h2>Division of Labor: </h2>A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
-Thomas Callaghan: 
-Jacob Urisman: 
-Pablo Castilla:
-Hannah Wu:
+<h2>Division of Labor: </h2>A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student. <br>
+Thomas Callaghan: <br>
+Jacob Urisman: <br>
+Pablo Castilla: <br>
+Hannah Wu: <br>
 
 <h2>Conclusion: </h2>A conclusion describing your team's experience in working on this project. This should include what you learned through the design and implementation process, the difficulties you encountered, what your team would have liked to know before starting the project that would have helped you later, and any other technical hurdles that your team encountered.
