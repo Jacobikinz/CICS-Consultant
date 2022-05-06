@@ -8,7 +8,7 @@
 
 ## Overview:
 
-A brief overview of your application. This will be based on what you are submitting as your final web application artifact. You should also mention why your application is innovative.
+Our application seeks to better inform CICS students on what courses they might enjoy based on courses that they have enjoyed previously. It uses our proprietary classification of CICS courses into 8 relatively distinct fields.
 
 ## Team Members:
 
@@ -21,10 +21,20 @@ Hannah Wu, Github: hawuter
 ## User Interface:
 
 A final up-to-date list/table describing your application’s user interface. This should include the name of the UI view and its purpose. You should include a screenshot of each of your UI views.
+1. Homepage
+  - The homepage of our application is a quiz, which asks users to input all classes they have taken. There is then a button which locks in a user's answers and sends them to the database.
+  - Then, the next part of the quiz appears, which asks users to rank each class they have taken. There is another button at the bottom of this, which sends the class enjoyment information for the users to the database, as well as computing the final step.
+  - The final step is taking the information from the quiz and determining which field most likely suits the user best. The information is sent to the database and then displayed on the screen.
+2. Fields
+  - This page contains 8 cards, one for each field. Each card contains every class which we have placed in said field. Each class is an accordion which displays course id and title when collapsed, and course description in the accordion dropdown.
+3. About Us
+  - The about us page contains information on the application and each of our group members.
+4. Sign-up
+  - The sign-up page features a simple registration page for creating a user, with fields for first and last name, email, and password. The user is created in the database upon registration.
+5. Login
+  - The login page works fairly straightforwardly and allows a user to login to their account to update their preferences, which are stored in the database.
 
 ## APIs:
-
-A final up-to-date list/table describing your application’s API
 
 ### Create:
 
@@ -143,7 +153,14 @@ A final up-to-date description of how users are authenticated and any permission
 
 ## Division of Labor:
 
-A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student. Thomas Callaghan:  
+A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
+
+Thomas Callaghan:  For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work.
+
+For milestone 2, I wrote the large majority of the documentation that was needed for the submission, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone.
+
+For this final milestone, (I had skipped ahead a bit on milestone 2 by already implementing the heroku postgres DB, so I don't want to double-count that) I wrote the JS to dynamically create buttons on the home page from the classes JSON, wrote the JS that would then take those selected classes and produce radio buttons when the user was finished selecting classes, wrote the JS for calculating which field the user should pursue given their selections throughout the "quiz" through comparing this to the fields JSON, linted all the JS, validated all the HTML, cleaned up all the code, and started this final documentation by writing the API section and most of the Database section.
+
 Jacob Urisman:  
 Pablo Castilla:  
 Hannah Wu:  
