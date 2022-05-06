@@ -1,6 +1,7 @@
 # Project Specific
 userfile.json
 template
+.eslintrc.json
 
 # Logs
 logs
