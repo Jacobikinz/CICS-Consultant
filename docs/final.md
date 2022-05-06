@@ -155,13 +155,18 @@ A final up-to-date description of how users are authenticated and any permission
 
 A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
 
-Thomas Callaghan:  For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work.
+Thomas Callaghan: For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work.
 
 For milestone 2, I wrote the large majority of the documentation that was needed for the submission, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone.
 
 For this final milestone, (I had skipped ahead a bit on milestone 2 by already implementing the heroku postgres DB, so I don't want to double-count that) I wrote the JS to dynamically create buttons on the home page from the classes JSON, wrote the JS that would then take those selected classes and produce radio buttons when the user was finished selecting classes, wrote the JS for calculating which field the user should pursue given their selections throughout the "quiz" through comparing this to the fields JSON, linted all the JS, validated all the HTML, cleaned up all the code, and started this final documentation by writing the API section and most of the Database section.
 
-Jacob Urisman:  
+Jacob Urisman: For milestone 1, I created a preliminary fields page with a division of courses based on Ben Marlin's spreadsheet of interest fields and which classes were in them.
+
+For milestone 2, I assisted in the planning of the milestone. I also set up the Heroku application, including connecting it to GitHub, setting up the CLI and making it secure.
+
+For this final milestone, I wrote the final.md doc, created the fields json which most parts of the project rely on for dynamic updating. I also created the fields overview page dynamically.
+
 Pablo Castilla:  
 Hannah Wu:  
 
