@@ -145,9 +145,19 @@ A final up-to-date representation of your database including a brief description
 
 # TODO: ADD THE ENTITIES IN DATA MODEL AND THEIR RELATIONSHIPS
 
+### Entities
+
+- Classes
+
 ## URL Routes/Mappings:
 
-A final up-to-date table of all the URL routes that your application supports and a short description of what those routes are used for. You should also indicate any authentication and permissions on those routes.
+- html/about.html
+- html/home.html
+- html/login.html
+- html/profile.html
+  - login authentication required (email and password)
+- html/signup.html
+- html/fields.html
 
 ## Authentication/Authorization:
 
