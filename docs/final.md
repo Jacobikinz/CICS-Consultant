@@ -114,7 +114,10 @@ There is only one table in our database and that is the users table that is stor
 <h2>Authentication/Authorization: </h2>A final up-to-date description of how users are authenticated and any permissions for specific users (if any) that you used in your application. You should mention how they relate to which UI views are accessible.
 
 <h2>Division of Labor: </h2>A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student. <br>
-Thomas Callaghan: <br>
+<b>Thomas Callaghan:</b> For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work. <br> 
+For milestone 2, I wrote the large majority of the documentation that was needed for the submission, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone. <br>
+For this final milestone, (I had skipped ahead a bit on milestone 2 by already implementing the heroku postgres DB, so I don't want to double-count that) I wrote the JS to dynamically create buttons on the home page from the classes JSON, wrote the JS that would then take those selected classes and produce radio buttons when the user was finished selecting classes, wrote the JS for calculating which field the user should pursue given their selections throughout the "quiz" through comparing this to the fields JSON, linted all the JS, validated all the HTML, cleaned up all the code, and started this final documentation by writing the API section and most of the Database section. 
+<br>
 Jacob Urisman: <br>
 Pablo Castilla: <br>
 Hannah Wu: <br>
