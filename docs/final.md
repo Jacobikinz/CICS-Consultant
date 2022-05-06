@@ -153,6 +153,10 @@ A final up-to-date representation of your database including a brief description
   - Stored as json file. Each course contains department id, course number, course title, number of credits, semesters offered, and the description of the course.
 - Fields
   - Stored as json file. Each field contains a name, an array of course numbers as strings, and a full name for the field.
+  - Courses can be taken from class json using the course number.
+- Class enjoyment ranking
+  - Stored as an array of classes for each enjoyment level (1-5).
+  - Can check fields json for which field contains which classes.
 
 ## URL Routes/Mappings:
 
