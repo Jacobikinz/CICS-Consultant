@@ -9,10 +9,10 @@ export class Quiz {
         // Selected must be an array
         //TODO create all questions
         this.questions = [{
-                q: "What computer science and informatics courses have you taken?",
-                a: [],
-                selected: []
-            }
+            q: 'What computer science and informatics courses have you taken?',
+            a: [],
+            selected: []
+        }
         ];
         this.cs_selected = cs_selected;
         this.recommendation = recommendation;
@@ -52,35 +52,35 @@ export class Quiz {
     }
 
     //get result if all questions are answered; else undefined
-    get result() {
-        let categories = {};
-        if (this.isComplete()) {
-            this.questions.forEach(answer => {
-                answer.selected.forEach(selection => {
-                    let a = answer.filter(obj => {
-                        return obj.text === selection
-                    });
-                    if (a.length > 0 && a[0].text === selection) {
-                        if (categories.hasOwnProperty(selection.category)) {
-                            categories[selection.category]++;
-                        } else {
-                            categories[selection.category] = 1;
-                        }
-                    }
-                });
-            });
-            return Object.keys(categories).reduce(function(a, b) { return obj[a] > obj[b] ? a : b });
-        }
-        return undefined;
-    }
+    // get result() {
+    //     let categories = {};
+    //     if (this.isComplete()) {
+    //         this.questions.forEach(answer => {
+    //             answer.selected.forEach(selection => {
+    //                 let a = answer.filter(obj => {
+    //                     return obj.text === selection
+    //                 });
+    //                 if (a.length > 0 && a[0].text === selection) {
+    //                     if (categories.hasOwnProperty(selection.category)) {
+    //                         categories[selection.category]++;
+    //                     } else {
+    //                         categories[selection.category] = 1;
+    //                     }
+    //                 }
+    //             });
+    //         });
+    //         return Object.keys(categories).reduce(function (a, b) { return obj[a] > obj[b] ? a : b });
+    //     }
+    //     return undefined;
+    // }
 
     async makeCSQuestions() {
-        const classes = await fetch("..\\json\\classes.json");
+        const classes = await fetch('..\\json\\classes.json');
         const classesData = await classes.json();
         this.questions[0]['a'] = [];
         classesData.forEach((elem, index) => {
             // { id: 0, text: "CS 121" }
-            this.questions[0]['a'].push({ id: index, text: elem['dept'] + " " + elem['id'] });
+            this.questions[0]['a'].push({ id: index, text: elem['dept'] + ' ' + elem['id'] });
         });
     }
 

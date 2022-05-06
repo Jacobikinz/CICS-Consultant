@@ -1,4 +1,4 @@
-import { setServerLoggedIn } from './multiuser.js'
+import { setServerLoggedIn } from './multiuser.js';
 
 setServerLoggedIn();
 
@@ -7,15 +7,15 @@ const password = document.getElementById('password');
 const loginButton = document.getElementById('loginbutton');
 const validateLogin = document.getElementById('loginstatus');
 
-loginButton.addEventListener('click', async (e) => {
+loginButton.addEventListener('click', async () => {
     // console.log('button clicked');
-    const response = await fetch(`/loginUser`, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'email': email.value,
-        'password': password.value,
-    },
+    const response = await fetch('/loginUser', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': email.value,
+            'password': password.value,
+        },
     });
     const data = await response.json();
     validateLogin.innerHTML = JSON.stringify('<br>' + data['message']).replaceAll('"', '');

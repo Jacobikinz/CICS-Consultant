@@ -1,3 +1,3 @@
-import { setServerLoggedIn } from './multiuser.js'
+import { setServerLoggedIn } from './multiuser.js';
 
 setServerLoggedIn();

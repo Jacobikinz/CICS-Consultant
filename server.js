@@ -1,8 +1,6 @@
-import express, { response } from 'express';
+import express from 'express';
 import logger from 'morgan';
-import { readFile, writeFile } from 'fs/promises';
 import * as path from 'path';
-import { Quiz } from './js/quiz.js';
 import { fileURLToPath } from 'url';
 import pg from 'pg';
 import dotenv from 'dotenv';
@@ -27,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
 
-app.put('/setLoggedIn', async(request, response) => {
+app.put('/setLoggedIn', async (request, response) => {
     const options = request.body;
     try {
         if (options['cookies'] === '' || JSON.stringify(options['cookies']) === JSON.stringify({})) {
@@ -40,24 +38,23 @@ app.put('/setLoggedIn', async(request, response) => {
     }
 });
 
-app.put('/updateRecommendation', async(request, response) => {
+app.put('/updateRecommendation', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
-    const colNames = ['cs_chosen'];
     const text = 'UPDATE users SET curr_recommendation = \'' + options['recommendation'] + '\' WHERE email = \'' + options['email'] + '\'';
     try {
-        const res = await client.query(text);
+        await client.query(text);
         await client.end();
-        response.status(200).json("Successfully updated information.");
+        response.status(200).json('Successfully updated information.');
     } catch (err) {
         console.log(err.stack);
         await client.end();
@@ -66,25 +63,25 @@ app.put('/updateRecommendation', async(request, response) => {
 });
 
 // Redirect you to home.html when you type /home
-app.get("/home", (req, res) => res.redirect("/html/home.html"));
-app.get("/", (req, res) => res.redirect("/html/home.html"));
+app.get('/home', (req, res) => res.redirect('/html/home.html'));
+app.get('/', (req, res) => res.redirect('/html/home.html'));
 
-app.post('/signupUser', async(request, response) => {
+app.post('/signupUser', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
 
     const text = 'INSERT INTO users(fname, lname, email, password) VALUES($1, $2, $3, $4) RETURNING *';
     const values = [options['fname'], options['lname'], options['email'], options['password']];
-    
+
     // async/await
     try {
         const res = await client.query(text, values);
@@ -98,15 +95,15 @@ app.post('/signupUser', async(request, response) => {
     }
 });
 
-app.get('/loginUser', async(request, response) => {
+app.get('/loginUser', async (request, response) => {
     const options = request.headers;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
@@ -121,7 +118,7 @@ app.get('/loginUser', async(request, response) => {
         } else {
             console.log(res.rows[0]);
             await client.end();
-            response.status(200).json({"message": "Logging in...", "fname": res.rows[0]['fname'], "lname": res.rows[0]['lname']});
+            response.status(200).json({ 'message': 'Logging in...', 'fname': res.rows[0]['fname'], 'lname': res.rows[0]['lname'] });
         }
     } catch (err) {
         console.log(err.stack);
@@ -130,15 +127,15 @@ app.get('/loginUser', async(request, response) => {
     }
 });
 
-app.put('/loadQuiz', async(request, response) => {
+app.put('/loadQuiz', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
@@ -157,34 +154,34 @@ app.put('/loadQuiz', async(request, response) => {
     }
 });
 
-app.put('/updateQuiz', async(request, response) => {
+app.put('/updateQuiz', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
     console.log(options);
-    const colNames = ['cs_chosen']
+    const colNames = ['cs_chosen'];
     for (let i = 0; i < 1; i++) {
-        const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== "undefined");
+        const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== 'undefined');
         let insertList = '';
         for (let j = 0; j < currSelected.length; j++) {
-            insertList += '\"' + currSelected[j]['text'] + "\""
+            insertList += '"' + currSelected[j]['text'] + '"';
             if (j !== currSelected.length - 1) {
-                insertList += ", "
+                insertList += ', ';
             }
         }
         const text = 'UPDATE users SET ' + colNames[i] + ' = \'{' + insertList + '}\' WHERE email = \'' + options['email'] + '\'';
         console.log(text);
         // async/await
         try {
-            const res = await client.query(text);
+            await client.query(text);
         } catch (err) {
             console.log(err.stack);
             await client.end();
@@ -193,23 +190,23 @@ app.put('/updateQuiz', async(request, response) => {
         }
     }
     await client.end();
-    response.status(200).json("Successfully updated information.");
+    response.status(200).json('Successfully updated information.');
 });
 
-app.put('/signoutUser', async(request, response) => {
+app.put('/signoutUser', async (request, response) => {
     response.status(200).json('Successfully signed out.');
 });
 
 
-app.put('/newInfo', async(request, response) => {
+app.put('/newInfo', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
@@ -218,9 +215,9 @@ app.put('/newInfo', async(request, response) => {
     console.log(text);
     // async/await
     try {
-        const res = await client.query(text);
+        await client.query(text);
         await client.end();
-        response.status(200).json("Successfully updated information.");
+        response.status(200).json('Successfully updated information.');
     } catch (err) {
         console.log(err.stack);
         await client.end();
@@ -228,15 +225,15 @@ app.put('/newInfo', async(request, response) => {
     }
 });
 
-app.delete('/deleteUser', async(request, response) => {
+app.delete('/deleteUser', async (request, response) => {
     const options = request.body;
 
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-          rejectUnauthorized: false
+            rejectUnauthorized: false
         },
-    
+
     });
 
     client.connect();
@@ -245,9 +242,9 @@ app.delete('/deleteUser', async(request, response) => {
     console.log(text);
     // async/await
     try {
-        const res = await client.query(text);
+        await client.query(text);
         await client.end();
-        response.status(200).json("Your profile has been deleted.");
+        response.status(200).json('Your profile has been deleted.');
     } catch (err) {
         console.log(err.stack);
         await client.end();
@@ -255,9 +252,9 @@ app.delete('/deleteUser', async(request, response) => {
     }
 });
 
-app.get("/", (req, res) => res.redirect("/html/home.html"));
+app.get('/', (req, res) => res.redirect('/html/home.html'));
 
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
     console.log(req.path.substring(1));
     res.sendFile(__dirname + req.path);
 });
@@ -267,5 +264,5 @@ app.get('*', function(req, res) {
 // });
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`Server started on port ${port}`);
+    console.log(`Server started on port ${port}`);
 });
