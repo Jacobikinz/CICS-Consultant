@@ -30,7 +30,7 @@ This will also cause the user to go to the profile page and the headers will cha
   
 <h3>Read:</h3>
 <p>Users can Login by clicking the "Login" button in the top right of any page on the website. This brings them to the login page which has the user enter their email and 
-  password that is then checked against the database for authentication. If they are valid, the user will then be logged in, and be redirected to the profile page. 
+  password which is then checked against the database for authentication. If they are valid, the user will then be logged in, and be redirected to the profile page. 
   Also, the headers will change to <strong>allow access to the user's profile and a sign-out button.</strong></p>
 <code>GET /loginUser</code> <br>
 <code> headers: {'Content-Type': 'application/json', 'email': email, 'password': password} </code> <br>
@@ -51,7 +51,7 @@ This will also cause the user to go to the profile page and the headers will cha
   if the email was successfully updated.</p>
   
 <h4> User Signing Out</h4>
-<p> Users can sign-out of their account at any time by clicking the "Sign Out" button in the top right corner. </p>
+<p> Users can sign out of their account at any time by clicking the "Sign Out" button in the top right corner. </p>
 <code>PUT /signoutUser</code> <br>
 <p>This contains no headers or body because it is just trying to signal to the server that the user wants to signout</p>
 <p>The server always returns with a <code>status 200</code> for this API request because all it is doing is setting the <code>loggedIn</code> variable in the server code to false.</p>
@@ -61,10 +61,10 @@ This will also cause the user to go to the profile page and the headers will cha
 <code>PUT /updateQuiz</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
 <code>body: JSON.stringify({email: JSON.parse(document.cookie)['useremail'], quiz: quiz.json}), </code> <br>
-<p> Here, quiz.json is an class that we are using in the backend to render the homepage with buttons that form a "quiz" that the user can take. This will eventually be used to determine which path a user should most likely take in their career both academically and profesionally. The cookie is taking the email of the currently logged in user from the document's cookie to pass it along to the server. </p>
+<p> Here, quiz.json is a class that we are using in the backend to render the homepage with buttons that form a "quiz" that the user can take. This will eventually be used to determine which path a user should most likely take in their career both academically and professionally. The cookie is taking the email of the currently logged-in user from the document's cookie to pass it along to the server. </p>
 <br>
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
-  if it was successful. The user's responses are updated in the database in realtime when they are selecting things in the "quiz".</p>
+  if it was successful. The user's responses are updated in the database in real time when they are selecting things in the "quiz".</p>
   
 <h4>Loading a User's Quiz Answers On Page Load </h4>
 <p>When a user loads the home page then their quiz answers need to be loaded in from the database. </p>
@@ -80,20 +80,20 @@ This will also cause the user to go to the profile page and the headers will cha
 <code>PUT /updateRecommendation</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
 <code>body: JSON.stringify({email: JSON.parse(document.cookie)['useremail'], recommendation: topField}), </code> <br>
-<p> This is sending the cookie with the user who is currently logged in's email and their "top field" which was the field that had the highest score after the user's rankings. If the user is not logged in athen there will be no cookie to send which will then have no database action taken. </p>
+<p> This is sending the cookie with the user who is currently logged in's email and their "top field" which was the field that had the highest score after the user's rankings. If the user is not logged in then there will be no cookie to send which will then have no database action taken. </p>
 <br>
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
-  if it was successful. The user's recommendation is updated in the database after they click the button to get their reommended field.</p>
+  if it was successful. The user's recommendation is updated in the database after they click the button to get their recommended field.</p>
   
-<h4>Checking if there is a logged in user </h4>
+<h4>Checking if there is a logged-in user </h4>
 <p>Whenever a page is loaded on the website, there needs to be a check to see if there is currently a user logged in in order to serve the correct HTML files with the correct headers.</p>
 <code>PUT /setLoggedIn</code> <br>
 <code>headers: {'Content-Type': 'application/json'} </code> <br>
 <code>body: JSON.stringify({email: JSON.parse(document.cookie)}), </code> <br>
-<p> This needs to send the document's cookie in order to determine if there is currently a user logged in to the website, and if there is then it will be serving back a boolean in JSON that will determine what header to use on that page.</p>
+<p> This needs to send the document's cookie in order to determine if there is currently a user logged in to the website and if there is then it will be serving back a boolean in JSON that will determine what header to use on that page.</p>
 <br>
 <p> This will respond with a <code>status 500</code> along with the error if there was a server error, or a <code>status 200</code>
-  if it was successful. The header is then successfully loaded with the correct bottons.</p>
+  if it was successful. The header is then successfully loaded with the correct buttons.</p>
 
 <h3>Delete:</h3>
 <p>Users can delete their profile by clicking on the "Profile" button and then the red "Delete Your Profile" button. This will delete the user from the database (local storage).</p>
