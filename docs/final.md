@@ -1,6 +1,6 @@
 # Final Documentation
 
-## Title: nic-asnes-fan-club
+## Title: Nic Asnes Fan Club
 
 ## Subtitle: CICS Consultant
 
