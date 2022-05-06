@@ -6,6 +6,8 @@
 
 ## Semester: Spring 2022
 
+## Link to project: https://cics-consultant.herokuapp.com/
+
 ## Overview:
 
 Our application seeks to better inform CICS students on what courses they might enjoy based on courses that they have enjoyed previously. It uses our proprietary classification of CICS courses into 8 relatively distinct fields.
