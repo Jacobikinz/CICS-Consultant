@@ -15,12 +15,9 @@ if (isLoggedIn()) {
         }
     });
     const data = await response.json();
-    // console.log(data);
     quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['curr_recommendation']);
     await quiz.makeCSQuestions();
     quiz.pullFromDB();
-
-    // console.log(data['curr_recommendation']);
 
     if (data['curr_recommendation'] !== null) {
         const recommendation_div = document.getElementById('recommendation-container');
@@ -103,7 +100,6 @@ async function renderQuiz() {
         quiz_container.appendChild(question_div);
     }
 
-    // console.log(isLoggedIn());
     if (isLoggedIn()) {
         await saveUpdate();
     }
@@ -112,7 +108,6 @@ async function renderQuiz() {
 renderQuiz();
 
 async function saveUpdate() {
-    // console.log(quiz);
     await fetch('/updateQuiz', {
         method: 'PUT',
         body: JSON.stringify({
@@ -195,7 +190,6 @@ async function giveField(givenRec) {
     fieldsData.forEach((elem) => {
         scores[elem['field']] = 0;
     });
-    // console.log(scores);
 
     userRanked.forEach((elem) => {
         let className = elem.split('-')[0].substring(2).trim();

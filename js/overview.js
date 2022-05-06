@@ -36,8 +36,6 @@ function fillClasses(str) {
     }
 }
 
-// <button data-bs-target="#collapseOne">
-
 fillClasses('ai');
 fillClasses('data');
 fillClasses('graphics');
