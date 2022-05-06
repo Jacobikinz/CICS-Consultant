@@ -147,7 +147,12 @@ A final up-to-date representation of your database including a brief description
 
 ### Entities
 
+- Username/Password
+  - Stored as strings in database
 - Classes
+  - Stored as json file. Each course contains department id, course number, course title, number of credits, semesters offered, and the description of the course.
+- Fields
+  - Stored as json file. Each field contains a name, an array of course numbers as strings, and a full name for the field.
 
 ## URL Routes/Mappings:
 
