@@ -4,18 +4,19 @@ import { setServerLoggedIn } from './multiuser.js';
 setServerLoggedIn();
 
 let quiz = null;
-if (isLoggedIn()) {
+console.log(await isLoggedIn());
+if (await isLoggedIn() === true) {
     const response = await fetch('/loadQuiz', {
         method: 'PUT',
         body: JSON.stringify({
-            email: document.cookie.split('=')[1],
+            email: document.cookie.split('=')[1].split(';')[0],
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
     const data = await response.json();
-    quiz = new Quiz(document.cookie.split('=')[1], data['cs_chosen'], data['curr_recommendation']);
+    quiz = new Quiz(document.cookie.split('=')[1].split(';')[0], data['cs_chosen'], data['curr_recommendation']);
     await quiz.makeCSQuestions();
     quiz.pullFromDB();
 
@@ -26,13 +27,22 @@ if (isLoggedIn()) {
         recommendation_div.appendChild(recommendationHeader);
     }
 } else {
+    console.log('hiaisdiasdi');
     quiz = new Quiz('guest', [], null);
     await quiz.makeCSQuestions();
     quiz.pullFromDB();
 }
 
-function isLoggedIn() {
-    return (document.cookie !== '{}' && document.cookie !== '');
+async function isLoggedIn() {
+    let data = null;
+    const response = await fetch('/checkLoggedIn', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    data = await response.json();
+    return (data === 'true');
 }
 
 // dynamically create quiz frontend
@@ -100,7 +110,7 @@ async function renderQuiz() {
         quiz_container.appendChild(question_div);
     }
 
-    if (isLoggedIn()) {
+    if (await isLoggedIn() === true) {
         await saveUpdate();
     }
 }
@@ -111,7 +121,7 @@ async function saveUpdate() {
     await fetch('/updateQuiz', {
         method: 'PUT',
         body: JSON.stringify({
-            email: document.cookie.split('=')[1],
+            email: document.cookie.split('=')[1].split(';')[0],
             quiz: quiz.json
         }),
         headers: {
@@ -216,11 +226,11 @@ async function giveField(givenRec) {
     });
 
     // Saving recommendation to DB
-    if (isLoggedIn()) {
+    if (await isLoggedIn() === true) {
         await fetch('/updateRecommendation', {
             method: 'PUT',
             body: JSON.stringify({
-                email: document.cookie.split('=')[1],
+                email: document.cookie.split('=')[1].split(';')[0],
                 recommendation: topField
             }),
             headers: {

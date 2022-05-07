@@ -1,6 +1,6 @@
 export async function setServerLoggedIn() {
     let data = null;
-    const response = await fetch('/setLoggedIn', {
+    const response = await fetch('/checkLoggedIn', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

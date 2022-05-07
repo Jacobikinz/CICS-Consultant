@@ -1,10 +1,11 @@
 const profileButton = document.getElementById('profilebutton');
 
 profileButton.addEventListener('click', async () => {
-    // document.location.href = 'profile.html';
-    await fetch('/profile', {
-        method: 'GET',
-    });
+    if (document.location['pathname'].startsWith('/html/profile')) {
+        document.location.href = '..\/profile.html';
+    } else {
+        document.location.href = 'profile.html';
+    }
 });
 
 const signoutButton = document.getElementById('signoutbutton');

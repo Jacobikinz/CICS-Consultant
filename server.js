@@ -42,11 +42,112 @@ function checkLoggedIn(req, res, next) {
 }
 
 app.get(
-    '/profile',
+    '/html/profile.html',
     checkLoggedIn, // If we are logged in (notice the comma!)...
     (req, res) => {
         // Go to the user's page.
-        res.redirect('/html/profile.html');
+        res.redirect('/html/profile/' + req.user + '.html');
+    }
+);
+
+app.get(
+    '/html/profile/:userID.html',
+    checkLoggedIn, // We also protect this route: authenticated...
+    (req, res) => {
+        // Verify this is the right user.
+        if (req.params.userID === req.user) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(`<!doctype html>
+            <html lang="en">
+
+            <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <link rel="stylesheet" href="..\\..\\css\\profile.css" />
+            <script type="module" src="..\\..\\js\\profile.js"></script>
+
+            <script type="module" src="..\\..\\js\\quiz.js"></script>
+            <script type="module" src="..\\..\\js\\profileHeader.js"></script>
+            <script type="module" src="..\\..\\js\\multiuser.js"></script>
+
+
+            <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+            <link rel="icon" href="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg">
+
+            <title>CICS Consultant</title>
+            </head>
+
+            <body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                crossorigin="anonymous"></script>
+
+            <div class="container">
+                <header
+                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom samesizeheader">
+                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <img src="https://pbs.twimg.com/profile_images/905902678026354688/c_4AcKhd_400x400.jpg" alt="CICS logo"
+                    width="60" height="60">
+                    <!-- I do not know if we are allowed to use this photo but it's from a twitter profile so ... -->
+                </a>
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="..\/home.html" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="..\/tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
+                    <li><a href="..\/about.html" class="nav-link px-2 link-dark">About Us</a></li>
+                </ul>
+
+                <!-- <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2" id="signinbutton">Login</button>
+                    <button type="button" class="btn btn-primary" id="registerbutton">Sign-up</button>
+                </div> -->
+                <div class="col-md-4 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2 invisible" id="signinbutton">Login</button>
+                    <button type="button" class="btn btn-primary invisible" id="registerbutton">Sign-up</button>
+                    <button type="button" class="btn btn-primary me-2" id="profilebutton">Profile</button>
+                    <button type="button" class="btn btn-outline-primary me-2" id="signoutbutton">Sign Out</button>
+                </div>
+                </header>
+
+                <div id="accountinfo" class="container">
+                <div id="profiletitle" class="text-center">
+                    <h1>Welcome to your profile!</h1>
+                </div>
+
+                <br>
+
+                <div id="inner-account-info" class="rounded border border-secondary bg-light">
+                    <br>
+                    <h2 id="emailinfo">Email:</h2>
+                    <br>
+                    <div class="col-md-11 d-flex justify-content-around">
+                    <input type="button" id="updatebutton" name="save" class="btn btn-primary" value="Update Your Information">
+                    <input type="button" id="deletebutton" class="btn btn-danger" value="Delete Your Profile">
+                    </div>
+
+                    <div id="newemailcontainer" class="invisible">
+                    <label id="newemaillabel" for="newemail">Enter your new email:</label>
+                    <input id="newemail" type="text">
+                    <input id="confirm-new-email" type="button" class="btn btn-warning" value="Confirm new info">
+                    </div>
+
+                    <h5 id="newinforesponse"></h5>
+                </div>
+                </div>
+
+            </div>
+            </body>
+
+            </html>`)
+            res.end();
+        } else {
+            res.redirect('/html/login.html');
+        }
     }
 );
 
@@ -57,7 +158,7 @@ app.use('/css', express.static('css'));
 app.use('/json', express.static('json'));
 app.use('/icon.jpg', express.static('icon.jpg'));
 
-app.get('/setLoggedIn', async (request, response) => {
+app.get('/checkLoggedIn', async (request, response) => {
     try {
         if (request.isAuthenticated()) {
             response.status(200).json('true');

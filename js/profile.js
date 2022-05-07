@@ -2,16 +2,9 @@ import { setServerLoggedIn } from './multiuser.js';
 
 setServerLoggedIn();
 
-const fnameinfo = document.getElementById('fnameinfo');
-const lnameinfo = document.getElementById('lnameinfo');
 const emailinfo = document.getElementById('emailinfo');
-const userEmailCookie = JSON.parse(document.cookie)['useremail'];
-const userFnameCookie = JSON.parse(document.cookie)['userfname'];
-const userLnameCookie = JSON.parse(document.cookie)['userlname'];
-
-fnameinfo.innerHTML = 'nbsp;&nbsp;First name: ' + userFnameCookie;
-lnameinfo.innerHTML = 'nbsp;&nbsp;Last name: ' + userLnameCookie;
-emailinfo.innerHTML = 'nbsp;&nbsp;Email: ' + userEmailCookie;
+const userEmailCookie = document.cookie.split('=')[1].split(';')[0];
+emailinfo.innerHTML = '&nbsp;&nbsp;Email: ' + userEmailCookie;
 
 // Update information button can change email locally
 const newemail = document.getElementById('newemail');
@@ -25,13 +18,14 @@ updateInfoButton.addEventListener('click', () => {
 const newinfores = document.getElementById('newinforesponse');
 newEmailButton.addEventListener('click', async () => {
     const oldcookie = document.cookie;
-    document.cookie = '{ "useremail": "' + newemail.value + '", "userfname": "' + JSON.parse(oldcookie)['userfname'] + '", "userlname": "' + JSON.parse(oldcookie)['userlname'] + '" }';
+    document.cookie = ' ';
+    document.cookie = 'useremail = ' + newemail.value;
     const response = await fetch('/newInfo', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ oldemail: userEmailCookie, newemail: newemail.value }),
+        body: JSON.stringify({ oldemail: oldcookie.split('=')[1].split(';')[0], newemail: newemail.value }),
     });
     const data = await response.json();
     newinfores.innerHTML = '<br> ' + JSON.stringify(data);
@@ -39,13 +33,13 @@ newEmailButton.addEventListener('click', async () => {
 
 const deleteButton = document.getElementById('deletebutton');
 deleteButton.addEventListener('click', async () => {
-    document.cookie = '{}';
+    document.cookie = '';
     const response = await fetch('/deleteUser', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: userEmailCookie }),
+        body: JSON.stringify({ email: document.cookie.split('=')[1].split(';')[0] }),
     });
     const data = await response.json();
     newinfores.innerHTML = '<br> ' + JSON.stringify(data);
