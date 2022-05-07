@@ -23,19 +23,27 @@ Hannah Wu, Github: hawuter
 ## User Interface:
 
 1. Homepage
-  - The homepage of our application is a quiz, which asks users to input all classes they have taken. There is then a button which locks in a user's answers and sends them to the database.
+  - The homepage of our application is a quiz, which asks users to input all classes they have taken. There is then a button which locks in a user's answers and sends them to the database.png
+![image](https://user-images.githubusercontent.com/48579535/167269058-25ac8179-8414-45bd-9d9e-f3e4fee95674.png)
   - Then, the next part of the quiz appears, which asks users to rank each class they have taken. There is another button at the bottom of this, which sends the class enjoyment information for the users to the database, as well as computing the final step.
+![image](https://user-images.githubusercontent.com/48579535/167269066-99ee5b61-7fba-4b5e-861d-e6391843a7ce.png)
   - The final step is taking the information from the quiz and determining which field most likely suits the user best. The information is sent to the database and then displayed on the screen.
+![image](https://user-images.githubusercontent.com/48579535/167269072-3f495b13-da67-44ed-a888-8c807024096f.png)
 2. Fields
   - This page contains 8 cards, one for each field. Each card contains every class which we have placed in said field. Each class is an accordion which displays course id and title when collapsed, and course description in the accordion dropdown.
+![image](https://user-images.githubusercontent.com/48579535/167269037-4187fc9f-794b-4c2c-9e3a-78d96a49bd5d.png)
 3. About Us
   - The about us page contains information on the application and each of our group members.
+![image](https://user-images.githubusercontent.com/48579535/167269024-9a4141bd-d0e2-4667-813d-3df9a340a41a.png)
 4. Sign-up
   - The sign-up page features a simple registration page for creating a user, with fields for first and last name, email, and password. The user is created in the database upon registration.
+![image](https://user-images.githubusercontent.com/48579535/167269118-bf322714-cadf-4584-9525-64f176a9640e.png)
 5. Login
   - The login page works fairly straightforwardly and allows a user to login to their account to update their preferences, which are stored in the database.
+![image](https://user-images.githubusercontent.com/48579535/167269089-1c6dfd05-c3f0-43c3-a977-57459eacc3a0.png)
 6. Profile
   - The profile page can only be accessed if a user is logged in.
+![image](https://user-images.githubusercontent.com/48579535/167269100-a9fb7165-8063-4323-bdca-b707245d694f.png)
 
 ## APIs:
 
