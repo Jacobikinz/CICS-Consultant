@@ -59,6 +59,25 @@ This will respond with either a `status 400` if a user already exists with the i
 
 ### Read:
 
+#### Getting the logged-in-user's profile
+`GET /html/profile.html`  
+
+This is going to call the checkLoggedIn function which is going to call req.isAuthenticated() that will check if there is a user who is currently logged in and authenticated with passport. If so, then this will call `res.redirect('/html/profile/' + req.user + '.html')` which is going to load a custom, private page for that user's profile.
+
+`GET /html/profile/:userID.html`
+
+This has a bunch of HTML that is being injected for this page to be created for the user with a custom URL. 
+
+#### Checking if a user is logged in
+
+Whenever a page is loaded on the website, there needs to be a check to see if there is currently a user logged in in order to serve the correct HTML files with the correct headers.
+
+`GET /checkLoggedIn`  
+`headers: {'Content-Type': 'application/json'}`  
+
+This is going to check with req.isAuthenticated() to see if there is currently a user who is authenticated with passport and has a running session. If this is true then it will return a `status 200` along with JSON giving a true or false response respectively. 
+
+#### Login
 Users can Login by clicking the "Login" button in the top right of any page on the website. This brings them to the login page which has the user enter their email and password that is then checked against the database for authentication. If they are valid, the user will then be logged in, and be redirected to the profile page. Also, the headers will change to **allow access to the user's profile and a sign-out button.**
 
 `GET /loginUser`  
@@ -66,7 +85,7 @@ Users can Login by clicking the "Login" button in the top right of any page on t
 
 There is no body because GET requests cannot contain a body.
 
-This will respond with either a `status 400` if there is no account with that email, or if the password is incorrect for the account with that email. If the email and password are valid and match, the server will respond with a `status 200` and the user will be redirected to the profile page.
+This will respond with either a `status 400` if there is no account with that email, or if the password is incorrect for the account with that email. If the email and password are valid and match, the server will respond with a `status 200` and the user will be redirected to the home page. This is authenticated through passport with the `auth.authenticate` method using the local strategy which is querying the DB to check the username and password that are provided. 
 
 ### Update:
 
@@ -78,7 +97,7 @@ Users can sign-out of their account at any time by clicking the "Sign Out" butto
 
 This contains no headers or body because it is just trying to signal to the server that the user wants to signout
 
-The server always returns with a `status 200` for this API request because all it is doing is setting the `loggedIn` variable in the server code to false.
+The server calls the request.logout() function provided to it through passport to log the user out of the current session. It also clears the cookies and redirects the user to the login page.
 
 #### User Updating A User's Quiz Answers
 
@@ -86,7 +105,7 @@ When a user clicks any of the buttons (aka classes) on the home page (aka the qu
 
 `PUT /updateQuiz`  
 `headers: {'Content-Type': 'application/json'}`  
-`body: JSON.stringify({email: JSON.parse(document.cookie)['useremail'], quiz: quiz.json}),`  
+`body: JSON.stringify({email: document.cookie.split('=')[1].split(';')[0], quiz: quiz.json}),`  
 
 Here, quiz.json is an class that we are using in the backend to render the homepage with buttons that form a "quiz" that the user can take. This will eventually be used to determine which path a user should most likely take in their career both academically and profesionally. The cookie is taking the email of the currently logged in user from the document's cookie to pass it along to the server.
 
@@ -98,7 +117,7 @@ When a user loads the home page then their quiz answers need to be loaded in fro
 
 `PUT /loadQuiz`  
 `headers: {'Content-Type': 'application/json'}`  
-`body: JSON.stringify({email: JSON.parse(document.cookie)['useremail']}),`  
+`body: JSON.stringify({email: document.cookie.split('=')[1].split(';')[0]}),`  
 
 This will respond with a `status 500` along with the error if there was a server error, or a `status 200` if the data was successfully loaded from the DB. The response will also include the appropriate data from the DB.
 
@@ -108,23 +127,11 @@ When a user clicks on the button after ranking all of the classes that they have
 
 `PUT /updateRecommendation`  
 `headers: {'Content-Type': 'application/json'}`  
-`body: JSON.stringify({email: JSON.parse(document.cookie)['useremail'], recommendation: topField}),`  
+`body: JSON.stringify({email: document.cookie.split('=')[1].split(';')[0], recommendation: topField}),`  
 
 This is sending the cookie with the user who is currently logged in's email and their "top field" which was the field that had the highest score after the user's rankings. If the user is not logged in athen there will be no cookie to send which will then have no database action taken.
 
 This will respond with a `status 500` along with the error if there was a server error, or a `status 200` if it was successful. The user's recommendation is updated in the database after they click the button to get their reommended field.
-
-#### Checking if there is a logged in user
-
-Whenever a page is loaded on the website, there needs to be a check to see if there is currently a user logged in in order to serve the correct HTML files with the correct headers.
-
-`PUT /setLoggedIn`  
-`headers: {'Content-Type': 'application/json'}`  
-`body: JSON.stringify({email: JSON.parse(document.cookie)}),`  
-
-This needs to send the document's cookie in order to determine if there is currently a user logged in to the website, and if there is then it will be serving back a boolean in JSON that will determine what header to use on that page.
-
-This will respond with a `status 500` along with the error if there was a server error, or a `status 200` if it was successful. The header is then successfully loaded with the correct bottons.
 
 ### Delete:
 
@@ -145,7 +152,7 @@ This will respond with a `status 500` along with the error if there was a server
 ### Entities
 
 - Username/Password
-  - Stored as strings in database
+  - Stored as strings in database where the username is an email 
 - Classes
   - Stored as json file. Each course contains department id, course number, course title, number of credits, semesters offered, and the description of the course.
 - Fields
@@ -153,9 +160,9 @@ This will respond with a `status 500` along with the error if there was a server
   - Courses can be taken from class json using the course number.
 - Class enjoyment ranking
   - Stored as an array of classes for each enjoyment level (1-5).
-  - Can check fields json for which field contains which classes.
+  - Checks fields json for which field contains which classes to then calculate the best recommendation for a user.
 - Recommended field
-  - Stored as a string
+  - Stored as a string in DB, calculated from class enjoyment rankings.
 
 ## URL Routes/Mappings:
 
@@ -173,13 +180,11 @@ A user cannot access a profile page unless they are logged in. They can only acc
 
 ## Division of Labor:
 
-A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
-
 **Thomas Callaghan**: For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work.
 
 For milestone 2, I wrote the large majority of the documentation that was needed for the submission, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone.
 
-For this final milestone, (I had skipped ahead a bit on milestone 2 by already implementing the heroku postgres DB, so I don't want to double-count that) I wrote the JS to dynamically create buttons on the home page from the classes JSON, wrote the JS that would then take those selected classes and produce radio buttons when the user was finished selecting classes, wrote the JS for calculating which field the user should pursue given their selections throughout the "quiz" through comparing this to the fields JSON, linted all the JS, validated all the HTML, cleaned up all the code, and started this final documentation by writing the API section and most of the Database section.
+For this final milestone, (I had skipped ahead a bit on milestone 2 by already implementing the heroku postgres DB, so I don't want to double-count that) I wrote the JS to dynamically create buttons on the home page from the classes JSON, wrote the JS that would then take those selected classes and produce radio buttons when the user was finished selecting classes, wrote the JS for calculating which field the user should pursue given their selections throughout the "quiz" through comparing this to the fields JSON, linted all the JS, validated all the HTML, cleaned up all the code, refactored all the code to use authentication with passport, configured and tested all the code with passport, and started this final documentation by writing the API section and most of the Database section.
 
 **Jacob Urisman**: For milestone 1, I created a preliminary fields page with a division of courses based on Ben Marlin's spreadsheet of interest fields and which classes were in them.
 
@@ -187,7 +192,11 @@ For milestone 2, I assisted in the planning of the milestone. I also set up the 
 
 For this final milestone, I wrote the final.md doc, created the fields json which most parts of the project rely on for dynamic updating. I also created the fields overview page dynamically.
 
-**Pablo Castilla**:  
+**Pablo Castilla**: For milestone 1, I took screenshots of the UI of our initial app. I also made the ideas.md document, which included said screenshots, wireframes, and the outlines for our division of labor.
+
+For milestone 2, I helped give feedback throughout the milestone, and helped with planning for the more ML/AI related activities as mentioned with Jacob. I did the work to turn Hannah's home page/quiz code into a much more functional interface with buttons. I also Made a lot of code around the "quiz" class that enabled it to be utilized with the Express API endpoints.
+
+For this final milestone, I decided which classes to include, which fields are added, and which classes belong in which fields (in conjunction w/ Jacob). I scraped data from CICS website, and created classes.json. I also recorded and edited the final video.
 
 **Hannah Wu**:  
 
