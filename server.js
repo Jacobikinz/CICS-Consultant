@@ -1,33 +1,68 @@
 import express from 'express';
+import expressSession from 'express-session';
 import logger from 'morgan';
-import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import pg from 'pg';
 import dotenv from 'dotenv';
+import auth from './js/auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(dirname(__filename));
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
 app.use(logger('dev'));
+
+// Session configuration
+const sessionConfig = {
+    // set this encryption key in Heroku config (never in GitHub)!
+    secret: process.env.SECRET || 'SECRET',
+    resave: false,
+    saveUninitialized: false,
+};
+
+app.use(expressSession(sessionConfig));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+
+auth.configure(app);
+
+// Our own middleware to check if the user is authenticated
+function checkLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        // If we are authenticated, run the next route.
+        next();
+    } else {
+        // Otherwise, redirect to the login page.
+        res.redirect('/html/login.html');
+    }
+}
+
+app.get(
+    '/profile',
+    checkLoggedIn, // If we are logged in (notice the comma!)...
+    (req, res) => {
+        // Go to the user's page.
+        res.redirect('/html/profile.html');
+    }
+);
 
 // Serves all the html, js, and css
+app.use('/html', express.static('html'));
 app.use('/js', express.static('js'));
 app.use('/css', express.static('css'));
+app.use('/json', express.static('json'));
+app.use('/icon.jpg', express.static('icon.jpg'));
 
-app.put('/setLoggedIn', async (request, response) => {
-    const options = request.body;
+app.get('/setLoggedIn', async (request, response) => {
     try {
-        if (options['cookies'] === '' || JSON.stringify(options['cookies']) === JSON.stringify({})) {
-            response.status(200).json('false');
-        } else {
+        if (request.isAuthenticated()) {
             response.status(200).json('true');
+        } else {
+            response.status(200).json('false');
         }
     } catch (err) {
         response.status(400).json('setLoggedIn login error');
@@ -60,9 +95,17 @@ app.put('/updateRecommendation', async (request, response) => {
 
 // Redirect you to home.html when you type /home
 app.get('/home', (req, res) => res.redirect('/html/home.html'));
+
 app.get('/', (req, res) => res.redirect('/html/home.html'));
 
 app.post('/signupUser', async (request, response) => {
+    // const { username, password } = req.body;
+    // if (users.addUser(username, password)) {
+    //     res.redirect('/login');
+    // } else {
+    //     res.redirect('/register');
+    // }
+
     const options = request.body;
 
     const client = new pg.Client({
@@ -83,44 +126,24 @@ app.post('/signupUser', async (request, response) => {
         const res = await client.query(text, values);
         console.log(res.rows[0]);
         await client.end();
+        // response.redirect('/html/login.html');
         response.status(200).json('Thanks for signing up');
     } catch (err) {
         console.log(err.stack);
         await client.end();
+        // response.redirect('/html/signup.html');
         response.status(400).json({ error: ' An account already exists with the email: ' + options['email'] + '. Please try logging in! Thanks! :) ' });
     }
 });
 
-app.get('/loginUser', async (request, response) => {
-    const options = request.headers;
-
-    const client = new pg.Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        },
-
-    });
-
-    client.connect();
-
-    const text = 'select * from users where email = \'' + options['email'] + '\' and password = \'' + options['password'] + '\'';
-    // async/await
-    try {
-        const res = await client.query(text);
-        if (res.rows[0] === undefined) {
-            await client.end();
-            response.status(400).json('Incorrect login information.');
-        } else {
-            console.log(res.rows[0]);
-            await client.end();
-            response.status(200).json({ 'message': 'Logging in...', 'fname': res.rows[0]['fname'], 'lname': res.rows[0]['lname'] });
-        }
-    } catch (err) {
-        console.log(err.stack);
-        await client.end();
-        response.status(400).json('Incorrect login information.');
-    }
+app.post('/loginUser', async (req, res) => {
+    auth.authenticate('local', {
+        // use username/password authentication
+        successRedirect: '/home', // when we login, go to /private
+        failureRedirect: '/html/login.html', // otherwise, back to login
+    })(req, res);
+    console.log(req.body);
+    res.cookie('useremail', req.body['username']);
 });
 
 app.put('/loadQuiz', async (request, response) => {
@@ -190,7 +213,10 @@ app.put('/updateQuiz', async (request, response) => {
 });
 
 app.put('/signoutUser', async (request, response) => {
-    response.status(200).json('Successfully signed out.');
+    // response.status(200).json('Successfully signed out.');
+    request.logout(); // Logs us out!
+    response.clearCookie('useremail');
+    response.redirect('/html/login.html'); // back to login
 });
 
 
@@ -240,6 +266,8 @@ app.delete('/deleteUser', async (request, response) => {
     try {
         await client.query(text);
         await client.end();
+        request.logout(); // Logs us out!
+        response.clearCookie('useremail');
         response.status(200).json('Your profile has been deleted.');
     } catch (err) {
         console.log(err.stack);

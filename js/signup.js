@@ -26,9 +26,11 @@ signupButton.addEventListener('click', async () => {
         body: JSON.stringify({ fname: fname.value, lname: lname.value, email: email.value, password: password.value }),
     });
     const data = await response.json();
-    validateSignup.innerHTML = '<br>' + JSON.stringify(data).replaceAll('"', '');
+    // validateSignup.innerHTML = '<br>' + JSON.stringify(data).replaceAll('"', '');
     if (response.status === 200) {
-        document.cookie = '{ "useremail": "' + email.value + '", "userfname": "' + fname.value + '", "userlname": "' + lname.value + '" }';
-        document.location.href = 'profile.html';
+    //     document.cookie = '{ "useremail": "' + email.value + '", "userfname": "' + fname.value + '", "userlname": "' + lname.value + '" }';
+        document.location.href = 'login.html';
+    } else {
+        document.location.href= 'register.html';
     }
 });

@@ -7,7 +7,7 @@ async function getRecommendation() {
         const response = await fetch('/loadQuiz', {
             method: 'PUT',
             body: JSON.stringify({
-                email: JSON.parse(document.cookie)['useremail'],
+                email: document.cookie.split('=')[1],
             }),
             headers: {
                 'Content-Type': 'application/json'

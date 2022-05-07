@@ -8,14 +8,14 @@ if (isLoggedIn()) {
     const response = await fetch('/loadQuiz', {
         method: 'PUT',
         body: JSON.stringify({
-            email: JSON.parse(document.cookie)['useremail'],
+            email: document.cookie.split('=')[1],
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
     const data = await response.json();
-    quiz = new Quiz(JSON.parse(document.cookie)['useremail'], data['cs_chosen'], data['curr_recommendation']);
+    quiz = new Quiz(document.cookie.split('=')[1], data['cs_chosen'], data['curr_recommendation']);
     await quiz.makeCSQuestions();
     quiz.pullFromDB();
 
@@ -111,7 +111,7 @@ async function saveUpdate() {
     await fetch('/updateQuiz', {
         method: 'PUT',
         body: JSON.stringify({
-            email: JSON.parse(document.cookie)['useremail'],
+            email: document.cookie.split('=')[1],
             quiz: quiz.json
         }),
         headers: {
@@ -220,7 +220,7 @@ async function giveField(givenRec) {
         await fetch('/updateRecommendation', {
             method: 'PUT',
             body: JSON.stringify({
-                email: JSON.parse(document.cookie)['useremail'],
+                email: document.cookie.split('=')[1],
                 recommendation: topField
             }),
             headers: {
