@@ -193,4 +193,4 @@ For this final milestone, I wrote the final.md doc, created the fields json whic
 
 ## Conclusion:
 
-A conclusion describing your team’s experience in working on this project. This should include what you learned through the design and implementation process, the difficulties you encountered, what your team would have liked to know before starting the project that would have helped you later, and any other technical hurdles that your team encountered.
+Our experiences with the UI and backend parts of the project were fun and straightforward. The biggest thing we learned that was not taught in class was how to use bootstrap. Our biggest difficulties came when setting up the server on Heroku and configuring the database with authentication/authorization via passport. A longer introduction to that in class would be very welcome and appreciated. Finally, we think that the project milestone documents outlining what we are expected to produce could be a bit more streamlined.
