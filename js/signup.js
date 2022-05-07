@@ -24,9 +24,7 @@ signupButton.addEventListener('click', async () => {
         },
         body: JSON.stringify({ fname: fname.value, lname: lname.value, email: email.value, password: password.value }),
     });
-    // validateSignup.innerHTML = '<br>' + JSON.stringify(data).replaceAll('"', '');
     if (response.status === 200) {
-        // document.cookie = '{ "useremail": "' + email.value + '", "userfname": "' + fname.value + '", "userlname": "' + lname.value + '" }';
         document.location.href = 'login.html';
     } else {
         document.location.href= 'register.html';
