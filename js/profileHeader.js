@@ -2,7 +2,7 @@ const profileButton = document.getElementById('profilebutton');
 
 profileButton.addEventListener('click', async () => {
     if (document.location['pathname'].startsWith('/html/profile')) {
-        document.location.href = '..\/profile.html';
+        document.location.href = '../profile.html';
     } else {
         document.location.href = 'profile.html';
     }

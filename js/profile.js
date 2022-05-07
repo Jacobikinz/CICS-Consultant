@@ -9,14 +9,12 @@ emailinfo.innerHTML = '&nbsp;&nbsp;Email: ' + userEmailCookie;
 const deleteButton = document.getElementById('deletebutton');
 deleteButton.addEventListener('click', async () => {
     document.cookie = '';
-    const response = await fetch('/deleteUser', {
+    await fetch('/deleteUser', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: document.cookie.split('=')[1].split(';')[0] }),
     });
-    const data = await response.json();
-    newinfores.innerHTML = '<br> ' + JSON.stringify(data);
     document.location.href = 'html/home.html';
 });

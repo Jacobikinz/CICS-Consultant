@@ -20,27 +20,22 @@ const strategy = new Strategy(async (username, password, done) => {
 
     client.connect();
 
-    // const text = 'select * from users where email = \'' + options['email'] + '\' and password = \'' + options['password'] + '\'';
     const text = 'select * from users where email = \'' + username + '\' and password = \'' + password + '\'';
     // async/await
     try {
         const res = await client.query(text);
         if (res.rows[0] === undefined) {
             await client.end();
-            // response.status(400).json('Incorrect login information.');
             await new Promise((r) => setTimeout(r, 2000)); // two second delay
             return done(null, false, { message: 'Incorrect login information' });
-            
         } else {
             console.log(res.rows[0]);
             await client.end();
-            // response.status(200).json({ 'message': 'Logging in...', 'fname': res.rows[0]['fname'], 'lname': res.rows[0]['lname'] });
             return done(null, res.rows[0]['email']);
         }
     } catch (err) {
         console.log(err.stack);
         await client.end();
-        // response.status(400).json('Incorrect login information.');
         return done(null, false, { message: 'Incorrect login information' });
     }
 });
@@ -52,21 +47,21 @@ passport.use(strategy);
 
 // Convert user object to a unique identifier.
 passport.serializeUser((user, done) => {
-  done(null, user);
+    done(null, user);
 });
 
 // Convert a unique identifier to a user object.
 passport.deserializeUser((uid, done) => {
-  done(null, uid);
+    done(null, uid);
 });
 
 export default {
-  configure: (app) => {
-    app.use(passport.initialize());
-    app.use(passport.session());
-  },
+    configure: (app) => {
+        app.use(passport.initialize());
+        app.use(passport.session());
+    },
 
-  authenticate: (domain, where) => {
-    return passport.authenticate(domain, where);
-  },
+    authenticate: (domain, where) => {
+        return passport.authenticate(domain, where);
+    },
 };

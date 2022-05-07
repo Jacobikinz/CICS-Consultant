@@ -8,7 +8,6 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const signupButton = document.getElementById('save');
 const resetButton = document.getElementById('clear');
-const validateSignup = document.getElementById('signupstatus');
 
 resetButton.addEventListener('click', () => {
     fname.value = '';
@@ -25,7 +24,6 @@ signupButton.addEventListener('click', async () => {
         },
         body: JSON.stringify({ fname: fname.value, lname: lname.value, email: email.value, password: password.value }),
     });
-    const data = await response.json();
     // validateSignup.innerHTML = '<br>' + JSON.stringify(data).replaceAll('"', '');
     if (response.status === 200) {
         // document.cookie = '{ "useremail": "' + email.value + '", "userfname": "' + fname.value + '", "userlname": "' + lname.value + '" }';

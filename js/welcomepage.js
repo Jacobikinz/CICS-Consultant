@@ -98,7 +98,7 @@ async function renderQuiz() {
                 renderQuiz();
             });
 
-            button.classList.add("mb-1", "mt-1", "button");
+            button.classList.add('mb-1', 'mt-1', 'button');
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -171,11 +171,11 @@ selectedButton.addEventListener('click', async () => {
         <br>`;
         rankClassesContainer.appendChild(radioDiv);
     });
-    rankClassesContainer.appendChild(document.createElement("br"));
+    rankClassesContainer.appendChild(document.createElement('br'));
     const finishedRankingBttn = document.createElement('button');
     finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
     finishedRankingBttn.id = 'finished-ranking-button';
-    finishedRankingBttn.innerText = "Done";
+    finishedRankingBttn.innerText = 'Done';
     rankClassesContainer.appendChild(finishedRankingBttn);
 
     const givenRec = document.createElement('div');
@@ -243,7 +243,7 @@ async function giveField(givenRec) {
     // Setting recommendation on the page
     if (topField !== null) {
         const recommendation = document.createElement('h1');
-        recommendation.innerHTML = "<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>";
+        recommendation.innerHTML = '<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>';
         givenRec.innerHTML = null;
         givenRec.appendChild(recommendation);
     }

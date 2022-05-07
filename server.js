@@ -97,9 +97,9 @@ app.get(
                 </a>
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="..\/home.html" class="nav-link px-2 link-secondary">Home</a></li>
-                    <li><a href="..\/tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
-                    <li><a href="..\/about.html" class="nav-link px-2 link-dark">About Us</a></li>
+                    <li><a href="../home.html" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="../tracks-overview.html" class="nav-link px-2 link-dark">Fields</a></li>
+                    <li><a href="../about.html" class="nav-link px-2 link-dark">About Us</a></li>
                 </ul>
 
                 <!-- <div class="col-md-3 text-end">
