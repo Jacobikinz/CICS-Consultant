@@ -98,7 +98,7 @@ async function renderQuiz() {
                 renderQuiz();
             });
 
-            button.classList.add('mb-1', 'mt-1');
+            button.classList.add("mb-1", "mt-1", "button");
 
             if (question.selected.some(e => e.id === a.id)) {
                 selected.appendChild(button);
@@ -140,7 +140,7 @@ const selectedButton = document.getElementById('finished-selecting-button');
 const rankClassesContainer = document.getElementById('rank-classes-container');
 selectedButton.addEventListener('click', async () => {
     const instructions = document.createElement('h2');
-    instructions.innerText = 'Please Rank All The CS Classes You Have Completed From 1 (hated it) to 5 (loved it)';
+    instructions.innerText = 'Rank from 1 (hated it) to 5 (loved it)';
     rankClassesContainer.innerHTML = null;
     rankClassesContainer.appendChild(instructions);
     quiz.questions[0]['selected'].forEach(element => {
@@ -168,13 +168,14 @@ selectedButton.addEventListener('click', async () => {
           <input class="form-check-input" type="radio" name="${element['text']}-inlineRadioOptions" id="${element['text']}-inlineRadio5" value="${element['text']}-5">
           <label class="form-check-label" for="inlineRadio3">5 (loved the course)</label>
         </div>
-        <br> <br>`;
+        <br>`;
         rankClassesContainer.appendChild(radioDiv);
     });
+    rankClassesContainer.appendChild(document.createElement("br"));
     const finishedRankingBttn = document.createElement('button');
     finishedRankingBttn.classList.add('btn', 'btn-warning', 'btn-lg');
     finishedRankingBttn.id = 'finished-ranking-button';
-    finishedRankingBttn.innerText = 'Click When Finished Ranking Classes';
+    finishedRankingBttn.innerText = "Done";
     rankClassesContainer.appendChild(finishedRankingBttn);
 
     const givenRec = document.createElement('div');
@@ -242,7 +243,7 @@ async function giveField(givenRec) {
     // Setting recommendation on the page
     if (topField !== null) {
         const recommendation = document.createElement('h1');
-        recommendation.innerHTML = '<br> Based on your rankings, you should pursue the ' + topField + ' field.';
+        recommendation.innerHTML = "<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>";
         givenRec.innerHTML = null;
         givenRec.appendChild(recommendation);
     }
