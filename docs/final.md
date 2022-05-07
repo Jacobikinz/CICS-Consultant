@@ -15,9 +15,13 @@ Our application seeks to better inform CICS students on what courses they might 
 ## Team Members:
 
 A list of your team members, with names and GitHub aliases.
+
 Thomas Callaghan, Github: twcallaghan  
+
 Jacob Urisman, Github: jacobikinz
+
 Pablo Castilla, Github: pablocastilla9
+
 Hannah Wu, Github: hawuter
 
 ## User Interface:
