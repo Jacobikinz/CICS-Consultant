@@ -57,7 +57,6 @@ app.get(
         // Verify this is the right user.
         if (req.params.userID === req.user) {
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            // res.sendFile('/html/profile.html');
             res.write(`<!doctype html>
             <html lang="en">
 
@@ -143,7 +142,7 @@ app.get(
             </div>
             </body>
 
-            </html>`)
+            </html>`);
             res.end();
         } else {
             res.redirect('/html/login.html');
@@ -200,13 +199,6 @@ app.get('/home', (req, res) => res.redirect('/html/home.html'));
 app.get('/', (req, res) => res.redirect('/html/home.html'));
 
 app.post('/signupUser', async (request, response) => {
-    // const { username, password } = req.body;
-    // if (users.addUser(username, password)) {
-    //     res.redirect('/login');
-    // } else {
-    //     res.redirect('/register');
-    // }
-
     const options = request.body;
 
     const client = new pg.Client({
@@ -227,12 +219,10 @@ app.post('/signupUser', async (request, response) => {
         const res = await client.query(text, values);
         console.log(res.rows[0]);
         await client.end();
-        // response.redirect('/html/login.html');
         response.status(200).json('Thanks for signing up');
     } catch (err) {
         console.log(err.stack);
         await client.end();
-        // response.redirect('/html/signup.html');
         response.status(400).json({ error: ' An account already exists with the email: ' + options['email'] + '. Please try logging in! Thanks! :) ' });
     }
 });
@@ -315,7 +305,6 @@ app.put('/updateQuiz', async (request, response) => {
 });
 
 app.put('/signoutUser', async (request, response) => {
-    // response.status(200).json('Successfully signed out.');
     request.logout(); // Logs us out!
     response.clearCookie('useremail');
     response.redirect('/html/login.html'); // back to login
