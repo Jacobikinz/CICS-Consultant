@@ -22,7 +22,6 @@ Hannah Wu, Github: hawuter
 
 ## User Interface:
 
-A final up-to-date list/table describing your application’s user interface. This should include the name of the UI view and its purpose. You should include a screenshot of each of your UI views.
 1. Homepage
   - The homepage of our application is a quiz, which asks users to input all classes they have taken. There is then a button which locks in a user's answers and sends them to the database.
   - Then, the next part of the quiz appears, which asks users to rank each class they have taken. There is another button at the bottom of this, which sends the class enjoyment information for the users to the database, as well as computing the final step.
@@ -35,6 +34,8 @@ A final up-to-date list/table describing your application’s user interface. Th
   - The sign-up page features a simple registration page for creating a user, with fields for first and last name, email, and password. The user is created in the database upon registration.
 5. Login
   - The login page works fairly straightforwardly and allows a user to login to their account to update their preferences, which are stored in the database.
+6. Profile
+  - The profile page can only be accessed if a user is logged in.
 
 ## APIs:
 
@@ -60,16 +61,6 @@ There is no body because GET requests cannot contain a body.
 This will respond with either a `status 400` if there is no account with that email, or if the password is incorrect for the account with that email. If the email and password are valid and match, the server will respond with a `status 200` and the user will be redirected to the profile page.
 
 ### Update:
-
-#### User Updating Their Information (email)
-
-Users can update the email associated with their account by clicking on the "Profile" button and then the "Update your information" button. This allows the user to enter in a new email for their account and then by clicking the "Confirm new info" button, their email will be updated via a PUT request sent to the server.
-
-`PUT /newInfo`  
-`headers: {'Content-Type': 'application/json'}`  
-`body: JSON.stringify({ oldemail: userEmailCookie, newemail: newemail })`  
-
-This will respond with a `status 500` along with the error if there was a server error while trying to update the email, or a `status 200` if the email was successfully updated.
 
 #### User Signing Out
 
@@ -170,7 +161,7 @@ This will respond with a `status 500` along with the error if there was a server
 
 ## Authentication/Authorization:
 
-A final up-to-date description of how users are authenticated and any permissions for specific users (if any) that you used in your application. You should mention how they relate to which UI views are accessible.
+A user cannot access a profile page unless they are logged in. They can only access their own profile page, which has a unique url.
 
 ## Division of Labor:
 
