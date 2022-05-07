@@ -59,6 +59,15 @@ This will respond with either a `status 400` if a user already exists with the i
 
 ### Read:
 
+#### Getting the logged-in-user's profile
+`GET /html/profile.html`  
+
+This is going to call the checkLoggedIn function which is going to call req.isAuthenticated() that will check if there is a user who is currently logged in and authenticated with passport. If so, then this will call `res.redirect('/html/profile/' + req.user + '.html')` which is going to load a custom, private page for that user's profile.
+
+`GET /html/profile/:userID.html`
+
+This has a bunch of HTML that is being injected for this page to be created for the user with a custom URL. 
+
 #### Checking if a user is logged in
 
 Whenever a page is loaded on the website, there needs to be a check to see if there is currently a user logged in in order to serve the correct HTML files with the correct headers.
