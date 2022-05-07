@@ -169,7 +169,7 @@ This will respond with a `status 500` along with the error if there was a server
 
 ## Authentication/Authorization:
 
-A user cannot access a profile page unless they are logged in. They can only access their own profile page, which has a unique url.
+A user cannot access a profile page unless they are logged in. They can only access their own profile page, which has a unique url. Users are authenticated using sessions with passport, very similarly to the in-class example where each user gets a session with each sessions starting when the user logs in. The passport local plan takes the user's email and password, checks them against the database, and if they're both correct then their session starts. Otherwise, they're redirected to the login page.
 
 ## Division of Labor:
 
