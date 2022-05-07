@@ -20,8 +20,8 @@ function fillClasses(str) {
     button.classList.add('accordion-button');
     button.classList.add('collapsed');
     button.setAttribute("data-bs-toggle", "collapse");
-    button.setAttribute("data-bs-target", `#${str}${course.id}collapse`);
-    button.appendChild(document.createTextNode(`${id} - ${course.name}`));
+    button.setAttribute("data-bs-target", `#${str}${id}collapse`);
+    button.appendChild(document.createTextNode(`${course.dept} ${id} - ${course.name}`));
     header.appendChild(button);
     item.appendChild(header);
     const content = document.createElement('div');

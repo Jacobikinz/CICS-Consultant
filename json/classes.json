@@ -343,14 +343,14 @@
         "offered": "Fall",
         "description": "This course provides an introduction to the principles and practice of computer and network security with a focus on both fundamental principles and practical applications through hands-on approach. Many of the principles are taught through examples. The key topics of this course are a brief introduction to computer networking; applied cryptography; protecting users, data, and services; network security, and common threats and defense strategies. Students will complete a number of practical lab assignments as well as auto-graded quizzes/assignments. 3 credits."
     },
-    {   "dept": "COMPSCI",
+    {   "dept": "CS",
         "id": "561",
         "name": "Systems Defense and Test",
         "creds": 3,
         "offered": "Spring",
         "description": "This class trains students to detect and analyze weaknesses and vulnerabilities in target systems as a method of assessing the security of a system. We focus on tools and techniques that an attacker would employ but from the perspective of an ethical system administrator. Topics include tools and techniques for penetration testing and attacks, information gathering, social engineering, and defenses. Specific topics include malware, denial of service attacks, SQL injection, buffer overflow, session hijacking, and system hacking, network sniffing and scans, wireless encryption weaknesses and other WiFi issues, IDS/firewall evasion, metasploit tools, physical security, and setting up honeypots. Was INFOSEC 690S. This course counts as an Elective toward the CS Major. Undergraduate Prerequisites: COMPSCI 460 (or COMPSCI 597N or COMPSCI 660) and COMPSCI 453. 3 credits."
     },
-    {   "dept": "COMPSCI",
+    {   "dept": "CS",
         "id": "563",
         "name": "Internet Law and Policy",
         "creds": 3,
