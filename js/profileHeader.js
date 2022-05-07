@@ -1,13 +1,18 @@
 const profileButton = document.getElementById('profilebutton');
 
-profileButton.addEventListener('click', () => {
-    document.location.href = 'profile.html';
+profileButton.addEventListener('click', async () => {
+    if (document.location['pathname'].startsWith('/html/profile')) {
+        document.location.href = '..\/profile.html';
+    } else {
+        document.location.href = 'profile.html';
+    }
 });
 
 const signoutButton = document.getElementById('signoutbutton');
 
 signoutButton.addEventListener('click', async () => {
-    document.cookie = '{}';
+    document.cookie = '';
+    console.log(document.cookie);
     await fetch('/signoutUser', {
         method: 'PUT',
     });

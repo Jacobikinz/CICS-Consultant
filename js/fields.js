@@ -3,11 +3,11 @@ import { setServerLoggedIn } from './multiuser.js';
 setServerLoggedIn();
 
 async function getRecommendation() {
-    if (isLoggedIn()) {
+    if (await isLoggedIn() === true) {
         const response = await fetch('/loadQuiz', {
             method: 'PUT',
             body: JSON.stringify({
-                email: JSON.parse(document.cookie)['useremail'],
+                email: document.cookie.split('=')[1].split(';')[0],
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -24,8 +24,16 @@ async function getRecommendation() {
     }
 }
 
-function isLoggedIn() {
-    return (document.cookie !== '{}' && document.cookie !== '');
+async function isLoggedIn() {
+    let data = null;
+    const response = await fetch('/checkLoggedIn', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    data = await response.json();
+    return (data === 'true');
 }
 
 await getRecommendation();

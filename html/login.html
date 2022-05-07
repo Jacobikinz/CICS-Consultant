@@ -48,7 +48,7 @@
     <div id="main-container" class="justify-content-center align-items-center d-flex">
         <div
             class="row justify-content-center align-items-center mw-100 bg-light w-25 border border-primary rounded-lg rounded">
-            <form class="form-horizontal">
+            <form action="/loginUser" method="post" class="form-horizontal">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label class="col-md-12 control-label" for="email">Email</label>
                         <div class="col-md-12">
-                            <input id="email" name="email" type="text" placeholder="johndoe@example.com"
+                            <input id="email" name="username" type="text" placeholder="johndoe@example.com"
                                 class="form-control input-md" required="">
 
                         </div>
@@ -78,7 +78,7 @@
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <div class="col-md-11 d-flex justify-content-center">
-                            <input type="button" id="loginbutton" name="save" class="btn btn-success" value="Login">
+                            <input type="submit" id="loginbutton" name="save" class="btn btn-success" value="Login">
                         </div>
                         <h5 id="loginstatus"></h5>
                     </div>
