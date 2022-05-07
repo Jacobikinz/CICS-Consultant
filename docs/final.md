@@ -200,7 +200,7 @@ For this final milestone, (I had skipped ahead a bit on milestone 2 by already i
 
 For milestone 2, I assisted in the planning of the milestone. I also set up the Heroku application, including connecting it to GitHub, setting up the CLI and making it secure.
 
-For this final milestone, I wrote the final.md doc, created the fields json which most parts of the project rely on for dynamic updating. I also created the fields overview page dynamically.
+For this final milestone, I wrote almost all of the final documentation, created the fields json which most parts of the project rely on for dynamic updating. I also created the fields overview page dynamically.
 
 **Pablo Castilla**: For milestone 1, I took screenshots of the UI of our initial app. I also made the ideas.md document, which included said screenshots, wireframes, and the outlines for our division of labor.
 
@@ -208,7 +208,11 @@ For milestone 2, I helped give feedback throughout the milestone, and helped wit
 
 For this final milestone, I decided which classes to include, which fields are added, and which classes belong in which fields (in conjunction w/ Jacob). I scraped data from CICS website, and created classes.json. I also recorded and edited the final video.
 
-**Hannah Wu**:  
+**Hannah Wu**: For milestone 1, I helped with the planning of the data interactions and helped write the milestone doc. 
+
+For milestone 2, I created the quiz class and its CRUD operations. I also integrated it into the UI.
+
+For this final milestone, I finalized the CSS for the quiz buttons and cleaned up the HTML.
 
 ## Conclusion:
 
