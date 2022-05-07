@@ -301,31 +301,6 @@ app.put('/signoutUser', async (request, response) => {
     response.redirect('/html/login.html'); // back to login
 });
 
-
-app.put('/newInfo', async (request, response) => {
-    const options = request.body;
-
-    const client = new pg.Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        },
-
-    });
-
-    client.connect();
-    const text = 'UPDATE users SET email = \'' + options['newemail'] + '\' WHERE email = \'' + options['oldemail'] + '\'';
-    // async/await
-    try {
-        await client.query(text);
-        await client.end();
-        response.status(200).json('Successfully updated information.');
-    } catch (err) {
-        await client.end();
-        response.status(500).json('Server error');
-    }
-});
-
 app.delete('/deleteUser', async (request, response) => {
     const options = request.body;
 
