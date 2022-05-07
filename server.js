@@ -127,7 +127,6 @@ app.get(
                     <h2 id="emailinfo">Email:</h2>
                     <br>
                     <div class="col-md-11 d-flex justify-content-around">
-                    <input type="button" id="updatebutton" name="save" class="btn btn-primary" value="Update Your Information">
                     <input type="button" id="deletebutton" class="btn btn-danger" value="Delete Your Profile">
                     </div>
 
@@ -245,6 +244,7 @@ app.post('/loginUser', async (req, res) => {
         failureRedirect: '/html/login.html', // otherwise, back to login
     })(req, res);
     console.log(req.body);
+    res.clearCookie('useremail');
     res.cookie('useremail', req.body['username']);
 });
 
