@@ -173,8 +173,6 @@ A user cannot access a profile page unless they are logged in. They can only acc
 
 ## Division of Labor:
 
-A breakdown of the division of labor for each team member — that is, saying who did what, for the entire project. Remember that everyone is expected to contribute roughly equally to each phase of the project. We expect to see similar numbers and kinds of GitHub commits by each student.
-
 **Thomas Callaghan**: For milestone 1, I drew out the wireframes, created the website's first iteration of the header, wrote the HTML for the homepage and created dropdowns which was our first iteration of the "quiz", added the FAQ page that had accordions that has since been scrapped as a whole page, and added login/signup buttons along with some basic code to make the logging/signing in work.
 
 For milestone 2, I wrote the large majority of the documentation that was needed for the submission, created all API endpoints surrounding the authentication of user's (/signupUser, /loginUser, /newInfo, /signoutUser, and /deleteUser), implemented the Heroku Postgres DB and then implemented the code my teammates wrote for the homepage "quiz" with the DB by creating more API endpoints (/updateQuiz and /loadQuiz), tested it all, deployed it, and assisted in the planning of this milestone.
@@ -187,7 +185,11 @@ For milestone 2, I assisted in the planning of the milestone. I also set up the 
 
 For this final milestone, I wrote the final.md doc, created the fields json which most parts of the project rely on for dynamic updating. I also created the fields overview page dynamically.
 
-**Pablo Castilla**:  
+**Pablo Castilla**: For milestone 1, I took screenshots of the UI of our initial app. I also made the ideas.md document, which included said screenshots, wireframes, and the outlines for our division of labor.
+
+For milestone 2, I helped give feedback throughout the milestone, and helped with planning for the more ML/AI related activities as mentioned with Jacob. I did the work to turn Hannah's home page/quiz code into a much more functional interface with buttons. I also Made a lot of code around the "quiz" class that enabled it to be utilized with the Express API endpoints.
+
+For this final milestone, I decided which classes to include, which fields are added, and which classes belong in which fields (in conjunction w/ Jacob). I scraped data from CICS website, and created classes.json. I also recorded and edited the final video.
 
 **Hannah Wu**:  
 
