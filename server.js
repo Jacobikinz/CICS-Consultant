@@ -57,6 +57,7 @@ app.get(
         // Verify this is the right user.
         if (req.params.userID === req.user) {
             res.writeHead(200, { 'Content-Type': 'text/html' });
+            // res.sendFile('/html/profile.html');
             res.write(`<!doctype html>
             <html lang="en">
 
