@@ -4,7 +4,6 @@ import { setServerLoggedIn } from './multiuser.js';
 setServerLoggedIn();
 
 let quiz = null;
-console.log(await isLoggedIn());
 if (await isLoggedIn() === true) {
     const response = await fetch('/loadQuiz', {
         method: 'PUT',
@@ -27,7 +26,6 @@ if (await isLoggedIn() === true) {
         recommendation_div.appendChild(recommendationHeader);
     }
 } else {
-    console.log('hiaisdiasdi');
     quiz = new Quiz('guest', [], null);
     await quiz.makeCSQuestions();
     quiz.pullFromDB();

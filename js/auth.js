@@ -9,8 +9,6 @@ const { Strategy } = passportLocal;
 // password credentials from the client. The LocalStrategy object is used to
 // authenticate a user using a username and password.
 const strategy = new Strategy(async (username, password, done) => {
-    console.log('here');
-
     const client = new pg.Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
@@ -29,12 +27,10 @@ const strategy = new Strategy(async (username, password, done) => {
             await new Promise((r) => setTimeout(r, 2000)); // two second delay
             return done(null, false, { message: 'Incorrect login information' });
         } else {
-            console.log(res.rows[0]);
             await client.end();
             return done(null, res.rows[0]['email']);
         }
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         return done(null, false, { message: 'Incorrect login information' });
     }

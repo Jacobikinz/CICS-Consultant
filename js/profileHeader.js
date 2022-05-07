@@ -12,7 +12,6 @@ const signoutButton = document.getElementById('signoutbutton');
 
 signoutButton.addEventListener('click', async () => {
     document.cookie = '';
-    console.log(document.cookie);
     await fetch('/signoutUser', {
         method: 'PUT',
     });

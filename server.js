@@ -187,7 +187,6 @@ app.put('/updateRecommendation', async (request, response) => {
         await client.end();
         response.status(200).json('Successfully updated information.');
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         response.status(500).json('Server error');
     }
@@ -216,12 +215,10 @@ app.post('/signupUser', async (request, response) => {
 
     // async/await
     try {
-        const res = await client.query(text, values);
-        console.log(res.rows[0]);
+        await client.query(text, values);
         await client.end();
         response.status(200).json('Thanks for signing up');
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         response.status(400).json({ error: ' An account already exists with the email: ' + options['email'] + '. Please try logging in! Thanks! :) ' });
     }
@@ -233,7 +230,6 @@ app.post('/loginUser', async (req, res) => {
         successRedirect: '/home', // when we login, go to /private
         failureRedirect: '/html/login.html', // otherwise, back to login
     })(req, res);
-    console.log(req.body);
     res.clearCookie('useremail');
     res.cookie('useremail', req.body['username']);
 });
@@ -252,14 +248,12 @@ app.put('/loadQuiz', async (request, response) => {
     client.connect();
 
     const text = 'select cs_chosen, curr_recommendation from users where email = \'' + options['email'] + '\'';
-    console.log(text);
     // async/await
     try {
         const res = await client.query(text);
         await client.end();
         response.status(200).json(res.rows[0]);
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         response.status(400).json('Incorrect login information.');
     }
@@ -277,7 +271,6 @@ app.put('/updateQuiz', async (request, response) => {
     });
 
     client.connect();
-    console.log(options);
     const colNames = ['cs_chosen'];
     for (let i = 0; i < 1; i++) {
         const currSelected = options['quiz']['questions'][i]['selected'].filter(word => word !== 'undefined');
@@ -289,12 +282,10 @@ app.put('/updateQuiz', async (request, response) => {
             }
         }
         const text = 'UPDATE users SET ' + colNames[i] + ' = \'{' + insertList + '}\' WHERE email = \'' + options['email'] + '\'';
-        console.log(text);
         // async/await
         try {
             await client.query(text);
         } catch (err) {
-            console.log(err.stack);
             await client.end();
             response.status(500).json('Server error');
             break;
@@ -323,16 +314,13 @@ app.put('/newInfo', async (request, response) => {
     });
 
     client.connect();
-    console.log(options);
     const text = 'UPDATE users SET email = \'' + options['newemail'] + '\' WHERE email = \'' + options['oldemail'] + '\'';
-    console.log(text);
     // async/await
     try {
         await client.query(text);
         await client.end();
         response.status(200).json('Successfully updated information.');
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         response.status(500).json('Server error');
     }
@@ -350,9 +338,7 @@ app.delete('/deleteUser', async (request, response) => {
     });
 
     client.connect();
-    console.log(options);
     const text = 'DELETE FROM users WHERE email = \'' + options['email'] + '\'';
-    console.log(text);
     // async/await
     try {
         await client.query(text);
@@ -361,7 +347,6 @@ app.delete('/deleteUser', async (request, response) => {
         response.clearCookie('useremail');
         response.status(200).json('Your profile has been deleted.');
     } catch (err) {
-        console.log(err.stack);
         await client.end();
         response.status(500).json('Server error');
     }
@@ -370,7 +355,6 @@ app.delete('/deleteUser', async (request, response) => {
 app.get('/', (req, res) => res.redirect('/html/home.html'));
 
 app.get('*', function (req, res) {
-    console.log(req.path.substring(1));
     res.sendFile(__dirname + req.path);
 });
 
