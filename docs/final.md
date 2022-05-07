@@ -171,12 +171,18 @@ This will respond with a `status 500` along with the error if there was a server
 ## URL Routes/Mappings:
 
 - html/about.html
+  - This is the about us page
 - html/home.html
+  - This is the homepage which houses the main quiz
 - html/login.html
+  - Page where users can log in to their accounts
 - html/profile.html
-  - login authentication required (email and password)
+  - Login authentication required (email and password)
+  - Page that displays user information
 - html/signup.html
+  - Page where users can register and create an account
 - html/fields.html
+  - This is the fields overview page
 
 ## Authentication/Authorization:
 
