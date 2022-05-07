@@ -241,7 +241,7 @@ async function giveField(givenRec) {
     // Setting recommendation on the page
     if (topField !== null) {
         const recommendation = document.createElement('h1');
-        recommendation.innerHTML = '<br><p>Based on your rankings, you should pursue the " + topField + " field!</p><br>';
+        recommendation.innerHTML = '<br><p>Based on your rankings, you should pursue the ' + topField + ' field!</p><br>';
         givenRec.innerHTML = null;
         givenRec.appendChild(recommendation);
     }
