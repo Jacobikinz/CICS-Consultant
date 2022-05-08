@@ -217,3 +217,10 @@ For this final milestone, I finalized the CSS for the quiz buttons and cleaned u
 ## Conclusion:
 
 Our experiences with the UI and backend parts of the project were fun and straightforward. The biggest thing we learned that was not taught in class was how to use bootstrap. Our biggest difficulties came when setting up the server on Heroku and configuring the database with authentication/authorization via passport. A longer introduction to that in class would be very welcome and appreciated. Finally, we think that the project milestone documents outlining what we are expected to produce could be a bit more streamlined.
+
+## Grading Rubric:
+
+- Login/Register/Auth | 25%
+- Fields list and page style | 35%
+- Homepage and Quiz | 35%
+- About us | 5%
