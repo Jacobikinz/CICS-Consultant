@@ -4,5 +4,8 @@
 ## Division of Labor
 Thomas Callaghan: Created the DB and all functionality surrounding the database. Created this documentation. 
 
-Everyone else: Helped with Heroku deployments and did more surrounding the final touches of this project like scraping the CICS course descriptions website and 
-turning it into JSON, etc. There is better documentation of division of labor in the final.md document. 
+Jacob Urisman: Wrote almost all of the final documentation, created the fields json which most parts of the project rely on for dynamic updating. Also created the fields overview page dynamically.
+
+Pablo Castilla: Decided which classes to include, which fields are added, and which classes belong in which fields (in conjunction w/ Jacob). Scraped data from CICS website, and created classes.json. I also recorded and edited the final video.
+
+Hannah Wu: Finalized the CSS for the quiz buttons and cleaned up the HTML.
